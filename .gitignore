@@ -1,0 +1,16 @@
+# Temporary scripts & backups
+*.bak
+*.tmp
+download_*.js
+check_*.js
+copy_*.js
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Heavy unused design source files (already web-optimized)
+hide-n-seek-3d-theme.png
+hide-n-seek-menu-design.png
+hide-n-seek-poster.jpg
+hide-n-seek-poster-2026.jpg
+assets/hide-n-seek-menu-design-preview.png
