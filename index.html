@@ -1,1905 +1,2834 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090d1b">
-<meta name="description" content="Hide N Seek Café Khanapur - Good Food, Good Mood. Explore our full menu of starters, momos, stone-baked pizzas, pasta, noodles, and refreshing beverages.">
-<title>Hide N Seek Café | Khanapur - Good Food, Good Mood</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,700&display=swap" rel="stylesheet">
-<style>
-/* ═══════════════════ DESIGN TOKENS ═══════════════════ */
-:root {
-  --navy: #0c1122;
-  --navy-deep: #060914;
-  --navy-card: #141b34;
-  --navy-light: #1f294d;
-  --gold: #f5c84c;
-  --gold-bright: #ffe27d;
-  --gold-dark: #b88a1b;
-  --cream: #fff9ed;
-  --cream2: #ffffff;
-  --cream-card: #fffdf8;
-  --border-light: #e8dcc4;
-  --ink: #111422;
-  --muted: #6e675d;
-  --radius: 18px;
-  --radius-sm: 10px;
-  --shadow-sm: 0 4px 14px rgba(12,17,34,.06);
-  --shadow-md: 0 10px 30px rgba(12,17,34,.12);
-  --shadow-lg: 0 20px 50px rgba(12,17,34,.18);
-  --veg-green: #1b8744;
-  --nonveg-red: #d13028;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090d1b">
+  <meta name="description"
+    content="Hide N Seek Café Khanapur - Good Food, Good Mood. Explore our full menu of starters, momos, stone-baked pizzas, pasta, noodles, and refreshing beverages.">
+  <title>Hide N Seek Café | Khanapur - Good Food, Good Mood</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ═══════════════════ DESIGN TOKENS ═══════════════════ */
+    :root {
+      --navy: #0c1122;
+      --navy-deep: #060914;
+      --navy-card: #141b34;
+      --navy-light: #1f294d;
+      --gold: #f5c84c;
+      --gold-bright: #ffe27d;
+      --gold-dark: #b88a1b;
+      --cream: #fff9ed;
+      --cream2: #ffffff;
+      --cream-card: #fffdf8;
+      --border-light: #e8dcc4;
+      --ink: #111422;
+      --muted: #6e675d;
+      --radius: 18px;
+      --radius-sm: 10px;
+      --shadow-sm: 0 4px 14px rgba(12, 17, 34, .06);
+      --shadow-md: 0 10px 30px rgba(12, 17, 34, .12);
+      --shadow-lg: 0 20px 50px rgba(12, 17, 34, .18);
+      --veg-green: #1b8744;
+      --nonveg-red: #d13028;
+    }
 
-/* ═══════════════════ RESET & BASE ═══════════════════ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--cream);
-  color: var(--ink);
-  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-a { color: inherit; text-decoration: none; }
-button, input { font: inherit; }
-img { display: block; max-width: 100%; }
+    /* ═══════════════════ RESET & BASE ═══════════════════ */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* ═══════════════════ CINEMATIC INTERACTIVE SMOKE INTRO ═══════════════════ */
-#smokeOverlay {
-  position: fixed; inset: 0; z-index: 99999;
-  background: radial-gradient(circle at 50% 50%, #151c36 0%, #090d1b 60%, #04060c 100%);
-  display: flex; align-items: center; justify-content: center; flex-direction: column;
-  overflow: hidden;
-  cursor: crosshair;
-  transition: opacity .9s cubic-bezier(.4,0,.2,1), filter .9s ease-out, visibility .9s;
-}
-#smokeOverlay.hidden {
-  opacity: 0;
-  filter: blur(25px) brightness(1.2);
-  visibility: hidden;
-  pointer-events: none;
-}
-#smokeCanvas {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  pointer-events: none;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* Letterbox Bars */
-.cinema-bar-top, .cinema-bar-bottom {
-  position: absolute; left: 0; right: 0;
-  height: 44px;
-  background: rgba(4, 6, 12, .88);
-  backdrop-filter: blur(8px);
-  z-index: 10;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 24px;
-  font-size: .75rem;
-  font-weight: 700;
-  letter-spacing: .15em;
-  color: #c9b482;
-  border-bottom: 1px solid rgba(245,200,76,.15);
-}
-.cinema-bar-top { top: 0; }
-.cinema-bar-bottom {
-  bottom: 0;
-  border-top: 1px solid rgba(245,200,76,.15);
-  border-bottom: none;
-}
-.cinema-live-tag {
-  display: inline-flex; align-items: center; gap: 7px;
-  color: var(--gold);
-}
-.live-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #ff3b30;
-  box-shadow: 0 0 10px #ff3b30;
-  animation: pulseDot 1.4s infinite;
-}
-@keyframes pulseDot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: .4; transform: scale(.8); }
-}
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
 
-/* Audio EQ Wave bars */
-.eq-container {
-  display: flex; align-items: center; gap: 3px; height: 16px;
-}
-.eq-bar {
-  width: 3px; height: 100%; background: var(--gold);
-  border-radius: 2px;
-  animation: eqBounce .8s ease-in-out infinite alternate;
-}
-.eq-bar:nth-child(1) { animation-delay: 0s; height: 40%; }
-.eq-bar:nth-child(2) { animation-delay: .2s; height: 85%; }
-.eq-bar:nth-child(3) { animation-delay: .4s; height: 60%; }
-.eq-bar:nth-child(4) { animation-delay: .1s; height: 100%; }
-.eq-bar:nth-child(5) { animation-delay: .3s; height: 50%; }
-@keyframes eqBounce {
-  to { height: 20%; opacity: .4; }
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-/* Center Stage Content */
-.smoke-content {
-  position: relative; z-index: 5;
-  text-align: center;
-  padding: 20px;
-  max-width: 800px;
-  display: flex; flex-direction: column; align-items: center;
-  animation: smokeStageIn 1.5s cubic-bezier(.16,1,.3,1) forwards;
-}
-@keyframes smokeStageIn {
-  0% { opacity: 0; transform: translateY(35px) scale(.92); filter: blur(12px); }
-  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-}
+    button,
+    input {
+      font: inherit;
+    }
 
-/* Ornate Glowing Emblem */
-.smoke-emblem {
-  width: 90px; height: 90px;
-  border-radius: 50%;
-  border: 2px solid var(--gold);
-  display: grid; place-items: center;
-  margin-bottom: 22px;
-  position: relative;
-  background: radial-gradient(circle, rgba(245,200,76,.15) 0%, rgba(9,13,27,.6) 80%);
-  box-shadow: 0 0 40px rgba(245,200,76,.4), inset 0 0 20px rgba(245,200,76,.2);
-}
-.smoke-emblem::before {
-  content: ''; position: absolute; inset: -7px;
-  border-radius: 50%;
-  border: 1px dashed rgba(245,200,76,.5);
-  animation: orbitRing 16s linear infinite;
-}
-@keyframes orbitRing {
-  to { transform: rotate(360deg); }
-}
-.smoke-emblem .monogram {
-  font: italic 3.2rem 'Playfair Display', Georgia, serif;
-  color: var(--gold);
-  line-height: 1;
-  text-shadow: 0 0 25px rgba(245,200,76,.8);
-}
-.smoke-emblem .star {
-  font-size: .8rem; position: absolute; top: 12px; right: 14px; color: #fff3cb;
-}
+    img {
+      display: block;
+      max-width: 100%;
+    }
 
-.smoke-title {
-  font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
-  font-size: clamp(2.4rem, 7vw, 5.2rem);
-  font-weight: 900;
-  letter-spacing: .08em;
-  background: linear-gradient(135deg, #fff2cc 0%, #f5c84c 50%, #d49b1a 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 25px rgba(245,200,76,.5));
-  margin-bottom: 8px;
-  text-transform: uppercase;
-}
+    /* ═══════════════════ CINEMATIC INTERACTIVE SMOKE INTRO ═══════════════════ */
+    #smokeOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: radial-gradient(circle at 50% 50%, #151c36 0%, #090d1b 60%, #04060c 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      overflow: hidden;
+      cursor: crosshair;
+      transition: opacity .9s cubic-bezier(.4, 0, .2, 1), filter .9s ease-out, visibility .9s;
+    }
 
-.smoke-tagline {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(.85rem, 2.2vw, 1.25rem);
-  font-weight: 700;
-  letter-spacing: .35em;
-  color: #fff1cf;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  text-shadow: 0 2px 10px rgba(0,0,0,.6);
-}
+    #smokeOverlay.hidden {
+      opacity: 0;
+      filter: blur(25px) brightness(1.2);
+      visibility: hidden;
+      pointer-events: none;
+    }
 
-.smoke-desc {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-style: italic;
-  font-size: clamp(1rem, 2vw, 1.35rem);
-  color: #d1d9ec;
-  margin-bottom: 30px;
-  max-width: 580px;
-  line-height: 1.5;
-  text-shadow: 0 2px 8px rgba(0,0,0,.8);
-}
+    #smokeCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
 
-/* Interactive CTA */
-.smoke-actions {
-  display: flex; flex-direction: column; align-items: center; gap: 14px;
-}
-.btn-enter-cafe {
-  background: linear-gradient(135deg, #f5c84c 0%, #e0a720 100%);
-  color: #0c1122;
-  border: 0;
-  border-radius: 999px;
-  padding: 16px 38px;
-  font-size: 1.05rem;
-  font-weight: 900;
-  letter-spacing: .12em;
-  cursor: pointer;
-  box-shadow: 0 8px 32px rgba(245,200,76,.45), 0 0 0 1px rgba(255,255,255,.3);
-  transition: all .35s cubic-bezier(.4,0,.2,1);
-  display: inline-flex; align-items: center; gap: 10px;
-}
-.btn-enter-cafe:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 14px 45px rgba(245,200,76,.65);
-  background: linear-gradient(135deg, #ffe07a 0%, #f5c84c 100%);
-}
-.smoke-hint {
-  font-size: .8rem;
-  color: #d4c194;
-  letter-spacing: .06em;
-  display: flex; align-items: center; gap: 6px;
-  opacity: .85;
-}
+    /* Letterbox Bars */
+    .cinema-bar-top,
+    .cinema-bar-bottom {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 44px;
+      background: rgba(4, 6, 12, .88);
+      backdrop-filter: blur(8px);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      color: #c9b482;
+      border-bottom: 1px solid rgba(245, 200, 76, .15);
+    }
 
-/* ═══════════════════ TOPBAR ═══════════════════ */
-.topbar {
-  background: linear-gradient(90deg, #e3b030 0%, #f5c84c 50%, #e3b030 100%);
-  color: #0c1122;
-  text-align: center;
-  padding: 8px 16px;
-  font-size: .8rem;
-  font-weight: 800;
-  letter-spacing: .04em;
-  display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
-  box-shadow: 0 2px 10px rgba(0,0,0,.15);
-}
-.topbar-sep { opacity: .5; }
-.topbar-badge {
-  background: #0c1122; color: var(--gold);
-  padding: 3px 10px; border-radius: 999px; font-size: .7rem; font-weight: 800;
-}
+    .cinema-bar-top {
+      top: 0;
+    }
 
-/* ═══════════════════ HEADER & NAV ═══════════════════ */
-header {
-  background: radial-gradient(ellipse at 50% 0%, #1f294d 0%, #0c1122 65%, #060914 100%);
-  color: #fff9ed;
-  position: relative;
-  overflow: hidden;
-}
-/* Subtle golden ambient glow */
-header::before {
-  content: ''; position: absolute;
-  top: -150px; left: 50%; transform: translateX(-50%);
-  width: 900px; height: 350px;
-  background: radial-gradient(ellipse, rgba(245,200,76,.12) 0%, transparent 70%);
-  pointer-events: none;
-}
+    .cinema-bar-bottom {
+      bottom: 0;
+      border-top: 1px solid rgba(245, 200, 76, .15);
+      border-bottom: none;
+    }
 
-.nav {
-  max-width: 1400px; margin: auto;
-  padding: 20px 28px;
-  display: flex; align-items: center; justify-content: space-between; gap: 20px;
-  position: relative; z-index: 5;
-  border-bottom: 1px solid rgba(245,200,76,.15);
-}
-.brand { display: flex; align-items: center; gap: 14px; }
-.logo-icon {
-  width: 52px; height: 52px;
-  border: 2px solid var(--gold);
-  border-radius: 50%;
-  display: grid; place-items: center;
-  color: var(--gold);
-  font: italic 2.1rem 'Playfair Display', Georgia, serif;
-  position: relative;
-  background: rgba(12,17,34,.7);
-  box-shadow: 0 0 20px rgba(245,200,76,.25);
-}
-.logo-icon span { font-size: .62rem; position: absolute; right: 6px; top: 7px; color: #ffe694; }
-.brand-name {
-  font-family: Impact, 'Arial Black', sans-serif;
-  font-style: italic;
-  font-size: 1.7rem;
-  letter-spacing: .02em;
-  background: linear-gradient(135deg, #fff3cb 0%, #f5c84c 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 10px rgba(0,0,0,.6);
-}
-.brand-sub {
-  font-size: .62rem;
-  letter-spacing: .15em;
-  color: #ebd7a7;
-  margin-top: 2px;
-  font-weight: 600;
-}
-.nav-links { display: flex; align-items: center; gap: 28px; font-size: .92rem; font-weight: 600; color: #ece2ce; }
-.nav-links a {
-  transition: color .25s; position: relative; padding: 4px 0;
-}
-.nav-links a:hover { color: var(--gold); }
-.nav-links a::after {
-  content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 2px;
-  background: var(--gold); transition: width .3s;
-}
-.nav-links a:hover::after { width: 100%; }
+    .cinema-live-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--gold);
+    }
 
-.nav-actions { display: flex; align-items: center; gap: 12px; }
-.btn-cta-menu {
-  background: var(--gold);
-  color: var(--navy);
-  border: 0; border-radius: 999px;
-  padding: 11px 22px;
-  font-size: .88rem; font-weight: 800;
-  cursor: pointer;
-  transition: all .3s;
-  box-shadow: 0 6px 22px rgba(245,200,76,.3);
-}
-.btn-cta-menu:hover {
-  background: var(--gold-bright);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(245,200,76,.5);
-}
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ff3b30;
+      box-shadow: 0 0 10px #ff3b30;
+      animation: pulseDot 1.4s infinite;
+    }
 
-/* ═══════════════════ HERO ═══════════════════ */
-.hero {
-  max-width: 1400px;
-  margin: auto;
-  padding: 12px 28px 35px;
-  position: relative;
-  z-index: 3;
-}
-.hero-wrapper {
-  position: relative;
-  border-radius: 22px;
-  overflow: hidden;
-  border: 2px solid rgba(245,200,76,.45);
-  box-shadow: 0 25px 75px rgba(0,0,0,.65);
-  background: #080c18;
-}
-.hero-photo {
-  width: 100%;
-  aspect-ratio: 3/2;
-  max-height: 640px;
-  display: flex; align-items: center; justify-content: center;
-  background: radial-gradient(circle at 50% 50%, #151c36 0%, #060914 100%);
-  position: relative;
-  overflow: hidden;
-}
-.hero-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-  display: block;
-}
-/* Live steam canvas running above the hot dishes */
-#heroSteamCanvas {
-  position: absolute; inset: 0;
-  pointer-events: none;
-  opacity: .85;
-}
-/* Subtle golden vignette around hero image */
-.hero-wrapper::after {
-  content: ''; position: absolute; inset: 0;
-  box-shadow: inset 0 0 80px rgba(6,9,20,.6);
-  pointer-events: none;
-}
+    @keyframes pulseDot {
 
-/* Hero Highlights Bar */
-.hero-badges {
-  display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap;
-  gap: 12px;
-  padding: 16px 24px;
-  background: rgba(12,17,34,.95);
-  border-top: 1px solid rgba(245,200,76,.2);
-}
-.hero-badge-item {
-  display: flex; align-items: center; gap: 8px;
-  font-size: .84rem; font-weight: 700; color: #fff3cb;
-}
-.hero-badge-item span.icon { font-size: 1.25rem; }
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
 
-/* ═══════════════════ MAIN CONTENT ═══════════════════ */
-main {
-  max-width: 1400px;
-  margin: auto;
-  padding: 0 28px;
-}
+      50% {
+        opacity: .4;
+        transform: scale(.8);
+      }
+    }
 
-/* ═══════════════════ MENU SECTION (NEVER HIDDEN) ═══════════════════ */
-#menu {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-  padding-top: 55px;
-}
+    /* Audio EQ Wave bars */
+    .eq-container {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 16px;
+    }
 
-.section-head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 20px;
-  margin-bottom: 25px;
-  flex-wrap: wrap;
-}
-.mini-label {
-  color: var(--gold-dark);
-  text-transform: uppercase;
-  letter-spacing: .2em;
-  font-size: .75rem;
-  font-weight: 800;
-  display: flex; align-items: center; gap: 6px;
-}
-.section-head h2 {
-  font: 700 clamp(2.2rem, 4.5vw, 3.2rem)/1.1 'Playfair Display', Georgia, serif;
-  color: var(--navy);
-  margin: 6px 0 0;
-}
-.section-head p {
-  color: var(--muted);
-  max-width: 520px;
-  font-size: .95rem;
-  line-height: 1.6;
-}
-.dish-count-badge {
-  background: #fdf5df;
-  border: 1px solid #ebd8a7;
-  color: #7d5904;
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: .82rem;
-  font-weight: 700;
-  display: inline-flex; align-items: center; gap: 6px;
-}
+    .eq-bar {
+      width: 3px;
+      height: 100%;
+      background: var(--gold);
+      border-radius: 2px;
+      animation: eqBounce .8s ease-in-out infinite alternate;
+    }
 
-/* ═══════════════════ SEARCH & DIET FILTERS ═══════════════════ */
-.search-filter-panel {
-  background: white;
-  border: 1px solid var(--border-light);
-  border-radius: 20px;
-  padding: 16px 20px;
-  box-shadow: var(--shadow-sm);
-  margin-bottom: 20px;
-  display: flex; flex-direction: column; gap: 14px;
-}
-.search-row {
-  display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
-}
-.search-box {
-  flex: 1; min-width: 260px; position: relative;
-}
-.search-box input {
-  width: 100%;
-  border: 1px solid #e0d2b6;
-  background: #fffdf9;
-  padding: 14px 44px 14px 46px;
-  border-radius: 12px;
-  outline: none;
-  font-size: .95rem;
-  color: var(--ink);
-  transition: all .25s;
-}
-.search-box input:focus {
-  border-color: var(--navy);
-  box-shadow: 0 0 0 3px rgba(12,17,34,.1);
-  background: white;
-}
-.search-box .search-icon {
-  position: absolute; left: 16px; top: 14px; font-size: 1.15rem; color: #8e8371;
-}
-.search-box .clear-btn {
-  position: absolute; right: 14px; top: 13px;
-  background: #ede6d6; color: #473f32; border: 0; border-radius: 50%;
-  width: 24px; height: 24px; font-size: .75rem; cursor: pointer;
-  display: none; place-items: center;
-}
-.search-box .clear-btn.visible { display: grid; }
+    .eq-bar:nth-child(1) {
+      animation-delay: 0s;
+      height: 40%;
+    }
 
-.diet-filters {
-  display: flex; gap: 8px; flex-wrap: wrap;
-}
-.filter-btn {
-  padding: 12px 18px;
-  border: 1px solid #e0d2b6;
-  background: #fffdf9;
-  border-radius: 999px;
-  cursor: pointer;
-  color: #24293f;
-  font-size: .88rem;
-  font-weight: 700;
-  transition: all .25s;
-  display: inline-flex; align-items: center; gap: 7px;
-}
-.filter-btn:hover {
-  border-color: var(--navy);
-  transform: translateY(-2px);
-}
-.filter-btn.active {
-  background: var(--navy);
-  color: var(--gold);
-  border-color: var(--navy);
-  box-shadow: 0 4px 14px rgba(12,17,34,.2);
-}
-.filter-badge {
-  background: rgba(0,0,0,.08);
-  padding: 2px 7px; border-radius: 999px; font-size: .75rem;
-}
-.filter-btn.active .filter-badge {
-  background: rgba(245,200,76,.25);
-  color: #fff3cb;
-}
+    .eq-bar:nth-child(2) {
+      animation-delay: .2s;
+      height: 85%;
+    }
 
-/* Category Strip */
-.category-strip {
-  display: flex; gap: 10px;
-  overflow-x: auto;
-  padding: 4px 0 6px;
-  scrollbar-width: thin;
-}
-.category-chip {
-  white-space: nowrap;
-  padding: 9px 16px;
-  border-radius: 10px;
-  background: #f7f2e7;
-  color: #3b3528;
-  font-size: .84rem;
-  font-weight: 600;
-  cursor: pointer;
-  border: 1px solid #e8dec7;
-  transition: all .25s;
-}
-.category-chip:hover {
-  background: #ebd8af; color: #111422;
-  transform: translateY(-2px);
-}
-.category-chip.active {
-  background: var(--gold);
-  color: var(--navy);
-  border-color: var(--gold-dark);
-  font-weight: 800;
-  box-shadow: 0 3px 12px rgba(245,200,76,.35);
-}
+    .eq-bar:nth-child(3) {
+      animation-delay: .4s;
+      height: 60%;
+    }
 
-/* ═══════════════════ MENU CARDS GRID ═══════════════════ */
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  margin-top: 10px;
-}
+    .eq-bar:nth-child(4) {
+      animation-delay: .1s;
+      height: 100%;
+    }
 
-.menu-card {
-  background: var(--cream-card);
-  border: 1px solid #e8dcbf;
-  border-radius: var(--radius);
-  overflow: hidden;
-  transition: transform .35s cubic-bezier(.34, 1.56, .64, 1), box-shadow .35s, border-color .35s;
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--shadow-sm);
-  position: relative;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-.menu-card:hover {
-  transform: translateY(-8px) scale(1.015);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--gold);
-}
+    .eq-bar:nth-child(5) {
+      animation-delay: .3s;
+      height: 50%;
+    }
 
-/* Food Photo Container - High Definition Presentation */
-.food-photo {
-  height: 220px;
-  position: relative;
-  background: linear-gradient(110deg, #f2e9dc 12%, #fff4e6 28%, #f2e9dc 48%);
-  background-size: 200% 100%;
-  animation: photoShimmer 2.2s infinite ease-in-out;
-  overflow: hidden;
-  border-radius: var(--radius) var(--radius) 0 0;
-}
-@keyframes photoShimmer {
-  to { background-position-x: -200%; }
-}
-.food-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  transition: transform .65s cubic-bezier(.34, 1.56, .64, 1), filter .4s ease;
-  filter: saturate(1.1) contrast(1.02);
-  position: relative;
-  z-index: 1;
-}
-.menu-card:hover .food-photo img {
-  transform: scale(1.08);
-  filter: saturate(1.22) contrast(1.04) brightness(1.03);
-}
-/* Subtle dark vignette overlay at bottom of photo for text & badge contrast */
-.food-photo::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(12,17,34,.70) 0%, rgba(12,17,34,.18) 38%, transparent 68%);
-  pointer-events: none;
-  z-index: 2;
-}
+    @keyframes eqBounce {
+      to {
+        height: 20%;
+        opacity: .4;
+      }
+    }
 
-/* Veg / Non-Veg / Drink Badge */
-.diet-badge {
-  position: absolute; top: 12px; left: 12px; z-index: 3;
-  background: rgba(255, 255, 255, .96);
-  backdrop-filter: blur(8px);
-  padding: 5px 10px;
-  border-radius: 8px;
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: .74rem; font-weight: 800;
-  color: var(--ink);
-  box-shadow: 0 4px 12px rgba(0,0,0,.15);
-}
-.diet-badge-dot {
-  width: 9px; height: 9px; border-radius: 50%;
-}
-.diet-badge.veg .diet-badge-dot { background: var(--veg-green); }
-.diet-badge.nonveg .diet-badge-dot { background: var(--nonveg-red); }
-.diet-badge.drink .diet-badge-dot { background: #0077b6; }
+    /* Center Stage Content */
+    .smoke-content {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      padding: 20px;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: smokeStageIn 1.5s cubic-bezier(.16, 1, .3, 1) forwards;
+    }
 
-/* Price Tag Pill on Image */
-.photo-price-badge {
-  position: absolute; bottom: 12px; right: 12px; z-index: 3;
-  background: rgba(12, 17, 34, .88);
-  backdrop-filter: blur(6px);
-  color: var(--gold);
-  font-weight: 900;
-  font-size: 1.15rem;
-  padding: 5px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(245,200,76,.4);
-  box-shadow: 0 4px 14px rgba(0,0,0,.3);
-}
+    @keyframes smokeStageIn {
+      0% {
+        opacity: 0;
+        transform: translateY(35px) scale(.92);
+        filter: blur(12px);
+      }
 
-/* Card Body */
-.card-body {
-  padding: 18px 20px;
-  display: flex; flex-direction: column; flex: 1;
-}
-.card-header {
-  display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
-  margin-bottom: 8px;
-}
-.card-header h3 {
-  font: 700 1.25rem/1.3 'Playfair Display', Georgia, serif;
-  color: var(--navy);
-  margin: 0;
-}
-.dish-desc {
-  font-size: .84rem;
-  line-height: 1.55;
-  color: var(--muted);
-  margin-bottom: 16px;
-  flex: 1;
-}
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
 
-.card-footer {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  padding-top: 12px;
-  border-top: 1px dashed #ebdcc0;
-}
-.category-tag {
-  font-size: .74rem; font-weight: 700;
-  color: #634f18;
-  background: #fbf2db;
-  border: 1px solid #ebdcaf;
-  padding: 5px 10px;
-  border-radius: 999px;
-}
+    /* Ornate Glowing Emblem */
+    .smoke-emblem {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      position: relative;
+      background: radial-gradient(circle, rgba(245, 200, 76, .15) 0%, rgba(9, 13, 27, .6) 80%);
+      box-shadow: 0 0 40px rgba(245, 200, 76, .4), inset 0 0 20px rgba(245, 200, 76, .2);
+    }
 
-/* Add to Cart Button & Quantity Controls */
-.add-btn {
-  background: var(--navy);
-  color: #fff9ed;
-  border: 1px solid var(--navy);
-  border-radius: 10px;
-  padding: 9px 18px;
-  cursor: pointer;
-  font-size: .85rem; font-weight: 800;
-  transition: all .25s;
-  display: inline-flex; align-items: center; gap: 6px;
-}
-.add-btn:hover {
-  background: var(--gold);
-  color: var(--navy);
-  border-color: var(--gold);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(245,200,76,.4);
-}
-.qty-stepper {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--navy);
-  color: var(--gold);
-  border-radius: 10px;
-  padding: 4px 8px;
-}
-.qty-btn {
-  background: rgba(255,255,255,.15);
-  color: white; border: 0;
-  width: 26px; height: 26px; border-radius: 6px;
-  cursor: pointer; font-weight: 800; font-size: .95rem;
-  display: grid; place-items: center;
-  transition: background .2s;
-}
-.qty-btn:hover { background: var(--gold); color: var(--navy); }
-.qty-value { font-weight: 900; font-size: .9rem; min-width: 18px; text-align: center; }
+    .smoke-emblem::before {
+      content: '';
+      position: absolute;
+      inset: -7px;
+      border-radius: 50%;
+      border: 1px dashed rgba(245, 200, 76, .5);
+      animation: orbitRing 16s linear infinite;
+    }
 
-/* Empty Search State */
-.empty-state {
-  grid-column: 1/-1;
-  text-align: center;
-  padding: 60px 20px;
-  background: white;
-  border-radius: 20px;
-  border: 2px dashed #e5d8be;
-}
-.empty-state h3 { font: 700 1.5rem 'Playfair Display', serif; margin: 12px 0 6px; color: var(--navy); }
-.empty-state p { color: var(--muted); margin-bottom: 20px; }
-.btn-reset {
-  background: var(--navy); color: var(--gold); border: 0; border-radius: 999px;
-  padding: 10px 22px; font-weight: 700; cursor: pointer;
-}
+    @keyframes orbitRing {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
-/* ═══════════════════ ABOUT / ORDER HIGHLIGHT BANNER ═══════════════════ */
-.about-banner {
-  margin: 70px 0 50px;
-  background: linear-gradient(135deg, #0e1428 0%, #172142 100%);
-  border-radius: 26px;
-  padding: 44px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 30px;
-  align-items: center;
-  border: 1px solid var(--gold);
-  box-shadow: 0 15px 45px rgba(12,17,34,.3);
-  position: relative;
-  overflow: hidden;
-}
-.about-banner::before {
-  content: ''; position: absolute;
-  width: 500px; height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(245,200,76,.1) 0%, transparent 70%);
-  top: -250px; right: -150px;
-  pointer-events: none;
-}
-.about-banner h2 {
-  font: 700 clamp(1.8rem, 3.5vw, 2.6rem)/1.15 'Playfair Display', Georgia, serif;
-  color: #fff9ed;
-  margin-bottom: 12px;
-}
-.about-banner p {
-  color: #cbd5ea; line-height: 1.7; font-size: 1rem; max-width: 650px;
-}
-.about-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn-gold-action {
-  background: var(--gold); color: var(--navy);
-  border: 0; border-radius: 999px; padding: 14px 28px;
-  font-weight: 800; cursor: pointer; transition: all .3s;
-  box-shadow: 0 6px 20px rgba(245,200,76,.35);
-  display: inline-flex; align-items: center; gap: 8px;
-}
-.btn-gold-action:hover {
-  background: var(--gold-bright); transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(245,200,76,.55);
-}
+    .smoke-emblem .monogram {
+      font: italic 3.2rem 'Playfair Display', Georgia, serif;
+      color: var(--gold);
+      line-height: 1;
+      text-shadow: 0 0 25px rgba(245, 200, 76, .8);
+    }
 
-/* ═══════════════════ FOOTER ═══════════════════ */
-footer {
-  background: #060914;
-  color: #fff3cb;
-  padding: 55px 28px 25px;
-  border-top: 3px solid var(--gold);
-}
-.footer-inner {
-  max-width: 1400px; margin: auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 40px;
-}
-.footer-brand {
-  font: 700 1.8rem 'Playfair Display', serif;
-  color: var(--gold);
-  margin-bottom: 12px;
-}
-.footer-inner p {
-  color: #b5c2d9; line-height: 1.7; font-size: .92rem; margin: 4px 0;
-}
-.footer-col-title {
-  font: 700 1.15rem 'Playfair Display', serif;
-  color: white;
-  margin-bottom: 14px;
-}
-.footer-bottom {
-  max-width: 1400px; margin: 40px auto 0;
-  padding-top: 22px;
-  border-top: 1px solid #1a2238;
-  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-  color: #6d7b99; font-size: .8rem;
-}
+    .smoke-emblem .star {
+      font-size: .8rem;
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      color: #fff3cb;
+    }
 
-/* ═══════════════════ CART FAB & DRAWER ═══════════════════ */
-.cart-fab {
-  position: fixed; bottom: 25px; right: 25px;
-  background: linear-gradient(135deg, #f5c84c 0%, #e3ac1d 100%);
-  color: var(--navy);
-  border: 0; border-radius: 999px;
-  padding: 14px 22px;
-  font-weight: 900; font-size: .95rem;
-  box-shadow: 0 10px 35px rgba(6,9,20,.45);
-  cursor: pointer;
-  z-index: 100;
-  display: none; align-items: center; gap: 10px;
-  transition: all .3s cubic-bezier(.34, 1.56, .64, 1);
-}
-.cart-fab.visible { display: flex; }
-.cart-fab:hover {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 16px 45px rgba(245,200,76,.55);
-}
-.cart-badge {
-  background: var(--navy); color: var(--gold);
-  padding: 3px 9px; border-radius: 999px; font-size: .82rem; font-weight: 800;
-}
+    .smoke-title {
+      font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.4rem, 7vw, 5.2rem);
+      font-weight: 900;
+      letter-spacing: .08em;
+      background: linear-gradient(135deg, #fff2cc 0%, #f5c84c 50%, #d49b1a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 25px rgba(245, 200, 76, .5));
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
 
-/* Cart Slide-over Modal */
-.cart-modal-backdrop {
-  position: fixed; inset: 0; background: rgba(6,9,20,.7);
-  backdrop-filter: blur(6px);
-  z-index: 9999;
-  opacity: 0; visibility: hidden;
-  transition: all .35s;
-}
-.cart-modal-backdrop.open {
-  opacity: 1; visibility: visible;
-}
-.cart-modal {
-  position: fixed; top: 0; right: 0; bottom: 0;
-  width: min(460px, 92vw);
-  background: #fffdf9;
-  z-index: 10000;
-  box-shadow: -15px 0 50px rgba(0,0,0,.35);
-  display: flex; flex-direction: column;
-  transform: translateX(100%);
-  transition: transform .38s cubic-bezier(.22, 1, .36, 1);
-}
-.cart-modal-backdrop.open .cart-modal {
-  transform: translateX(0);
-}
-.cart-header {
-  padding: 22px 24px;
-  background: var(--navy);
-  color: #fff9ed;
-  display: flex; justify-content: space-between; align-items: center;
-  border-bottom: 2px solid var(--gold);
-}
-.cart-header h3 { font: 700 1.35rem 'Playfair Display', serif; }
-.btn-close-cart {
-  background: rgba(255,255,255,.15);
-  color: white; border: 0; border-radius: 50%;
-  width: 32px; height: 32px; font-size: 1rem;
-  cursor: pointer; display: grid; place-items: center;
-}
-.btn-close-cart:hover { background: var(--gold); color: var(--navy); }
+    .smoke-tagline {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(.85rem, 2.2vw, 1.25rem);
+      font-weight: 700;
+      letter-spacing: .35em;
+      color: #fff1cf;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .6);
+    }
 
-.cart-items-list {
-  flex: 1; overflow-y: auto;
-  padding: 20px 24px;
-  display: flex; flex-direction: column; gap: 14px;
-}
-.cart-item-row {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  padding-bottom: 12px; border-bottom: 1px solid #ebd8bf;
-}
-.cart-item-info h4 { font: 700 .95rem 'Playfair Display', serif; margin-bottom: 3px; }
-.cart-item-info span { font-size: .84rem; color: var(--gold-dark); font-weight: 800; }
-.cart-item-controls { display: flex; align-items: center; gap: 8px; }
+    .smoke-desc {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      color: #d1d9ec;
+      margin-bottom: 30px;
+      max-width: 580px;
+      line-height: 1.5;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, .8);
+    }
 
-.cart-summary {
-  padding: 20px 24px;
-  background: #fdf5e7;
-  border-top: 1px solid #e3d2b2;
-}
-.cart-subtotal-row {
-  display: flex; justify-content: space-between; font-size: .92rem; color: var(--muted); margin-bottom: 6px;
-}
-.cart-total-row {
-  display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 900; color: var(--navy);
-  margin: 12px 0 16px; padding-top: 8px; border-top: 1px dashed #d9c59f;
-}
+    /* Interactive CTA */
+    .smoke-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
 
-.order-type-tabs {
-  display: flex; gap: 8px; margin-bottom: 14px;
-}
-.order-tab {
-  flex: 1; padding: 9px; border-radius: 8px;
-  border: 1px solid #dfcfb1; background: white;
-  font-size: .84rem; font-weight: 700; cursor: pointer; text-align: center;
-}
-.order-tab.active {
-  background: var(--navy); color: var(--gold); border-color: var(--navy);
-}
-.customer-input {
-  width: 100%; padding: 10px 14px; border-radius: 8px;
-  border: 1px solid #dfcfb1; margin-bottom: 14px;
-  outline: none; font-size: .9rem;
-}
-.btn-whatsapp-order {
-  width: 100%;
-  background: #25D366;
-  color: white; border: 0; border-radius: 12px;
-  padding: 15px; font-weight: 900; font-size: 1rem;
-  cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
-  box-shadow: 0 6px 20px rgba(37,211,102,.35);
-  transition: all .25s;
-}
-.btn-whatsapp-order:hover {
-  background: #20bd5a; transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(37,211,102,.5);
-}
+    .btn-enter-cafe {
+      background: linear-gradient(135deg, #f5c84c 0%, #e0a720 100%);
+      color: #0c1122;
+      border: 0;
+      border-radius: 999px;
+      padding: 16px 38px;
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      cursor: pointer;
+      box-shadow: 0 8px 32px rgba(245, 200, 76, .45), 0 0 0 1px rgba(255, 255, 255, .3);
+      transition: all .35s cubic-bezier(.4, 0, .2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-/* Toast Notifications */
-.toast-notice {
-  position: fixed; bottom: 25px; left: 25px; z-index: 10001;
-  background: var(--navy); color: #fff9ed;
-  padding: 12px 20px; border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
-  border-left: 4px solid var(--gold);
-  font-size: .88rem; font-weight: 600;
-  display: flex; align-items: center; gap: 10px;
-  transform: translateY(100px); opacity: 0;
-  transition: all .35s cubic-bezier(.34, 1.56, .64, 1);
-  pointer-events: none;
-}
-.toast-notice.show {
-  transform: translateY(0); opacity: 1;
-}
+    .btn-enter-cafe:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 14px 45px rgba(245, 200, 76, .65);
+      background: linear-gradient(135deg, #ffe07a 0%, #f5c84c 100%);
+    }
 
-/* ═══════════════════ RESPONSIVE ═══════════════════ */
-@media(max-width: 950px) {
-  .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .footer-inner { grid-template-columns: 1fr 1fr; }
-  .about-banner { grid-template-columns: 1fr; }
-  .hero { padding: 10px 16px 24px; }
-  .nav { padding: 16px 20px; }
-}
+    .smoke-hint {
+      font-size: .8rem;
+      color: #d4c194;
+      letter-spacing: .06em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: .85;
+    }
 
-@media(max-width: 600px) {
-  /* ── Navigation ── */
-  .nav { padding: 12px 14px; gap: 10px; }
-  .nav-links { display: none; }
-  .brand-name { font-size: 1.25rem; }
-  .brand-sub { font-size: .56rem; letter-spacing: .12em; }
-  .logo-icon { width: 42px; height: 42px; font-size: 1.7rem; }
-  .btn-cta-menu { padding: 9px 16px; font-size: .82rem; }
+    /* ═══════════════════ TOPBAR ═══════════════════ */
+    .topbar {
+      background: linear-gradient(90deg, #e3b030 0%, #f5c84c 50%, #e3b030 100%);
+      color: #0c1122;
+      text-align: center;
+      padding: 8px 16px;
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .15);
+    }
 
-  /* ── Top Bar ── */
-  .topbar { font-size: .68rem; padding: 6px 10px; gap: 6px; }
+    .topbar-sep {
+      opacity: .5;
+    }
 
-  /* ── Hero ── */
-  .hero { padding: 6px 10px 16px; }
-  .hero-photo { aspect-ratio: 4/3; max-height: 280px; }
-  .hero-wrapper { border-radius: 16px; border-width: 1.5px; }
-  .hero-badges { padding: 10px 14px; gap: 8px; }
-  .hero-badge-item { font-size: .75rem; gap: 5px; }
-  .hero-badge-item span.icon { font-size: 1.05rem; }
+    .topbar-badge {
+      background: #0c1122;
+      color: var(--gold);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: .7rem;
+      font-weight: 800;
+    }
 
-  /* ── Main Content ── */
-  main { padding: 0 10px; }
-  #menu { padding-top: 35px; }
-  .section-head { margin-bottom: 16px; gap: 12px; }
-  .section-head h2 { font-size: 1.7rem; }
-  .section-head p { font-size: .85rem; }
-  .mini-label { font-size: .68rem; }
+    /* ═══════════════════ HEADER & NAV ═══════════════════ */
+    header {
+      background: radial-gradient(ellipse at 50% 0%, #1f294d 0%, #0c1122 65%, #060914 100%);
+      color: #fff9ed;
+      position: relative;
+      overflow: hidden;
+    }
 
-  /* ── Search & Filters ── */
-  .search-filter-panel { padding: 12px 14px; gap: 10px; border-radius: 14px; }
-  .search-box { min-width: 100%; }
-  .search-box input { padding: 12px 38px 12px 40px; font-size: .9rem; border-radius: 10px; }
-  .search-box .search-icon { left: 13px; top: 12px; font-size: 1.05rem; }
-  .search-row { gap: 10px; }
-  .diet-filters { gap: 6px; }
-  .filter-btn { padding: 10px 14px; font-size: .82rem; min-height: 44px; }
-  .category-strip { gap: 7px; padding: 2px 0 8px; -webkit-overflow-scrolling: touch; }
-  .category-chip { padding: 8px 13px; font-size: .78rem; min-height: 38px; }
+    /* Subtle golden ambient glow */
+    header::before {
+      content: '';
+      position: absolute;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 350px;
+      background: radial-gradient(ellipse, rgba(245, 200, 76, .12) 0%, transparent 70%);
+      pointer-events: none;
+    }
 
-  /* ── Menu Cards ── */
-  .menu-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .menu-card { border-radius: 14px; }
-  .food-photo { height: 150px; border-radius: 14px 14px 0 0; }
-  .food-photo img { filter: saturate(1.05) contrast(1.01); }
-  .card-body { padding: 10px 12px 12px; }
-  .card-body h3 { font-size: .88rem; line-height: 1.2; }
-  .dish-desc { font-size: .72rem; line-height: 1.45; -webkit-line-clamp: 2; }
-  .card-footer { gap: 6px; margin-top: 8px; }
-  .category-tag { font-size: .65rem; padding: 3px 7px; }
-  .photo-price-badge { font-size: .82rem; padding: 4px 10px; }
-  .diet-badge { top: 8px; left: 8px; padding: 3px 7px; font-size: .65rem; gap: 4px; border-radius: 6px; }
-  .diet-badge-dot { width: 7px; height: 7px; }
-  .add-btn, .qty-btn { min-height: 38px; min-width: 38px; font-size: .82rem; }
-  .qty-stepper { gap: 4px; }
+    .nav {
+      max-width: 1400px;
+      margin: auto;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      position: relative;
+      z-index: 5;
+      border-bottom: 1px solid rgba(245, 200, 76, .15);
+    }
 
-  /* ── Cart FAB ── */
-  .cart-fab { right: 12px; bottom: 12px; padding: 11px 16px; font-size: .88rem; border-radius: 16px; }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
-  /* ── Footer ── */
-  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
-  footer { padding: 35px 14px 20px; }
+    .logo-icon {
+      width: 52px;
+      height: 52px;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font: italic 2.1rem 'Playfair Display', Georgia, serif;
+      position: relative;
+      background: rgba(12, 17, 34, .7);
+      box-shadow: 0 0 20px rgba(245, 200, 76, .25);
+    }
 
-  /* ── Intro Cinematic ── */
-  .cinema-bar-top, .cinema-bar-bottom { height: 36px; padding: 0 12px; font-size: .6rem; letter-spacing: .1em; }
-  .smoke-emblem { width: 70px; height: 70px; margin-bottom: 16px; }
-  .smoke-emblem .monogram { font-size: 2.5rem; }
-  .smoke-title { font-size: 2.4rem; }
-  .smoke-tagline { font-size: .7rem; letter-spacing: .25em; margin-top: 10px; }
-  .smoke-year { font-size: .65rem; margin-top: 14px; }
-  .smoke-content { padding: 16px; }
-}
+    .logo-icon span {
+      font-size: .62rem;
+      position: absolute;
+      right: 6px;
+      top: 7px;
+      color: #ffe694;
+    }
 
-/* ── Extra small phones (≤380px) ── */
-@media(max-width: 380px) {
-  .menu-grid { grid-template-columns: 1fr; gap: 14px; }
-  .food-photo { height: 190px; }
-  .card-body h3 { font-size: .92rem; }
-  .dish-desc { -webkit-line-clamp: 3; }
-  .brand-name { font-size: 1.1rem; }
-  .smoke-title { font-size: 2rem; }
-  .hero-photo { aspect-ratio: 3/2; max-height: 240px; }
-}
+    .brand-name {
+      font-family: Impact, 'Arial Black', sans-serif;
+      font-style: italic;
+      font-size: 1.7rem;
+      letter-spacing: .02em;
+      background: linear-gradient(135deg, #fff3cb 0%, #f5c84c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .6);
+    }
 
-/* ── Touch device optimizations ── */
-@media(hover: none) and (pointer: coarse) {
-  .menu-card:hover { transform: none; box-shadow: var(--shadow-sm); border-color: #e8dcbf; }
-  .menu-card:active { transform: scale(.98); transition: transform .1s; }
-  .menu-card:hover .food-photo img { transform: none; filter: saturate(1.1) contrast(1.02); }
-  .filter-btn:hover { transform: none; }
-  .category-chip:hover { transform: none; }
-  .btn-cta-menu:hover { transform: none; }
-  * { -webkit-tap-highlight-color: transparent; }
-}
-</style>
+    .brand-sub {
+      font-size: .62rem;
+      letter-spacing: .15em;
+      color: #ebd7a7;
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: .92rem;
+      font-weight: 600;
+      color: #ece2ce;
+    }
+
+    .nav-links a {
+      transition: color .25s;
+      position: relative;
+      padding: 4px 0;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--gold);
+      transition: width .3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-cta-menu {
+      background: var(--gold);
+      color: var(--navy);
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 22px;
+      font-size: .88rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all .3s;
+      box-shadow: 0 6px 22px rgba(245, 200, 76, .3);
+    }
+
+    .btn-cta-menu:hover {
+      background: var(--gold-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(245, 200, 76, .5);
+    }
+
+    /* ═══════════════════ HERO ═══════════════════ */
+    .hero {
+      max-width: 1400px;
+      margin: auto;
+      padding: 12px 28px 35px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .hero-wrapper {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 2px solid rgba(245, 200, 76, .45);
+      box-shadow: 0 25px 75px rgba(0, 0, 0, .65);
+      background: #080c18;
+    }
+
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 3/2;
+      max-height: 640px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 50%, #151c36 0%, #060914 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+    }
+
+    /* Live steam canvas running above the hot dishes */
+    #heroSteamCanvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .85;
+    }
+
+    /* Subtle golden vignette around hero image */
+    .hero-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 80px rgba(6, 9, 20, .6);
+      pointer-events: none;
+    }
+
+    /* Hero Highlights Bar */
+    .hero-badges {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 16px 24px;
+      background: rgba(12, 17, 34, .95);
+      border-top: 1px solid rgba(245, 200, 76, .2);
+    }
+
+    .hero-badge-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .84rem;
+      font-weight: 700;
+      color: #fff3cb;
+    }
+
+    .hero-badge-item span.icon {
+      font-size: 1.25rem;
+    }
+
+    /* ═══════════════════ MAIN CONTENT ═══════════════════ */
+    main {
+      max-width: 1400px;
+      margin: auto;
+      padding: 0 28px;
+    }
+
+    /* ═══════════════════ MENU SECTION (NEVER HIDDEN) ═══════════════════ */
+    #menu {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+      padding-top: 55px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .mini-label {
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: .75rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-head h2 {
+      font: 700 clamp(2.2rem, 4.5vw, 3.2rem)/1.1 'Playfair Display', Georgia, serif;
+      color: var(--navy);
+      margin: 6px 0 0;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 520px;
+      font-size: .95rem;
+      line-height: 1.6;
+    }
+
+    .dish-count-badge {
+      background: #fdf5df;
+      border: 1px solid #ebd8a7;
+      color: #7d5904;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ═══════════════════ SEARCH & DIET FILTERS ═══════════════════ */
+    .search-filter-panel {
+      background: white;
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 16px 20px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      border: 1px solid #e0d2b6;
+      background: #fffdf9;
+      padding: 14px 44px 14px 46px;
+      border-radius: 12px;
+      outline: none;
+      font-size: .95rem;
+      color: var(--ink);
+      transition: all .25s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(12, 17, 34, .1);
+      background: white;
+    }
+
+    .search-box .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 14px;
+      font-size: 1.15rem;
+      color: #8e8371;
+    }
+
+    .search-box .clear-btn {
+      position: absolute;
+      right: 14px;
+      top: 13px;
+      background: #ede6d6;
+      color: #473f32;
+      border: 0;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      font-size: .75rem;
+      cursor: pointer;
+      display: none;
+      place-items: center;
+    }
+
+    .search-box .clear-btn.visible {
+      display: grid;
+    }
+
+    .diet-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 12px 18px;
+      border: 1px solid #e0d2b6;
+      background: #fffdf9;
+      border-radius: 999px;
+      cursor: pointer;
+      color: #24293f;
+      font-size: .88rem;
+      font-weight: 700;
+      transition: all .25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--navy);
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background: var(--navy);
+      color: var(--gold);
+      border-color: var(--navy);
+      box-shadow: 0 4px 14px rgba(12, 17, 34, .2);
+    }
+
+    .filter-badge {
+      background: rgba(0, 0, 0, .08);
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: .75rem;
+    }
+
+    .filter-btn.active .filter-badge {
+      background: rgba(245, 200, 76, .25);
+      color: #fff3cb;
+    }
+
+    /* Category Strip */
+    .category-strip {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 4px 0 6px;
+      scrollbar-width: thin;
+    }
+
+    .category-chip {
+      white-space: nowrap;
+      padding: 9px 16px;
+      border-radius: 10px;
+      background: #f7f2e7;
+      color: #3b3528;
+      font-size: .84rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid #e8dec7;
+      transition: all .25s;
+    }
+
+    .category-chip:hover {
+      background: #ebd8af;
+      color: #111422;
+      transform: translateY(-2px);
+    }
+
+    .category-chip.active {
+      background: var(--gold);
+      color: var(--navy);
+      border-color: var(--gold-dark);
+      font-weight: 800;
+      box-shadow: 0 3px 12px rgba(245, 200, 76, .35);
+    }
+
+    /* ═══════════════════ MENU CARDS GRID (3 TO 4 DISHES IN A LINE) ═══════════════════ */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .menu-grid.cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+
+    .menu-grid.cols-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    }
+
+    /* Layout toggle pill */
+    .grid-toggle-box {
+      display: inline-flex;
+      background: #ede3cc;
+      padding: 3px;
+      border-radius: 999px;
+      border: 1px solid #dfd2b5;
+      gap: 3px;
+      align-items: center;
+      margin-left: auto;
+    }
+
+    .grid-toggle-btn {
+      border: 0;
+      background: transparent;
+      color: #5a4f3d;
+      padding: 6px 12px;
+      font-size: .78rem;
+      font-weight: 700;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .grid-toggle-btn:hover {
+      color: var(--navy);
+    }
+
+    .grid-toggle-btn.active {
+      background: var(--navy);
+      color: var(--gold);
+      box-shadow: 0 2px 8px rgba(12, 17, 34, .25);
+    }
+
+    .menu-card {
+      background: var(--cream-card);
+      border: 1px solid #e8dcbf;
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform .35s cubic-bezier(.34, 1.56, .64, 1), box-shadow .35s, border-color .35s;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-8px) scale(1.015);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--gold);
+    }
+
+    /* Food Photo Container - High Definition Presentation */
+    .food-photo {
+      height: 220px;
+      position: relative;
+      background: linear-gradient(110deg, #f2e9dc 12%, #fff4e6 28%, #f2e9dc 48%);
+      background-size: 200% 100%;
+      animation: photoShimmer 2.2s infinite ease-in-out;
+      overflow: hidden;
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    @keyframes photoShimmer {
+      to {
+        background-position-x: -200%;
+      }
+    }
+
+    .food-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform .65s cubic-bezier(.34, 1.56, .64, 1), filter .4s ease;
+      filter: saturate(1.1) contrast(1.02);
+      position: relative;
+      z-index: 1;
+    }
+
+    .menu-card:hover .food-photo img {
+      transform: scale(1.08);
+      filter: saturate(1.22) contrast(1.04) brightness(1.03);
+    }
+
+    /* Subtle dark vignette overlay at bottom of photo for text & badge contrast */
+    .food-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(12, 17, 34, .70) 0%, rgba(12, 17, 34, .18) 38%, transparent 68%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Veg / Non-Veg / Drink Badge */
+    .diet-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 3;
+      background: rgba(255, 255, 255, .96);
+      backdrop-filter: blur(8px);
+      padding: 5px 10px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .74rem;
+      font-weight: 800;
+      color: var(--ink);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    }
+
+    .diet-badge-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+
+    .diet-badge.veg .diet-badge-dot {
+      background: var(--veg-green);
+    }
+
+    .diet-badge.nonveg .diet-badge-dot {
+      background: var(--nonveg-red);
+    }
+
+    .diet-badge.drink .diet-badge-dot {
+      background: #0077b6;
+    }
+
+    /* Dish Price Tag (Clean, bold, professional in footer) */
+    .dish-price-tag {
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      font-size: 1.18rem;
+      font-weight: 900;
+      color: #0c1122;
+      letter-spacing: -0.02em;
+      display: inline-flex;
+      align-items: baseline;
+      white-space: nowrap;
+    }
+    .dish-price-tag .curr {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--gold-dark);
+      margin-right: 1px;
+    }
+
+    /* Card Body */
+    .card-body {
+      padding: 16px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .card-header h3 {
+      font: 700 1.2rem/1.3 'Playfair Display', Georgia, serif;
+      color: var(--navy);
+      margin: 0;
+    }
+
+    .dish-desc {
+      font-size: .84rem;
+      line-height: 1.5;
+      color: var(--muted);
+      margin-bottom: 14px;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-top: 12px;
+      border-top: 1px dashed #ebdcc0;
+      margin-top: auto;
+    }
+
+    .category-tag {
+      font-size: .74rem;
+      font-weight: 700;
+      color: #634f18;
+      background: #fbf2db;
+      border: 1px solid #ebdcaf;
+      padding: 5px 10px;
+      border-radius: 999px;
+    }
+
+    /* Add to Cart Button & Quantity Controls */
+    .add-btn {
+      background: var(--navy);
+      color: #fff9ed;
+      border: 1px solid var(--navy);
+      border-radius: 10px;
+      padding: 9px 18px;
+      cursor: pointer;
+      font-size: .85rem;
+      font-weight: 800;
+      transition: all .25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .add-btn:hover {
+      background: var(--gold);
+      color: var(--navy);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(245, 200, 76, .4);
+    }
+
+    .qty-stepper {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--navy);
+      color: var(--gold);
+      border-radius: 10px;
+      padding: 4px 8px;
+    }
+
+    .qty-btn {
+      background: rgba(255, 255, 255, .15);
+      color: white;
+      border: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: .95rem;
+      display: grid;
+      place-items: center;
+      transition: background .2s;
+    }
+
+    .qty-btn:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .qty-value {
+      font-weight: 900;
+      font-size: .9rem;
+      min-width: 18px;
+      text-align: center;
+    }
+
+    /* Empty Search State */
+    .empty-state {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 60px 20px;
+      background: white;
+      border-radius: 20px;
+      border: 2px dashed #e5d8be;
+    }
+
+    .empty-state h3 {
+      font: 700 1.5rem 'Playfair Display', serif;
+      margin: 12px 0 6px;
+      color: var(--navy);
+    }
+
+    .empty-state p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .btn-reset {
+      background: var(--navy);
+      color: var(--gold);
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* ═══════════════════ ABOUT / ORDER HIGHLIGHT BANNER ═══════════════════ */
+    .about-banner {
+      margin: 70px 0 50px;
+      background: linear-gradient(135deg, #0e1428 0%, #172142 100%);
+      border-radius: 26px;
+      padding: 44px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: center;
+      border: 1px solid var(--gold);
+      box-shadow: 0 15px 45px rgba(12, 17, 34, .3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-banner::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 200, 76, .1) 0%, transparent 70%);
+      top: -250px;
+      right: -150px;
+      pointer-events: none;
+    }
+
+    .about-banner h2 {
+      font: 700 clamp(1.8rem, 3.5vw, 2.6rem)/1.15 'Playfair Display', Georgia, serif;
+      color: #fff9ed;
+      margin-bottom: 12px;
+    }
+
+    .about-banner p {
+      color: #cbd5ea;
+      line-height: 1.7;
+      font-size: 1rem;
+      max-width: 650px;
+    }
+
+    .about-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-gold-action {
+      background: var(--gold);
+      color: var(--navy);
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 28px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all .3s;
+      box-shadow: 0 6px 20px rgba(245, 200, 76, .35);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-gold-action:hover {
+      background: var(--gold-bright);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(245, 200, 76, .55);
+    }
+
+    /* ═══════════════════ FOOTER ═══════════════════ */
+    footer {
+      background: #060914;
+      color: #fff3cb;
+      padding: 55px 28px 25px;
+      border-top: 3px solid var(--gold);
+    }
+
+    .footer-inner {
+      max-width: 1400px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-brand {
+      font: 700 1.8rem 'Playfair Display', serif;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .footer-inner p {
+      color: #b5c2d9;
+      line-height: 1.7;
+      font-size: .92rem;
+      margin: 4px 0;
+    }
+
+    .footer-col-title {
+      font: 700 1.15rem 'Playfair Display', serif;
+      color: white;
+      margin-bottom: 14px;
+    }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 40px auto 0;
+      padding-top: 22px;
+      border-top: 1px solid #1a2238;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: #6d7b99;
+      font-size: .8rem;
+    }
+
+    /* ═══════════════════ CART FAB & DRAWER ═══════════════════ */
+    .cart-fab {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: linear-gradient(135deg, #f5c84c 0%, #e3ac1d 100%);
+      color: var(--navy);
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 900;
+      font-size: .95rem;
+      box-shadow: 0 10px 35px rgba(6, 9, 20, .45);
+      cursor: pointer;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      transition: all .3s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    .cart-fab.visible {
+      display: flex;
+    }
+
+    .cart-fab:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 16px 45px rgba(245, 200, 76, .55);
+    }
+
+    .cart-badge {
+      background: var(--navy);
+      color: var(--gold);
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 800;
+    }
+
+    /* Cart Slide-over Modal */
+    .cart-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 9, 20, .7);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all .35s;
+    }
+
+    .cart-modal-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cart-modal {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(460px, 92vw);
+      background: #fffdf9;
+      z-index: 10000;
+      box-shadow: -15px 0 50px rgba(0, 0, 0, .35);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform .38s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .cart-modal-backdrop.open .cart-modal {
+      transform: translateX(0);
+    }
+
+    .cart-header {
+      padding: 22px 24px;
+      background: var(--navy);
+      color: #fff9ed;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .cart-header h3 {
+      font: 700 1.35rem 'Playfair Display', serif;
+    }
+
+    .btn-close-cart {
+      background: rgba(255, 255, 255, .15);
+      color: white;
+      border: 0;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    .btn-close-cart:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .cart-items-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cart-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #ebd8bf;
+    }
+
+    .cart-item-info h4 {
+      font: 700 .95rem 'Playfair Display', serif;
+      margin-bottom: 3px;
+    }
+
+    .cart-item-info span {
+      font-size: .84rem;
+      color: var(--gold-dark);
+      font-weight: 800;
+    }
+
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cart-summary {
+      padding: 20px 24px;
+      background: #fdf5e7;
+      border-top: 1px solid #e3d2b2;
+    }
+
+    .cart-subtotal-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: .92rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--navy);
+      margin: 12px 0 16px;
+      padding-top: 8px;
+      border-top: 1px dashed #d9c59f;
+    }
+
+    .order-type-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .order-tab {
+      flex: 1;
+      padding: 9px;
+      border-radius: 8px;
+      border: 1px solid #dfcfb1;
+      background: white;
+      font-size: .84rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .order-tab.active {
+      background: var(--navy);
+      color: var(--gold);
+      border-color: var(--navy);
+    }
+
+    .customer-input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #dfcfb1;
+      margin-bottom: 14px;
+      outline: none;
+      font-size: .9rem;
+    }
+
+    .btn-whatsapp-order {
+      width: 100%;
+      background: #25D366;
+      color: white;
+      border: 0;
+      border-radius: 12px;
+      padding: 15px;
+      font-weight: 900;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, .35);
+      transition: all .25s;
+    }
+
+    .btn-whatsapp-order:hover {
+      background: #20bd5a;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(37, 211, 102, .5);
+    }
+
+    /* Toast Notifications */
+    .toast-notice {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      z-index: 10001;
+      background: var(--navy);
+      color: #fff9ed;
+      padding: 12px 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+      border-left: 4px solid var(--gold);
+      font-size: .88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all .35s cubic-bezier(.34, 1.56, .64, 1);
+      pointer-events: none;
+    }
+
+    .toast-notice.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ═══════════════════ RESPONSIVE ═══════════════════ */
+    @media(max-width: 1200px) {
+      .menu-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+    }
+
+    @media(max-width: 950px) {
+      .menu-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .about-banner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 10px 16px 24px;
+      }
+
+      .nav {
+        padding: 16px 20px;
+      }
+    }
+
+    @media(max-width: 640px) {
+
+      /* ── Navigation ── */
+      .nav {
+        padding: 12px 14px;
+        gap: 10px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .brand-name {
+        font-size: 1.25rem;
+      }
+
+      .brand-sub {
+        font-size: .56rem;
+        letter-spacing: .12em;
+      }
+
+      .logo-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 1.7rem;
+      }
+
+      .btn-cta-menu {
+        padding: 9px 16px;
+        font-size: .82rem;
+      }
+
+      /* ── Top Bar ── */
+      .topbar {
+        font-size: .68rem;
+        padding: 6px 10px;
+        gap: 6px;
+      }
+
+      /* ── Hero ── */
+      .hero {
+        padding: 6px 10px 16px;
+      }
+
+      .hero-photo {
+        aspect-ratio: 4/3;
+        max-height: 280px;
+      }
+
+      .hero-wrapper {
+        border-radius: 16px;
+        border-width: 1.5px;
+      }
+
+      .hero-badges {
+        padding: 10px 14px;
+        gap: 8px;
+      }
+
+      .hero-badge-item {
+        font-size: .75rem;
+        gap: 5px;
+      }
+
+      .hero-badge-item span.icon {
+        font-size: 1.05rem;
+      }
+
+      /* ── Main Content ── */
+      main {
+        padding: 0 10px;
+      }
+
+      #menu {
+        padding-top: 35px;
+      }
+
+      .section-head {
+        margin-bottom: 16px;
+        gap: 12px;
+      }
+
+      .section-head h2 {
+        font-size: 1.7rem;
+      }
+
+      .section-head p {
+        font-size: .85rem;
+      }
+
+      .mini-label {
+        font-size: .68rem;
+      }
+
+      /* ── Search & Filters ── */
+      .search-filter-panel {
+        padding: 12px 14px;
+        gap: 10px;
+        border-radius: 14px;
+      }
+
+      .search-box {
+        min-width: 100%;
+      }
+
+      .search-box input {
+        padding: 12px 38px 12px 40px;
+        font-size: .9rem;
+        border-radius: 10px;
+      }
+
+      .search-box .search-icon {
+        left: 13px;
+        top: 12px;
+        font-size: 1.05rem;
+      }
+
+      .search-row {
+        gap: 10px;
+      }
+
+      .diet-filters {
+        gap: 6px;
+      }
+
+      .filter-btn {
+        padding: 10px 14px;
+        font-size: .82rem;
+        min-height: 44px;
+      }
+
+      .category-strip {
+        gap: 7px;
+        padding: 2px 0 8px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .category-chip {
+        padding: 8px 13px;
+        font-size: .78rem;
+        min-height: 38px;
+      }
+
+      /* ── Menu Cards: 3 dishes in a line on mobile (Bigger & Cleaner) ── */
+      .menu-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .menu-card {
+        border-radius: 14px;
+        background: #fffdfa;
+        border: 1px solid #ebdcc5;
+        box-shadow: 0 3px 10px rgba(12, 17, 34, .06);
+      }
+
+      .food-photo {
+        height: 150px; /* Made bigger & prominent as requested */
+        border-radius: 14px 14px 0 0;
+      }
+
+      .food-photo img {
+        filter: saturate(1.08) contrast(1.02);
+      }
+
+      .card-body {
+        padding: 9px 8px 10px;
+      }
+
+      .card-header {
+        margin-bottom: 4px;
+      }
+
+      .card-header h3 {
+        font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+        font-size: .84rem;
+        font-weight: 700;
+        line-height: 1.25;
+        color: var(--navy);
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 2.1em;
+      }
+
+      .dish-desc {
+        display: none;
+      }
+
+      .card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4px;
+        margin-top: auto;
+        padding-top: 6px;
+        border-top: 1px solid #f1e7d8;
+      }
+
+      .category-tag {
+        display: none;
+      }
+
+      /* Professional Clean Mobile Price */
+      .dish-price-tag {
+        font-size: 1.05rem;
+        font-weight: 900;
+        color: #0c1122;
+        letter-spacing: -0.02em;
+        line-height: 1;
+      }
+
+      .dish-price-tag .curr {
+        font-size: .78rem;
+        font-weight: 800;
+        color: #b88a1b;
+        margin-right: 1px;
+      }
+
+      .diet-badge {
+        top: 6px;
+        left: 6px;
+        padding: 2.5px 6px;
+        font-size: .62rem;
+        gap: 3.5px;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, .95);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+      }
+
+      .diet-badge-dot {
+        width: 6.5px;
+        height: 6.5px;
+      }
+
+      .add-btn {
+        min-height: 30px;
+        font-size: .78rem;
+        font-weight: 800;
+        padding: 5px 10px;
+        border-radius: 7px;
+        background: var(--navy);
+        color: #fff9ed;
+      }
+
+      .qty-stepper {
+        gap: 3px;
+        padding: 2.5px 5px;
+        border-radius: 7px;
+      }
+
+      .qty-btn {
+        width: 22px;
+        height: 22px;
+        font-size: .85rem;
+        border-radius: 5px;
+      }
+
+      .qty-value {
+        font-size: .8rem;
+        min-width: 14px;
+        font-weight: 900;
+      }
+
+      /* ── Cart FAB ── */
+      .cart-fab {
+        right: 12px;
+        bottom: 12px;
+        padding: 11px 16px;
+        font-size: .88rem;
+        border-radius: 16px;
+      }
+
+      /* ── Footer ── */
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      footer {
+        padding: 35px 14px 20px;
+      }
+
+      /* ── Intro Cinematic ── */
+      .cinema-bar-top,
+      .cinema-bar-bottom {
+        height: 36px;
+        padding: 0 12px;
+        font-size: .6rem;
+        letter-spacing: .1em;
+      }
+
+      .smoke-emblem {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 16px;
+      }
+
+      .smoke-emblem .monogram {
+        font-size: 2.5rem;
+      }
+
+      .smoke-title {
+        font-size: 2.4rem;
+      }
+
+      .smoke-tagline {
+        font-size: .7rem;
+        letter-spacing: .25em;
+        margin-top: 10px;
+      }
+
+      .smoke-year {
+        font-size: .65rem;
+        margin-top: 14px;
+      }
+
+      .smoke-content {
+        padding: 16px;
+      }
+    }
+
+    /* ── Compact phones (≤380px) ── */
+    @media(max-width: 380px) {
+      .menu-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+      }
+
+      .food-photo {
+        height: 130px; /* Bigger dish photo size */
+      }
+
+      .card-body {
+        padding: 7px 5px 8px;
+      }
+
+      .card-body h3 {
+        font-size: .76rem;
+      }
+
+      .dish-price-tag {
+        font-size: .95rem;
+      }
+
+      .dish-desc {
+        display: none;
+      }
+
+      .brand-name {
+        font-size: 1.1rem;
+      }
+
+      .smoke-title {
+        font-size: 2rem;
+      }
+    }
+
+    /* ── Touch device optimizations ── */
+    @media(hover: none) and (pointer: coarse) {
+      .menu-card:hover {
+        transform: none;
+        box-shadow: var(--shadow-sm);
+        border-color: #e8dcbf;
+      }
+
+      .menu-card:active {
+        transform: scale(.98);
+        transition: transform .1s;
+      }
+
+      .menu-card:hover .food-photo img {
+        transform: none;
+        filter: saturate(1.1) contrast(1.02);
+      }
+
+      .filter-btn:hover {
+        transform: none;
+      }
+
+      .category-chip:hover {
+        transform: none;
+      }
+
+      .btn-cta-menu:hover {
+        transform: none;
+      }
+
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ═══════════════════ INTERACTIVE CINEMATIC SMOKE INTRO ═══════════════════ -->
-<div id="smokeOverlay">
-  <canvas id="smokeCanvas"></canvas>
+  <!-- ═══════════════════ INTERACTIVE CINEMATIC SMOKE INTRO ═══════════════════ -->
+  <div id="smokeOverlay">
+    <canvas id="smokeCanvas"></canvas>
 
-  <!-- Top Cinematic Cinema Bar -->
-  <div class="cinema-bar-top">
-    <div class="cinema-live-tag">
-      <span class="live-dot"></span>
-      <span>CINEMATIC INTRO EXPERIENCE</span>
-    </div>
-    <div>📍 KHANAPUR MAIN ROAD, BELAGAVI DIST., KARNATAKA — 591302</div>
-  </div>
-
-  <!-- Center Stage Presentation -->
-  <div class="smoke-content">
-    <div class="smoke-emblem">
-      <div class="monogram">H</div>
-      <span class="star">✦</span>
-    </div>
-    <div class="smoke-title">Hide N Seek</div>
-    <div class="smoke-tagline">C A F É &nbsp;·&nbsp; GOOD FOOD, GOOD MOOD</div>
-    <div class="smoke-desc">Where sizzling flavours, aromatic spices, and cozy café moments come alive.</div>
-    
-    <div class="smoke-actions">
-      <button class="btn-enter-cafe" id="btnEnterCafe" onclick="dismissSmoke()">
-        <span>ENTER CAFÉ</span> <span>✦</span>
-      </button>
-      <div class="smoke-hint">
-        <span>✨</span> <span>Move your mouse or drag across screen to swirl real smoke</span>
+    <!-- Top Cinematic Cinema Bar -->
+    <div class="cinema-bar-top">
+      <div class="cinema-live-tag">
+        <span class="live-dot"></span>
+        <span></span>
       </div>
+      <div>📍 KHANAPUR MAIN ROAD, BELAGAVI DIST., KARNATAKA — 591302</div>
     </div>
-  </div>
 
-  <!-- Bottom Cinema Bar with Audio Visualizer -->
-  <div class="cinema-bar-bottom">
-    <div class="eq-container">
-      <span class="eq-bar"></span>
-      <span class="eq-bar"></span>
-      <span class="eq-bar"></span>
-      <span class="eq-bar"></span>
-      <span class="eq-bar"></span>
-      <span style="margin-left: 8px; font-size: .7rem;">CAFÉ AMBIANCE 60FPS</span>
-    </div>
-    <div style="font-size: .72rem; letter-spacing: .08em; color: #c9b482;">AUTO-REVEAL IN 4S OR CLICK ENTER</div>
-  </div>
-</div>
-
-<!-- ═══════════════════ TOPBAR ═══════════════════ -->
-<div class="topbar">
-  <span>📍 Khanapur Main Road, Belagavi Dist., Karnataka — 591302</span>
-  <span class="topbar-sep">•</span>
-  <span>🍽️ Dine-in · Takeaway · Party Orders</span>
-  <span class="topbar-badge">OPEN DAILY 11 AM – 11 PM</span>
-</div>
-
-<!-- ═══════════════════ HEADER & NAVIGATION ═══════════════════ -->
-<header>
-  <nav class="nav">
-    <a class="brand" href="#">
-      <div class="logo-icon">H<span>✦</span></div>
-      <div>
-        <div class="brand-name">Hide N Seek</div>
-        <div class="brand-sub">C A F É · GOOD FOOD, GOOD MOOD</div>
+    <!-- Center Stage Presentation -->
+    <div class="smoke-content">
+      <div class="smoke-emblem">
+        <div class="monogram">H</div>
+        <span class="star">✦</span>
       </div>
-    </a>
-    <div class="nav-links">
-      <a href="#menu">Menu</a>
-      <a href="#about">Our Story</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <div class="nav-actions">
-      <a class="btn-cta-menu" href="#menu">Explore Menu ↓</a>
-    </div>
-  </nav>
+      <div class="smoke-title">Hide N Seek</div>
+      <div class="smoke-tagline">C A F É &nbsp;·&nbsp; GOOD FOOD, GOOD MOOD</div>
+      <div class="smoke-desc">Where sizzling flavours, aromatic spices, and cozy café moments come alive.</div>
 
-  <!-- ═══════════════════ HERO BANNER WITH AMBIENT STEAM ═══════════════════ -->
-  <section class="hero">
-    <div class="hero-wrapper">
-      <div class="hero-photo">
-        <img src="hide-n-seek-3d-theme.webp" alt="Hide N Seek Café — Good Food Good Mood">
-        <canvas id="heroSteamCanvas"></canvas>
-      </div>
-      <div class="hero-badges">
-        <div class="hero-badge-item"><span class="icon">🥟</span> Sizzling Momos</div>
-        <div class="hero-badge-item"><span class="icon">🍕</span> Stone-Baked Pizzas</div>
-        <div class="hero-badge-item"><span class="icon">🍜</span> Wok-Tossed Hakka Noodles</div>
-        <div class="hero-badge-item"><span class="icon">🥤</span> Chilled Mocktails & Coffee</div>
-        <div class="hero-badge-item"><span class="icon">🟢</span> 100% Pure Veg & Non-Veg Sections</div>
-      </div>
-    </div>
-  </section>
-</header>
-
-<!-- ═══════════════════ MAIN CONTENT ═══════════════════ -->
-<main>
-  <!-- ═══════════════════ MENU SECTION (ALWAYS FULLY VISIBLE) ═══════════════════ -->
-  <section id="menu">
-    <div class="section-head">
-      <div>
-        <div class="mini-label"><span>✦</span> FROM OUR CHEF'S KITCHEN <span>✦</span></div>
-        <h2>Our Delicious Menu</h2>
-      </div>
-      <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
-        <p>Explore handcrafted starters, crispy momos, stone-baked pizzas, sizzling pasta, and ice-cold beverages.</p>
-        <span class="dish-count-badge" id="dishCountBadge">Showing 74 dishes</span>
-      </div>
-    </div>
-
-    <!-- Search & Dietary Filter Panel -->
-    <div class="search-filter-panel">
-      <div class="search-row">
-        <div class="search-box">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="searchInput" placeholder="Search dish name (e.g., Momos, Pizza, Manchurian, Coffee)...">
-          <button class="clear-btn" id="clearSearchBtn" onclick="clearSearch()">✕</button>
+      <div class="smoke-actions">
+        <button class="btn-enter-cafe" id="btnEnterCafe" onclick="dismissSmoke()">
+          <span>ENTER CAFÉ</span> <span>✦</span>
+        </button>
+        <div class="smoke-hint">
+          <span>✨</span> <span>Move your mouse or drag across screen to swirl real smoke</span>
         </div>
-        <div class="diet-filters">
-          <button class="filter-btn active" data-diet="all">All <span class="filter-badge" id="countAll">74</span></button>
-          <button class="filter-btn" data-diet="veg">🟢 Veg <span class="filter-badge" id="countVeg">47</span></button>
-          <button class="filter-btn" data-diet="nonveg">🔴 Non-Veg <span class="filter-badge" id="countNonVeg">22</span></button>
-          <button class="filter-btn" data-diet="drink">🥤 Drinks <span class="filter-badge" id="countDrink">5</span></button>
+      </div>
+    </div>
+
+    <!-- Bottom Cinema Bar with Audio Visualizer -->
+    <div class="cinema-bar-bottom">
+      <div class="eq-container">
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span style="margin-left: 8px; font-size: .7rem;">CAFÉ AMBIANCE 60FPS</span>
+      </div>
+      <div style="font-size: .72rem; letter-spacing: .08em; color: #c9b482;">AUTO-REVEAL IN 4S OR CLICK ENTER</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ TOPBAR ═══════════════════ -->
+  <div class="topbar">
+    <span>📍 Khanapur Main Road, Belagavi Dist., Karnataka — 591302</span>
+    <span class="topbar-sep">•</span>
+    <span>📞 <a href="tel:+917619133108" style="color: inherit; text-decoration: none; font-weight: 700;">+91
+        7619133108</a></span>
+    <span class="topbar-sep">•</span>
+    <span>🍽️ Dine-in · Takeaway</span>
+    <span class="topbar-badge">OPEN DAILY 11 AM – 11 PM</span>
+  </div>
+
+  <!-- ═══════════════════ HEADER & NAVIGATION ═══════════════════ -->
+  <header>
+    <nav class="nav">
+      <a class="brand" href="#">
+        <div class="logo-icon">H<span>✦</span></div>
+        <div>
+          <div class="brand-name">Hide N Seek</div>
+          <div class="brand-sub">C A F É · GOOD FOOD, GOOD MOOD</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#menu">Menu</a>
+        <a href="#about">Our Story</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn-cta-menu" href="#menu">Explore Menu ↓</a>
+      </div>
+    </nav>
+
+    <!-- ═══════════════════ HERO BANNER WITH AMBIENT STEAM ═══════════════════ -->
+    <section class="hero">
+      <div class="hero-wrapper">
+        <div class="hero-photo">
+          <img src="hide-n-seek-3d-theme.webp" alt="Hide N Seek Café — Good Food Good Mood">
+          <canvas id="heroSteamCanvas"></canvas>
+        </div>
+        <div class="hero-badges">
+          <div class="hero-badge-item"><span class="icon">🥟</span> Sizzling Momos</div>
+          <div class="hero-badge-item"><span class="icon">🍕</span> Stone-Baked Pizzas</div>
+          <div class="hero-badge-item"><span class="icon">🍜</span> Wok-Tossed Hakka Noodles</div>
+          <div class="hero-badge-item"><span class="icon">🥤</span> Chilled Mocktails & Coffee</div>
+          <div class="hero-badge-item"><span class="icon">🟢</span> 100% Pure Veg & Non-Veg Sections</div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <!-- ═══════════════════ MAIN CONTENT ═══════════════════ -->
+  <main>
+    <!-- ═══════════════════ MENU SECTION (ALWAYS FULLY VISIBLE) ═══════════════════ -->
+    <section id="menu">
+      <div class="section-head">
+        <div>
+          <div class="mini-label"><span>✦</span> FROM OUR CHEF'S KITCHEN <span>✦</span></div>
+          <h2>Our Delicious Menu</h2>
+        </div>
+        <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+          <p>Explore handcrafted starters, crispy momos, stone-baked pizzas, sizzling pasta, and ice-cold beverages.</p>
+          <span class="dish-count-badge" id="dishCountBadge">Showing 74 dishes</span>
         </div>
       </div>
 
-      <!-- Category Filter Chips -->
-      <div class="category-strip" id="categoryFilters"></div>
-    </div>
+      <!-- Search & Dietary Filter Panel -->
+      <div class="search-filter-panel">
+        <div class="search-row">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput"
+              placeholder="Search dish name (e.g., Momos, Pizza, Manchurian, Coffee)...">
+            <button class="clear-btn" id="clearSearchBtn" onclick="clearSearch()">✕</button>
+          </div>
+          <div class="diet-filters">
+            <button class="filter-btn active" data-diet="all">All <span class="filter-badge"
+                id="countAll">74</span></button>
+            <button class="filter-btn" data-diet="veg">🟢 Veg <span class="filter-badge"
+                id="countVeg">47</span></button>
+            <button class="filter-btn" data-diet="nonveg">🔴 Non-Veg <span class="filter-badge"
+                id="countNonVeg">22</span></button>
+            <button class="filter-btn" data-diet="drink">🥤 Drinks <span class="filter-badge"
+                id="countDrink">5</span></button>
 
-    <!-- Dynamic Menu Grid -->
-    <div class="menu-grid" id="menuGrid"></div>
-  </section>
+            <div class="grid-toggle-box" title="Switch 3 or 4 dishes in a line">
+              <button class="grid-toggle-btn active" id="btnCols4" onclick="setGridColumns(4)">4 in a Line</button>
+              <button class="grid-toggle-btn" id="btnCols3" onclick="setGridColumns(3)">3 in a Line</button>
+            </div>
+          </div>
+        </div>
 
-  <!-- ═══════════════════ ABOUT / EXPERIENCE BANNER ═══════════════════ -->
-  <section id="about" class="about-banner">
-    <div>
-      <h2>Good Food. Good Mood. Unforgettable Memories.</h2>
-      <p>Hide N Seek Café in Khanapur is where foodies gather for authentic, sizzling Indo-Chinese, Italian, and Continental bites. Made fresh to order with premium spices and heartfelt passion.</p>
-    </div>
-    <div class="about-actions">
-      <a class="btn-gold-action" href="#contact">📍 Visit Our Café</a>
-      <button class="btn-gold-action" style="background: rgba(255,255,255,.15); color: white;" onclick="openCart()">
-        🛒 View Order (<span id="bannerCartCount">0</span>)
-      </button>
-    </div>
-  </section>
-</main>
+        <!-- Category Filter Chips -->
+        <div class="category-strip" id="categoryFilters"></div>
+      </div>
 
-<!-- ═══════════════════ FOOTER ═══════════════════ -->
-<footer id="contact">
-  <div class="footer-inner">
-    <div>
-      <div class="footer-brand">Hide N Seek Café</div>
-      <p>Khanapur, Belagavi District, Karnataka — 591302</p>
-      <p>Good Food, Great Company, Warm Memories.</p>
-      <p style="margin-top: 14px; color: var(--gold);">★ Dine-in • Takeaway • Party Bookings</p>
-    </div>
-    <div>
-      <div class="footer-col-title">Opening Hours</div>
-      <p>Monday – Sunday: 11:00 AM – 11:00 PM</p>
-      <p>Fresh Kitchen Open All Day</p>
-      <p>Fresh Ingredients • Zero Compromise</p>
-    </div>
-    <div>
-      <div class="footer-col-title">Connect With Us</div>
-      <p>Instagram: @hidenseek_cafe</p>
-      <p>Location: Khanapur Main Road</p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 Hide N Seek Café. All rights reserved.</span>
-    <span>Crafted with ❤️ in Khanapur, Karnataka</span>
-  </div>
-</footer>
+      <!-- Dynamic Menu Grid -->
+      <div class="menu-grid" id="menuGrid"></div>
+    </section>
 
-<!-- ═══════════════════ CART FAB BUTTON ═══════════════════ -->
-<button class="cart-fab" id="cartFab" onclick="openCart()">
-  <span>🛒 Order Cart</span>
-  <span class="cart-badge" id="cartCount">0</span>
-  <span id="cartFabTotal" style="margin-left: 2px; font-weight: 900;">₹0</span>
-</button>
-
-<!-- ═══════════════════ CART SLIDE-OVER DRAWER ═══════════════════ -->
-<div class="cart-modal-backdrop" id="cartModalBackdrop" onclick="if(event.target===this) closeCart()">
-  <div class="cart-modal">
-    <div class="cart-header">
+    <!-- ═══════════════════ ABOUT / EXPERIENCE BANNER ═══════════════════ -->
+    <section id="about" class="about-banner">
       <div>
-        <h3>Your Order Summary</h3>
-        <p style="font-size: .8rem; color: #ebd8af; margin-top: 3px;">Hide N Seek Café, Khanapur</p>
+        <h2>Good Food. Good Mood. Unforgettable Memories.</h2>
+        <p>Hide N Seek Café in Khanapur is where foodies gather for authentic, sizzling Indo-Chinese, Italian, and
+          Continental bites. Made fresh to order with premium spices and heartfelt passion.</p>
       </div>
-      <button class="btn-close-cart" onclick="closeCart()">✕</button>
+      <div class="about-actions">
+        <a class="btn-gold-action" href="#contact">📍 Visit Our Café</a>
+        <button class="btn-gold-action" style="background: rgba(255,255,255,.15); color: white;" onclick="openCart()">
+          🛒 View Order (<span id="bannerCartCount">0</span>)
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer id="contact">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Hide N Seek Café</div>
+        <p>Khanapur, Belagavi District, Karnataka — 591302</p>
+        <p>Good Food, Great Company, Warm Memories.</p>
+        <p style="margin-top: 14px; color: var(--gold);">★ Dine-in • Takeaway • Party Bookings</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Opening Hours</div>
+        <p>Monday – Sunday: 11:00 AM – 11:00 PM</p>
+        <p>Fresh Kitchen Open All Day</p>
+        <p>Fresh Ingredients • Zero Compromise</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect With Us</div>
+        <p>📞 Phone: <a href="tel:+917619133108"
+            style="color: var(--gold); text-decoration: none; font-weight: 700;">+91 7619133108</a></p>
+        <p>💬 WhatsApp: <a href="https://wa.me/917619133108" target="_blank"
+            style="color: #25d366; text-decoration: none; font-weight: 700;">+91 7619133108</a></p>
+        <p>Instagram: @hidenseek_cafe</p>
+        <p>Location: Khanapur Main Road</p>
+      </div>
     </div>
-
-    <div class="cart-items-list" id="cartItemsList">
-      <!-- Populated dynamically -->
+    <div class="footer-bottom">
+      <span>© 2026 Hide N Seek Café. All rights reserved.</span>
+      <span>Crafted with ❤️ in Khanapur, Karnataka</span>
     </div>
+  </footer>
 
-    <div class="cart-summary" id="cartSummary">
-      <div class="order-type-tabs">
-        <button class="order-tab active" id="tabDineIn" onclick="setOrderType('Dine-in')">🍽️ Dine-in</button>
-        <button class="order-tab" id="tabTakeaway" onclick="setOrderType('Takeaway')">🥡 Takeaway</button>
-      </div>
-      <input type="text" class="customer-input" id="customerNote" placeholder="Your Name or Table Number (optional)">
+  <!-- ═══════════════════ CART FAB BUTTON ═══════════════════ -->
+  <button class="cart-fab" id="cartFab" onclick="openCart()">
+    <span>🛒 Order Cart</span>
+    <span class="cart-badge" id="cartCount">0</span>
+    <span id="cartFabTotal" style="margin-left: 2px; font-weight: 900;">₹0</span>
+  </button>
 
-      <div class="cart-subtotal-row">
-        <span>Items Total:</span>
-        <span id="cartSubtotal">₹0</span>
-      </div>
-      <div class="cart-subtotal-row">
-        <span>Taxes & Packaging:</span>
-        <span>Inclusive</span>
-      </div>
-      <div class="cart-total-row">
-        <span>Total Payable:</span>
-        <span id="cartTotal" style="color: var(--gold-dark);">₹0</span>
+  <!-- ═══════════════════ CART SLIDE-OVER DRAWER ═══════════════════ -->
+  <div class="cart-modal-backdrop" id="cartModalBackdrop" onclick="if(event.target===this) closeCart()">
+    <div class="cart-modal">
+      <div class="cart-header">
+        <div>
+          <h3>Your Order Summary</h3>
+          <p style="font-size: .8rem; color: #ebd8af; margin-top: 3px;">Hide N Seek Café, Khanapur</p>
+        </div>
+        <button class="btn-close-cart" onclick="closeCart()">✕</button>
       </div>
 
-      <button class="btn-whatsapp-order" onclick="sendWhatsAppOrder()">
-        <span>💬 Send Order on WhatsApp</span>
-      </button>
+      <div class="cart-items-list" id="cartItemsList">
+        <!-- Populated dynamically -->
+      </div>
+
+      <div class="cart-summary" id="cartSummary">
+        <div class="order-type-tabs">
+          <button class="order-tab active" id="tabDineIn" onclick="setOrderType('Dine-in')">🍽️ Dine-in</button>
+          <button class="order-tab" id="tabTakeaway" onclick="setOrderType('Takeaway')">🥡 Takeaway</button>
+        </div>
+        <input type="text" class="customer-input" id="customerNote" placeholder="Your Name or Table Number (optional)">
+
+        <div class="cart-subtotal-row">
+          <span>Items Total:</span>
+          <span id="cartSubtotal">₹0</span>
+        </div>
+        <div class="cart-subtotal-row">
+          <span>Taxes & Packaging:</span>
+          <span>Inclusive</span>
+        </div>
+        <div class="cart-total-row">
+          <span>Total Payable:</span>
+          <span id="cartTotal" style="color: var(--gold-dark);">₹0</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 9px; margin-top: 14px;">
+          <button class="btn-whatsapp-order" onclick="sendWhatsAppOrder()">
+            <span>💬 Send Order Bill to WhatsApp (+91 7619133108)</span>
+          </button>
+          <button type="button" class="btn-bill-image" onclick="generateAndShowBillImage()"
+            style="background: #172136; color: #fdfaf3; border: 1.5px solid var(--gold); padding: 12px 18px; border-radius: 12px; font-weight: 700; font-size: .88rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all .25s;">
+            <span>🧾 View & Download Bill Receipt Image</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- ═══════════════════ FLOATING TOAST NOTIFICATION ═══════════════════ -->
-<div class="toast-notice" id="toastNotice">
-  <span id="toastIcon">✨</span>
-  <span id="toastMessage">Item added to cart!</span>
-</div>
+  <!-- ═══════════════════ BILL IMAGE RECEIPT MODAL ═══════════════════ -->
+  <div class="bill-modal-backdrop" id="billModalBackdrop" onclick="if(event.target===this) closeBillModal()"
+    style="position: fixed; inset: 0; background: rgba(5,8,16,.82); backdrop-filter: blur(8px); z-index: 10006; display: none; place-items: center; padding: 14px;">
+    <div class="bill-modal-card"
+      style="background: #090e1c; border: 2px solid var(--gold); border-radius: 18px; max-width: 460px; width: 100%; max-height: 92vh; overflow-y: auto; padding: 18px; box-shadow: 0 20px 50px rgba(0,0,0,.7); text-align: center; position: relative;">
+      <button onclick="closeBillModal()"
+        style="position: absolute; right: 14px; top: 14px; background: rgba(255,255,255,.12); border: 0; color: white; width: 32px; height: 32px; border-radius: 50%; font-size: 1rem; cursor: pointer;">✕</button>
+      <div style="font-size: .78rem; color: var(--gold); letter-spacing: .15em; font-weight: 800; margin-bottom: 3px;">✦
+        OFFICIAL BILL RECEIPT ✦</div>
+      <h3 style="color: #fff9ed; font-size: 1.25rem; margin-bottom: 12px;">Hide N Seek Café Bill</h3>
+      <div
+        style="background: #060913; border: 1px solid #283758; border-radius: 12px; padding: 8px; display: inline-block; max-width: 100%;">
+        <canvas id="billReceiptCanvas"
+          style="max-width: 100%; height: auto; border-radius: 8px; display: block;"></canvas>
+      </div>
+      <div style="display: flex; gap: 8px; margin-top: 14px;">
+        <button onclick="downloadBillImage()"
+          style="flex: 1; background: var(--gold); color: var(--navy); border: 0; padding: 12px 14px; border-radius: 10px; font-weight: 800; font-size: .85rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          <span>📥 Save Bill Image</span>
+        </button>
+        <button onclick="sendWhatsAppOrder()"
+          style="flex: 1; background: #25d366; color: white; border: 0; padding: 12px 14px; border-radius: 10px; font-weight: 800; font-size: .85rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          <span>💬 Send to 7619133108</span>
+        </button>
+      </div>
+    </div>
+  </div>
 
-<!-- ═══════════════════ JAVASCRIPT LOGIC ═══════════════════ -->
-<script>
-// ═══════════════════ 1. INTERACTIVE VOLUMETRIC SMOKE SIMULATION ═══════════════════
-const smokeOverlay = document.getElementById('smokeOverlay');
-const smokeCanvas = document.getElementById('smokeCanvas');
-const sCtx = smokeCanvas.getContext('2d');
-let sWidth, sHeight;
-let smokeParticles = [];
-let emberParticles = [];
-let mouse = { x: -1000, y: -1000, prevX: -1000, prevY: -1000, speedX: 0, speedY: 0, isDown: false };
-let isDispersing = false;
-let smokeAnimId = null;
-let autoDismissTimeout = null;
+  <!-- ═══════════════════ FLOATING TOAST NOTIFICATION ═══════════════════ -->
+  <div class="toast-notice" id="toastNotice">
+    <span id="toastIcon">✨</span>
+    <span id="toastMessage">Item added to cart!</span>
+  </div>
 
-// Pre-render a procedural soft Gaussian smoke puff onto an offscreen canvas
-const puffCanvas = document.createElement('canvas');
-const puffSize = 256;
-puffCanvas.width = puffSize;
-puffCanvas.height = puffSize;
-const pCtx = puffCanvas.getContext('2d');
-const puffGrad = pCtx.createRadialGradient(puffSize/2, puffSize/2, 0, puffSize/2, puffSize/2, puffSize/2);
-puffGrad.addColorStop(0, 'rgba(235, 215, 175, 0.45)');
-puffGrad.addColorStop(0.25, 'rgba(175, 185, 215, 0.3)');
-puffGrad.addColorStop(0.55, 'rgba(65, 80, 125, 0.15)');
-puffGrad.addColorStop(0.8, 'rgba(20, 28, 55, 0.05)');
-puffGrad.addColorStop(1, 'rgba(6, 9, 20, 0)');
-pCtx.fillStyle = puffGrad;
-pCtx.beginPath();
-pCtx.arc(puffSize/2, puffSize/2, puffSize/2, 0, Math.PI * 2);
-pCtx.fill();
+  <!-- ═══════════════════ JAVASCRIPT LOGIC ═══════════════════ -->
+  <script>
+    // ═══════════════════ 1. INTERACTIVE VOLUMETRIC SMOKE SIMULATION ═══════════════════
+    const smokeOverlay = document.getElementById('smokeOverlay');
+    const smokeCanvas = document.getElementById('smokeCanvas');
+    const sCtx = smokeCanvas.getContext('2d');
+    let sWidth, sHeight;
+    let smokeParticles = [];
+    let emberParticles = [];
+    let mouse = { x: -1000, y: -1000, prevX: -1000, prevY: -1000, speedX: 0, speedY: 0, isDown: false };
+    let isDispersing = false;
+    let smokeAnimId = null;
+    let autoDismissTimeout = null;
 
-function resizeSmoke() {
-  sWidth = smokeCanvas.width = window.innerWidth;
-  sHeight = smokeCanvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeSmoke);
-resizeSmoke();
+    // Pre-render a procedural soft Gaussian smoke puff onto an offscreen canvas
+    const puffCanvas = document.createElement('canvas');
+    const puffSize = 256;
+    puffCanvas.width = puffSize;
+    puffCanvas.height = puffSize;
+    const pCtx = puffCanvas.getContext('2d');
+    const puffGrad = pCtx.createRadialGradient(puffSize / 2, puffSize / 2, 0, puffSize / 2, puffSize / 2, puffSize / 2);
+    puffGrad.addColorStop(0, 'rgba(235, 215, 175, 0.45)');
+    puffGrad.addColorStop(0.25, 'rgba(175, 185, 215, 0.3)');
+    puffGrad.addColorStop(0.55, 'rgba(65, 80, 125, 0.15)');
+    puffGrad.addColorStop(0.8, 'rgba(20, 28, 55, 0.05)');
+    puffGrad.addColorStop(1, 'rgba(6, 9, 20, 0)');
+    pCtx.fillStyle = puffGrad;
+    pCtx.beginPath();
+    pCtx.arc(puffSize / 2, puffSize / 2, puffSize / 2, 0, Math.PI * 2);
+    pCtx.fill();
 
-class SmokePuff {
-  constructor(initCenter = false) {
-    this.reset(initCenter);
-  }
-  reset(initCenter = false) {
-    this.x = initCenter ? sWidth * 0.5 + (Math.random() - 0.5) * sWidth * 0.8 : Math.random() * sWidth;
-    this.y = initCenter ? Math.random() * sHeight : sHeight + Math.random() * 80;
-    this.vx = (Math.random() - 0.5) * 1.2;
-    this.vy = -(0.5 + Math.random() * 1.5);
-    this.radius = 90 + Math.random() * 140;
-    this.growth = 0.25 + Math.random() * 0.4;
-    this.rotation = Math.random() * Math.PI * 2;
-    this.vRot = (Math.random() - 0.5) * 0.008;
-    this.alpha = 0.02;
-    this.maxAlpha = 0.18 + Math.random() * 0.18;
-    this.life = 0;
-    this.maxLife = 220 + Math.random() * 220;
-    this.colorTint = Math.random() > 0.6 ? 'warm' : 'cool';
-  }
-  update() {
-    this.life++;
-    this.radius += this.growth;
-    this.rotation += this.vRot;
-    
-    // Wave buoyancy
-    this.vx += Math.sin(this.y * 0.006 + this.life * 0.02) * 0.04;
-    this.x += this.vx;
-    this.y += this.vy;
+    function resizeSmoke() {
+      sWidth = smokeCanvas.width = window.innerWidth;
+      sHeight = smokeCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeSmoke);
+    resizeSmoke();
 
-    // Interactive mouse swirl physics
-    const dx = this.x - mouse.x;
-    const dy = this.y - mouse.y;
-    const dist = Math.hypot(dx, dy);
-    if (dist < 220 && dist > 1) {
-      const force = (1 - dist / 220) * 4.5;
-      // Push away + vortex swirl torque
-      this.vx += (dx / dist) * force + mouse.speedX * 0.25;
-      this.vy += (dy / dist) * force + mouse.speedY * 0.25;
-      this.rotation += 0.04;
+    class SmokePuff {
+      constructor(initCenter = false) {
+        this.reset(initCenter);
+      }
+      reset(initCenter = false) {
+        this.x = initCenter ? sWidth * 0.5 + (Math.random() - 0.5) * sWidth * 0.8 : Math.random() * sWidth;
+        this.y = initCenter ? Math.random() * sHeight : sHeight + Math.random() * 80;
+        this.vx = (Math.random() - 0.5) * 1.2;
+        this.vy = -(0.5 + Math.random() * 1.5);
+        this.radius = 90 + Math.random() * 140;
+        this.growth = 0.25 + Math.random() * 0.4;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.vRot = (Math.random() - 0.5) * 0.008;
+        this.alpha = 0.02;
+        this.maxAlpha = 0.18 + Math.random() * 0.18;
+        this.life = 0;
+        this.maxLife = 220 + Math.random() * 220;
+        this.colorTint = Math.random() > 0.6 ? 'warm' : 'cool';
+      }
+      update() {
+        this.life++;
+        this.radius += this.growth;
+        this.rotation += this.vRot;
+
+        // Wave buoyancy
+        this.vx += Math.sin(this.y * 0.006 + this.life * 0.02) * 0.04;
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Interactive mouse swirl physics
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < 220 && dist > 1) {
+          const force = (1 - dist / 220) * 4.5;
+          // Push away + vortex swirl torque
+          this.vx += (dx / dist) * force + mouse.speedX * 0.25;
+          this.vy += (dy / dist) * force + mouse.speedY * 0.25;
+          this.rotation += 0.04;
+        }
+
+        // Dispersal shockwave push
+        if (isDispersing) {
+          const cdx = this.x - sWidth * 0.5;
+          const cdy = this.y - sHeight * 0.5;
+          const cdist = Math.hypot(cdx, cdy) || 1;
+          this.vx += (cdx / cdist) * 4.2;
+          this.vy += (cdy / cdist) * 4.2;
+          this.maxAlpha *= 0.94;
+        }
+
+        // Drag friction
+        this.vx *= 0.98;
+        this.vy *= 0.99;
+
+        // Alpha lifecycle
+        if (this.life < 50) {
+          this.alpha = (this.life / 50) * this.maxAlpha;
+        } else if (this.life > this.maxLife - 60) {
+          this.alpha = ((this.maxLife - this.life) / 60) * this.maxAlpha;
+        } else {
+          this.alpha = this.maxAlpha;
+        }
+
+        if (this.life >= this.maxLife || this.y < -this.radius * 2) {
+          if (!isDispersing) this.reset();
+        }
+      }
+      draw() {
+        if (this.alpha <= 0) return;
+        sCtx.save();
+        sCtx.translate(this.x, this.y);
+        sCtx.rotate(this.rotation);
+        sCtx.globalAlpha = Math.max(0, Math.min(1, this.alpha));
+        sCtx.drawImage(puffCanvas, -this.radius, -this.radius, this.radius * 2, this.radius * 2);
+        sCtx.restore();
+      }
     }
 
-    // Dispersal shockwave push
-    if (isDispersing) {
-      const cdx = this.x - sWidth * 0.5;
-      const cdy = this.y - sHeight * 0.5;
-      const cdist = Math.hypot(cdx, cdy) || 1;
-      this.vx += (cdx / cdist) * 4.2;
-      this.vy += (cdy / cdist) * 4.2;
-      this.maxAlpha *= 0.94;
+    class Ember {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * sWidth;
+        this.y = sHeight + Math.random() * 50;
+        this.vx = (Math.random() - 0.5) * 1.5;
+        this.vy = -(1.2 + Math.random() * 2.2);
+        this.size = 1.5 + Math.random() * 3.5;
+        this.alpha = 0.2;
+        this.maxAlpha = 0.6 + Math.random() * 0.4;
+        this.color = Math.random() > 0.4 ? '#f5c84c' : '#ff7a18';
+        this.life = 0;
+        this.maxLife = 160 + Math.random() * 160;
+      }
+      update() {
+        this.life++;
+        this.y += this.vy;
+        this.x += this.vx + Math.sin(this.life * 0.05) * 0.8;
+
+        // Mouse interaction
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < 150 && dist > 1) {
+          this.vx += (dx / dist) * 3;
+          this.vy += (dy / dist) * 3;
+        }
+
+        if (isDispersing) {
+          this.vx += (this.x - sWidth * 0.5) * 0.05;
+          this.vy -= 1.5;
+        }
+
+        this.alpha = (1 - this.life / this.maxLife) * this.maxAlpha;
+        if (this.life >= this.maxLife || this.y < -10) {
+          if (!isDispersing) this.reset();
+        }
+      }
+      draw() {
+        if (this.alpha <= 0) return;
+        sCtx.save();
+        sCtx.globalAlpha = Math.max(0, this.alpha);
+        sCtx.fillStyle = this.color;
+        sCtx.shadowColor = this.color;
+        sCtx.shadowBlur = 10;
+        sCtx.beginPath();
+        sCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        sCtx.fill();
+        sCtx.restore();
+      }
     }
 
-    // Drag friction
-    this.vx *= 0.98;
-    this.vy *= 0.99;
-
-    // Alpha lifecycle
-    if (this.life < 50) {
-      this.alpha = (this.life / 50) * this.maxAlpha;
-    } else if (this.life > this.maxLife - 60) {
-      this.alpha = ((this.maxLife - this.life) / 60) * this.maxAlpha;
-    } else {
-      this.alpha = this.maxAlpha;
+    function initSmokeParticles() {
+      smokeParticles = [];
+      emberParticles = [];
+      isDispersing = false;
+      for (let i = 0; i < 55; i++) {
+        smokeParticles.push(new SmokePuff(true));
+      }
+      for (let i = 0; i < 40; i++) {
+        emberParticles.push(new Ember());
+      }
     }
 
-    if (this.life >= this.maxLife || this.y < -this.radius * 2) {
-      if (!isDispersing) this.reset();
-    }
-  }
-  draw() {
-    if (this.alpha <= 0) return;
-    sCtx.save();
-    sCtx.translate(this.x, this.y);
-    sCtx.rotate(this.rotation);
-    sCtx.globalAlpha = Math.max(0, Math.min(1, this.alpha));
-    sCtx.drawImage(puffCanvas, -this.radius, -this.radius, this.radius * 2, this.radius * 2);
-    sCtx.restore();
-  }
-}
+    function animateSmoke() {
+      sCtx.clearRect(0, 0, sWidth, sHeight);
 
-class Ember {
-  constructor() {
-    this.reset();
-  }
-  reset() {
-    this.x = Math.random() * sWidth;
-    this.y = sHeight + Math.random() * 50;
-    this.vx = (Math.random() - 0.5) * 1.5;
-    this.vy = -(1.2 + Math.random() * 2.2);
-    this.size = 1.5 + Math.random() * 3.5;
-    this.alpha = 0.2;
-    this.maxAlpha = 0.6 + Math.random() * 0.4;
-    this.color = Math.random() > 0.4 ? '#f5c84c' : '#ff7a18';
-    this.life = 0;
-    this.maxLife = 160 + Math.random() * 160;
-  }
-  update() {
-    this.life++;
-    this.y += this.vy;
-    this.x += this.vx + Math.sin(this.life * 0.05) * 0.8;
+      // Soft background gradient sweep
+      const bgGrad = sCtx.createRadialGradient(sWidth * 0.5, sHeight * 0.4, 50, sWidth * 0.5, sHeight * 0.5, sWidth * 0.7);
+      bgGrad.addColorStop(0, 'rgba(245, 200, 76, 0.04)');
+      bgGrad.addColorStop(0.5, 'rgba(19, 27, 53, 0.15)');
+      bgGrad.addColorStop(1, 'rgba(4, 6, 12, 0.35)');
+      sCtx.fillStyle = bgGrad;
+      sCtx.fillRect(0, 0, sWidth, sHeight);
 
-    // Mouse interaction
-    const dx = this.x - mouse.x;
-    const dy = this.y - mouse.y;
-    const dist = Math.hypot(dx, dy);
-    if (dist < 150 && dist > 1) {
-      this.vx += (dx / dist) * 3;
-      this.vy += (dy / dist) * 3;
+      // Update & Draw Smoke
+      smokeParticles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      // Update & Draw Embers
+      emberParticles.forEach(e => {
+        e.update();
+        e.draw();
+      });
+
+      // Calculate mouse speed
+      mouse.speedX = (mouse.x - mouse.prevX) * 0.4;
+      mouse.speedY = (mouse.y - mouse.prevY) * 0.4;
+      mouse.prevX = mouse.x;
+      mouse.prevY = mouse.y;
+
+      smokeAnimId = requestAnimationFrame(animateSmoke);
     }
 
-    if (isDispersing) {
-      this.vx += (this.x - sWidth * 0.5) * 0.05;
-      this.vy -= 1.5;
-    }
+    // Mouse and Touch Interaction Listeners
+    window.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    window.addEventListener('touchmove', e => {
+      if (e.touches && e.touches[0]) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    }, { passive: true });
 
-    this.alpha = (1 - this.life / this.maxLife) * this.maxAlpha;
-    if (this.life >= this.maxLife || this.y < -10) {
-      if (!isDispersing) this.reset();
-    }
-  }
-  draw() {
-    if (this.alpha <= 0) return;
-    sCtx.save();
-    sCtx.globalAlpha = Math.max(0, this.alpha);
-    sCtx.fillStyle = this.color;
-    sCtx.shadowColor = this.color;
-    sCtx.shadowBlur = 10;
-    sCtx.beginPath();
-    sCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    sCtx.fill();
-    sCtx.restore();
-  }
-}
+    // Start Intro
+    initSmokeParticles();
+    animateSmoke();
 
-function initSmokeParticles() {
-  smokeParticles = [];
-  emberParticles = [];
-  isDispersing = false;
-  for (let i = 0; i < 55; i++) {
-    smokeParticles.push(new SmokePuff(true));
-  }
-  for (let i = 0; i < 40; i++) {
-    emberParticles.push(new Ember());
-  }
-}
-
-function animateSmoke() {
-  sCtx.clearRect(0, 0, sWidth, sHeight);
-
-  // Soft background gradient sweep
-  const bgGrad = sCtx.createRadialGradient(sWidth*0.5, sHeight*0.4, 50, sWidth*0.5, sHeight*0.5, sWidth*0.7);
-  bgGrad.addColorStop(0, 'rgba(245, 200, 76, 0.04)');
-  bgGrad.addColorStop(0.5, 'rgba(19, 27, 53, 0.15)');
-  bgGrad.addColorStop(1, 'rgba(4, 6, 12, 0.35)');
-  sCtx.fillStyle = bgGrad;
-  sCtx.fillRect(0, 0, sWidth, sHeight);
-
-  // Update & Draw Smoke
-  smokeParticles.forEach(p => {
-    p.update();
-    p.draw();
-  });
-
-  // Update & Draw Embers
-  emberParticles.forEach(e => {
-    e.update();
-    e.draw();
-  });
-
-  // Calculate mouse speed
-  mouse.speedX = (mouse.x - mouse.prevX) * 0.4;
-  mouse.speedY = (mouse.y - mouse.prevY) * 0.4;
-  mouse.prevX = mouse.x;
-  mouse.prevY = mouse.y;
-
-  smokeAnimId = requestAnimationFrame(animateSmoke);
-}
-
-// Mouse and Touch Interaction Listeners
-window.addEventListener('mousemove', e => {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
-});
-window.addEventListener('touchmove', e => {
-  if (e.touches && e.touches[0]) {
-    mouse.x = e.touches[0].clientX;
-    mouse.y = e.touches[0].clientY;
-  }
-}, { passive: true });
-
-// Start Intro
-initSmokeParticles();
-animateSmoke();
-
-// Progress bar countdown
-setTimeout(() => {
-  const pBar = document.getElementById('smokeProgressBar');
-  if (pBar) pBar.style.width = '100%';
-}, 100);
-
-// Auto-dismiss after 4.5 seconds
-autoDismissTimeout = setTimeout(() => {
-  dismissSmoke();
-}, 4600);
-
-function dismissSmoke() {
-  clearTimeout(autoDismissTimeout);
-  if (isDispersing) return;
-  isDispersing = true;
-  
-  // Dramatic shockwave expansion
-  setTimeout(() => {
-    smokeOverlay.classList.add('hidden');
+    // Progress bar countdown
     setTimeout(() => {
-      cancelAnimationFrame(smokeAnimId);
-    }, 1000);
-  }, 400);
-}
+      const pBar = document.getElementById('smokeProgressBar');
+      if (pBar) pBar.style.width = '100%';
+    }, 100);
 
-// ═══════════════════ 2. HERO BANNER LIVE STEAM WISPS ═══════════════════
-const heroSteamCanvas = document.getElementById('heroSteamCanvas');
-const hsCtx = heroSteamCanvas ? heroSteamCanvas.getContext('2d') : null;
-let hsWisps = [];
+    // Auto-dismiss after 4.5 seconds
+    autoDismissTimeout = setTimeout(() => {
+      dismissSmoke();
+    }, 4600);
 
-function resizeHeroSteam() {
-  if (!heroSteamCanvas) return;
-  heroSteamCanvas.width = heroSteamCanvas.parentElement.clientWidth;
-  heroSteamCanvas.height = heroSteamCanvas.parentElement.clientHeight;
-}
-window.addEventListener('resize', resizeHeroSteam);
-setTimeout(resizeHeroSteam, 300);
+    function dismissSmoke() {
+      clearTimeout(autoDismissTimeout);
+      if (isDispersing) return;
+      isDispersing = true;
 
-class HeroSteamWisp {
-  constructor(w, h) {
-    this.w = w; this.h = h;
-    this.reset(true);
-  }
-  reset(randY = false) {
-    this.x = this.w * (0.15 + Math.random() * 0.7);
-    this.y = randY ? Math.random() * this.h : this.h * 0.75 + Math.random() * 30;
-    this.vx = (Math.random() - 0.5) * 0.6;
-    this.vy = -(0.4 + Math.random() * 0.7);
-    this.r = 30 + Math.random() * 50;
-    this.growth = 0.25;
-    this.alpha = 0;
-    this.maxAlpha = 0.12 + Math.random() * 0.1;
-    this.life = 0;
-    this.maxLife = 120 + Math.random() * 90;
-  }
-  update() {
-    this.life++;
-    this.x += this.vx + Math.sin(this.life * 0.04) * 0.5;
-    this.y += this.vy;
-    this.r += this.growth;
-    if (this.life < 30) this.alpha = (this.life / 30) * this.maxAlpha;
-    else if (this.life > this.maxLife - 40) this.alpha = ((this.maxLife - this.life) / 40) * this.maxAlpha;
-    if (this.life >= this.maxLife) this.reset();
-  }
-  draw() {
-    if (!hsCtx || this.alpha <= 0) return;
-    hsCtx.save();
-    hsCtx.globalAlpha = this.alpha;
-    const g = hsCtx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
-    g.addColorStop(0, 'rgba(255, 230, 180, 0.45)');
-    g.addColorStop(0.5, 'rgba(200, 210, 240, 0.2)');
-    g.addColorStop(1, 'rgba(20, 25, 45, 0)');
-    hsCtx.fillStyle = g;
-    hsCtx.beginPath();
-    hsCtx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    hsCtx.fill();
-    hsCtx.restore();
-  }
-}
-
-function initHeroSteam() {
-  if (!heroSteamCanvas) return;
-  resizeHeroSteam();
-  hsWisps = [];
-  for (let i = 0; i < 20; i++) {
-    hsWisps.push(new HeroSteamWisp(heroSteamCanvas.width, heroSteamCanvas.height));
-  }
-  function animateHeroSteam() {
-    if (heroSteamCanvas && hsCtx) {
-      hsCtx.clearRect(0, 0, heroSteamCanvas.width, heroSteamCanvas.height);
-      hsWisps.forEach(w => { w.update(); w.draw(); });
+      // Dramatic shockwave expansion
+      setTimeout(() => {
+        smokeOverlay.classList.add('hidden');
+        setTimeout(() => {
+          cancelAnimationFrame(smokeAnimId);
+        }, 1000);
+      }, 400);
     }
-    requestAnimationFrame(animateHeroSteam);
-  }
-  animateHeroSteam();
-}
-setTimeout(initHeroSteam, 400);
 
-// ═══════════════════ 3. DEDICATED UNIQUE IMAGE MAP (100% UNIQUE PER DISH) ═══════════════════
-const dishImageMap = {
-  // Veg Soups
-  "Veg Manchow Soup": "assets/food/veg-manchow-soup.jpg",
-  "Cream of Mushroom": "assets/food/cream-of-mushroom.jpg",
-  "Cream of Tomato": "assets/food/cream-of-tomato.jpg",
+    // ═══════════════════ 2. HERO BANNER LIVE STEAM WISPS ═══════════════════
+    const heroSteamCanvas = document.getElementById('heroSteamCanvas');
+    const hsCtx = heroSteamCanvas ? heroSteamCanvas.getContext('2d') : null;
+    let hsWisps = [];
 
-  // Fries
-  "Salted Fries": "assets/food/salted-fries.jpg",
-  "Peri Peri Fries": "assets/food/peri-peri-fries.jpg",
-  "Hub Fries": "assets/food/hub-fries.jpg",
-  "Cheesy Fries": "assets/food/cheesy-fries.jpg",
-
-  // Veg Starters
-  "Gobi Manchurian": "dish-gobi-manchurian.webp",
-  "Babycorn Manchurian": "dish-babycorn-manchurian.webp",
-  "Cheese Chilli Toast": "dish-cheese-chilli-toast.webp",
-  "Cheese Garlic Bread": "dish-cheese-garlic-bread.webp",
-  "Mushroom Manchurian": "dish-mushroom-manchurian.webp",
-  "Veg Cheese Ball": "dish-cheese-balls.webp",
-  "Paneer Popcorn": "assets/food/paneer-popcorn.jpg",
-  "Crispy Corn": "dish-crispy-corn.webp",
-  "Paneer Manchurian": "dish-paneer-manchurian.webp",
-  "Baby Corn Chilly": "assets/food/baby-corn-chilly.jpg",
-  "Corn Basket": "assets/food/corn-basket.jpg",
-  "Mushroom Chilly": "assets/food/mushroom-chilly.jpg",
-  "Honey Chilly Potato": "assets/food/honey-chilly-potato.jpg",
-  "Mix Veg Chilly": "assets/food/mix-veg-chilly.jpg",
-  "Paneer Chilly": "assets/food/paneer-chilly.jpg",
-  "Babycorn Crispy": "assets/food/babycorn-crispy.jpg",
-  "Butter Garlic Mushroom": "assets/food/butter-garlic-mushroom.jpg",
-
-  // Veg Momos
-  "Veg Steam Momos": "momos-steam.jpg",
-  "Veg Crispy Momos": "momos-crispy.jpg",
-  "Veg Schezwan Momos": "momos-schezwan.jpg",
-  "Veg Chilly Garlic Momos": "momos-chilli-garlic.jpg",
-
-  // Veg Pizza
-  "Veg Mini Pizza": "assets/food/veg-mini-pizza.jpg",
-  "Margarita Pizza": "assets/food/margarita-pizza.jpg",
-  "Mushroom Pizza": "assets/food/mushroom-pizza.jpg",
-  "Sweetcorn Pizza": "assets/food/sweetcorn-pizza.jpg",
-  "Babycorn Pizza": "assets/food/babycorn-pizza.jpg",
-  "Paneer & Corn Pizza": "assets/food/paneer-and-corn-pizza.jpg",
-  "Paneer Pizza": "assets/food/paneer-pizza.jpg",
-  "Veggie Delux Pizza": "assets/food/veggie-delux-pizza.jpg",
-
-  // Veg Pasta
-  "Veg Alfredo White Sauce": "assets/food/veg-alfredo-white-sauce.jpg",
-  "Veg Arrabbiata Red Sauce": "assets/food/veg-arrabbiata-red-sauce.jpg",
-  "Veg Pink Sauce Pasta": "assets/food/veg-pink-sauce-pasta.jpg",
-
-  // Veg Rice & Noodles
-  "Veg Hakka Noodles": "assets/food/veg-hakka-noodles.jpg",
-  "Veg Fried Rice": "assets/food/veg-fried-rice.jpg",
-  "Veg Schezwan Fried Rice": "assets/food/veg-schezwan-fried-rice.jpg",
-  "Veg Schezwan Hakka Noodle": "assets/food/veg-schezwan-hakka-noodle.jpg",
-
-  // Non-Veg Soups
-  "Chicken Manchow Soup": "assets/food/chicken-manchow-soup.jpg",
-  "Cream of Chicken": "assets/food/cream-of-chicken.jpg",
-
-  // Chinese Starters
-  "Chicken Popcorn": "assets/food/chicken-popcorn.jpg",
-  "Chicken Manchurian": "assets/food/chicken-manchurian.jpg",
-  "Chicken Chilly": "assets/food/chicken-chilly.jpg",
-  "Dragon Chicken": "assets/food/dragon-chicken.jpg",
-  "Chicken Dry Crispy": "assets/food/chicken-dry-crispy.jpg",
-  "Crispy Peri Peri Chicken": "assets/food/crispy-peri-peri-chicken.jpg",
-  "Grill Chicken": "assets/food/grill-chicken.jpg",
-  "Grill Jerk Chicken": "assets/food/grill-jerk-chicken.jpg",
-
-  // Rice & Noodles
-  "Chicken Fried Rice": "assets/food/chicken-fried-rice.jpg",
-  "Chicken Hakka Noodles": "assets/food/chicken-hakka-noodles.jpg",
-  "Chicken Schezwan Fried Rice": "assets/food/chicken-schezwan-fried-rice.jpg",
-  "Chicken Schezwan Hakka Ndl": "assets/food/chicken-schezwan-hakka-ndl.jpg",
-
-  // Chicken Momos
-  "Chicken Steam Momos": "assets/food/chicken-steam-momos.jpg",
-  "Chicken Crispy Momos": "assets/food/chicken-crispy-momos.jpg",
-  "Chicken Schezwan Momos": "assets/food/chicken-schezwan-momos.jpg",
-  "Chicken Chilly Garlic Momo": "assets/food/chicken-chilly-garlic-momo.jpg",
-
-  // Non-Veg Pizza
-  "Non-Veg Mini Pizza": "assets/food/non-veg-mini-pizza.jpg",
-  "Chicken Grill Pizza": "assets/food/chicken-grill-pizza.jpg",
-  "Chicken Peri Peri Pizza": "assets/food/chicken-peri-peri-pizza.jpg",
-  "Chicken Kheema Pizza": "assets/food/chicken-kheema-pizza.jpg",
-  "Chicken Tandoori Pizza": "assets/food/chicken-tandoori-pizza.jpg",
-
-  // Chicken Pasta
-  "Chicken Alfredo White Sauce": "assets/food/chicken-alfredo-white-sauce.jpg",
-  "Chicken Arrabbiata Red Sauce": "assets/food/chicken-arrabbiata-red-sauce.jpg",
-  "Chicken Pink Sauce Pasta": "assets/food/chicken-pink-sauce-pasta.jpg",
-
-  // Beverages
-  "Coffee": "assets/food/coffee.jpg",
-  "Hot Chocolate": "assets/food/hot-chocolate.jpg",
-  "Cold Coffee": "assets/food/cold-coffee.jpg",
-  "Blue Lagoon": "assets/food/blue-lagoon.jpg",
-  "Mojito": "assets/food/mojito.jpg"
-};
-const dishImages = dishImageMap;
-
-// ═══════════════════ 4. ALL 72 MENU ITEMS WITH DESCRIPTIONS ═══════════════════
-const rawItems = [
-  // Veg Soups
-  ["Veg Manchow Soup", 70, "veg", "Veg Soup", "soup", "Hot and spicy Indo-Chinese dark broth loaded with shredded veggies and crispy fried noodles."],
-  ["Cream of Mushroom", 80, "veg", "Veg Soup", "mushroomChilly", "Velvety smooth European soup made with fresh sautéed button mushrooms and herb cream."],
-  ["Cream of Tomato", 80, "veg", "Veg Soup", "soup", "Classic comforting soup crafted with ripe vine tomatoes, roasted croutons, and double cream."],
-  
-  // Fries
-  ["Salted Fries", 100, "veg", "Fries", "fries", "Crispy golden shoestring potatoes tossed with Himalayan pink salt, served piping hot."],
-  ["Peri Peri Fries", 110, "veg", "Fries", "fries", "Crunchy french fries coated in our secret fiery African peri-peri herb blend."],
-  ["Hub Fries", 120, "veg", "Fries", "fries", "Our house special loaded fries seasoned with aromatic Mediterranean spices."],
-  ["Cheesy Fries", 130, "veg", "Fries", "fries", "Crisp golden fries lavishly smothered in velvety, melted warm cheddar cheese sauce."],
-  
-  // Veg Starters
-  ["Gobi Manchurian", 70, "veg", "Veg Starters", "gobiManchurian", "Crispy cauliflower florets tossed in zesty garlic, ginger, spring onion and dark soy glaze."],
-  ["Babycorn Manchurian", 100, "veg", "Veg Starters", "babycornManchurian", "Crunchy tender babycorn bites glazed in sizzling tangy Indo-Chinese manchurian sauce."],
-  ["Cheese Chilli Toast", 100, "veg", "Veg Starters", "cheeseChilliToast", "Artisan toasted bread crowned with bubbling molten cheese and fiery green chillies."],
-  ["Cheese Garlic Bread", 100, "veg", "Veg Starters", "garlicBread", "Warm crispy baguettes brushed with roasted garlic butter and loaded with mozzarella."],
-  ["Mushroom Manchurian", 120, "veg", "Veg Starters", "mushroomManchurian", "Batter-crisped button mushrooms wok-tossed in fragrant oriental scallion sauce."],
-  ["Veg Cheese Ball", 120, "veg", "Veg Starters", "cheeseBall", "Golden fried breadcrumb crust packed with an irresistible molten spiced cheese center."],
-  ["Paneer Popcorn", 120, "veg", "Veg Starters", "paneerPopcorn", "Crunchy bite-sized cubes of fresh cottage cheese seasoned with house special herbs."],
-  ["Crispy Corn", 120, "veg", "Veg Starters", "crispyCorn", "Sweet corn kernels flash-fried till crunchy, spiced with chaat masala and fresh lime."],
-  ["Paneer Manchurian", 130, "veg", "Veg Starters", "paneerManchurian", "Succulent soft paneer cubes stir-fried in a rich, tangy dark soy manchurian gravy."],
-  ["Baby Corn Chilly", 130, "veg", "Veg Starters", "babycornChilly", "Crisp babycorn tossed with crunchy capsicum, green chillies, and savory dark soy."],
-  ["Corn Basket", 130, "veg", "Veg Starters", "cornBasket", "Crisp edible pastry shell filled with seasoned buttery sweetcorn and molten cheese."],
-  ["Mushroom Chilly", 140, "veg", "Veg Starters", "mushroomChilly", "Juicy tender button mushrooms wok-tossed in high flame with bell peppers and chilli garlic."],
-  ["Honey Chilly Potato", 140, "veg", "Veg Starters", "honeyChillyPotato", "Crispy potato fingers tossed in a luscious glaze of sweet organic honey and red chilli."],
-  ["Mix Veg Chilly", 140, "veg", "Veg Starters", "mixVegChilly", "Medley of farm-fresh crisp vegetables tossed in fiery chilli sauce with sesame seeds."],
-  ["Paneer Chilly", 150, "veg", "Veg Starters", "paneerChilly", "Tender marinated paneer cubes tossed with diced peppers, onions, and spicy Indo-Chinese sauce."],
-  ["Babycorn Crispy", 150, "veg", "Veg Starters", "babycornCrispy", "Extra crunchy spiced babycorn strips served with our chef's signature creamy dip."],
-  ["Butter Garlic Mushroom", 150, "veg", "Veg Starters", "butterGarlicMushroom", "Fresh mushrooms pan-sautéed in rich golden butter, garlic cloves, and cracked pepper."],
-  
-  // Veg Momos
-  ["Veg Steam Momos", 120, "veg", "Veg Momos", "momos", "Soft Himalayan steamed dumplings packed with finely minced cabbage, carrots and herbs."],
-  ["Veg Crispy Momos", 130, "veg", "Veg Momos", "momosCrispy", "Golden crispy fried momos with crunchy shell, served with fiery schezwan dip."],
-  ["Veg Schezwan Momos", 150, "veg", "Veg Momos", "momosSchezwan", "Steamed dumplings tossed in an aromatic sizzling wok with authentic spicy schezwan sauce."],
-  ["Veg Chilly Garlic Momos", 160, "veg", "Veg Momos", "momosChilliGarlic", "Pan-fried vegetable momos glazed in fiery roasted garlic and crushed red chilli."],
-  
-  // Pizzas - Veg
-  ["Veg Mini Pizza", 99, "veg", "Mini Pizza", "pizza", "Personal hand-tossed pizza topped with rich pizza sauce, sweetcorn, capsicum and cheese."],
-  ["Margarita Pizza", 120, "veg", "Veg Pizza", "pizza2", "Traditional Italian classic layered with extra mozzarella cheese and fragrant basil oil."],
-  ["Mushroom Pizza", 140, "veg", "Veg Pizza", "pizza3", "Stone-baked thin crust pizza topped with sautéed garlic mushrooms and gooey mozzarella."],
-  ["Sweetcorn Pizza", 140, "veg", "Veg Pizza", "pizza4", "Juicy golden sweetcorn kernels spread over herb marinara and melted cheese blend."],
-  ["Babycorn Pizza", 140, "veg", "Veg Pizza", "pizza5", "Crisp tender babycorn slices, bell peppers, and fresh mozzarella baked to perfection."],
-  ["Paneer & Corn Pizza", 150, "veg", "Veg Pizza", "pizza6", "Tandoori-spiced paneer cubes paired with sweetcorn and stringy melted cheese."],
-  ["Paneer Pizza", 160, "veg", "Veg Pizza", "pizza7", "Loaded with marinated cottage cheese, crunchy onions, green capsicum, and herbs."],
-  ["Veggie Delux Pizza", 160, "veg", "Veg Pizza", "pizza", "The ultimate supreme pie: sweetcorn, mushrooms, bell peppers, olives, and double cheese."],
-  
-  // Pasta - Veg
-  ["Veg Alfredo White Sauce", 130, "veg", "Veg Pasta", "pasta", "Al dente penne pasta coated in a rich, velvety garlic parmesan cream sauce."],
-  ["Veg Arrabbiata Red Sauce", 130, "veg", "Veg Pasta", "pastaRed", "Italian penne pasta tossed in a spicy sun-ripened tomato sauce with fresh basil."],
-  ["Veg Pink Sauce Pasta", 140, "veg", "Veg Pasta", "pastaPink", "Harmonious blend of rich creamy alfredo and tangy tomato marinara sauces."],
-  
-  // Veg Rice & Noodles
-  ["Veg Hakka Noodles", 100, "veg", "Veg Rice & Noodles", "noodles", "High-flame wok tossed noodles with shredded cabbage, carrots, peppers and savory seasoning."],
-  ["Veg Fried Rice", 100, "veg", "Veg Rice & Noodles", "rice", "Aromatic long-grain basmati rice stir-fried with diced garden vegetables and soy."],
-  ["Veg Schezwan Fried Rice", 120, "veg", "Veg Rice & Noodles", "rice", "Fiery wok-fried rice infused with spicy Sichuan peppers and crunchy vegetables."],
-  ["Veg Schezwan Hakka Noodle", 120, "veg", "Veg Rice & Noodles", "noodles", "Spicy noodles tossed with fiery red schezwan chili paste and spring greens."],
-  
-  // Non-Veg Soups
-  ["Chicken Manchow Soup", 90, "nonveg", "Non-Veg Soup", "soup", "Robust spicy dark chicken soup loaded with shredded chicken and crispy noodles."],
-  ["Cream of Chicken", 100, "nonveg", "Non-Veg Soup", "soup", "Velvety smooth chicken soup enriched with herb cream, butter, and black pepper."],
-  
-  // Chinese Starters - Chicken
-  ["Chicken Popcorn", 130, "nonveg", "Chinese Starters", "chickenPopcorn", "Crispy bite-sized battered chicken bites seasoned with our café secret spice rub."],
-  ["Chicken Manchurian", 150, "nonveg", "Chinese Starters", "chickenManchurian", "Tender succulent chicken chunks tossed in spicy ginger, garlic and scallion glaze."],
-  ["Chicken Chilly", 160, "nonveg", "Chinese Starters", "chicken", "Classic Indo-Chinese chicken tossed with crunchy green peppers, onions and dark soy."],
-  ["Dragon Chicken", 160, "nonveg", "Chinese Starters", "chicken", "Crispy chicken strips coated in a fiery sweet-and-spicy dragon sauce with roasted cashews."],
-  ["Chicken Dry Crispy", 170, "nonveg", "Chinese Starters", "chicken", "Crunchy deep-fried chicken marinated in bold coastal spices and ginger paste."],
-  ["Crispy Peri Peri Chicken", 180, "nonveg", "Chinese Starters", "chicken", "Crunchy chicken chunks generously dusted with spicy African peri-peri seasonings."],
-  ["Grill Chicken", 220, "nonveg", "Chinese Starters", "chicken", "Char-grilled boneless chicken breast marinated with lemon, herb butter, and cracked pepper."],
-  ["Grill Jerk Chicken", 230, "nonveg", "Chinese Starters", "chicken", "Caribbean-inspired flame-grilled chicken infused with spicy pimento and scotch bonnet rub."],
-  
-  // Rice & Noodles - Non-Veg
-  ["Chicken Fried Rice", 130, "nonveg", "Rice & Noodles", "rice", "Wok-fried basmati rice tossed with shredded tender chicken, egg ribbons, and scallions."],
-  ["Chicken Hakka Noodles", 130, "nonveg", "Rice & Noodles", "noodles", "Classic noodles tossed with juicy spiced chicken, scrambled eggs, and fresh cabbage."],
-  ["Chicken Schezwan Fried Rice", 150, "nonveg", "Rice & Noodles", "rice", "Fiery Sichuan rice loaded with succulent chicken bits and fiery red chili paste."],
-  ["Chicken Schezwan Hakka Ndl", 150, "nonveg", "Rice & Noodles", "noodles", "Spicy noodles stir-fried with juicy shredded chicken in authentic schezwan sauce."],
-  
-  // Chicken Momos
-  ["Chicken Steam Momos", 140, "nonveg", "Chicken Momos", "momos", "Delicate steamed dumplings stuffed with juicy seasoned chicken and aromatic herbs."],
-  ["Chicken Crispy Momos", 150, "nonveg", "Chicken Momos", "momosCrispy", "Golden crunchy fried chicken momos served with fiery homemade schezwan chutney."],
-  ["Chicken Schezwan Momos", 170, "nonveg", "Chicken Momos", "momosSchezwan", "Steamed chicken dumplings tossed in a blazing hot wok with schezwan pepper glaze."],
-  ["Chicken Chilly Garlic Momo", 180, "nonveg", "Chicken Momos", "momosChilliGarlic", "Pan-tossed chicken momos in aromatic roasted garlic and crushed red chili chutney."],
-  
-  // Pizzas - Non-Veg
-  ["Non-Veg Mini Pizza", 99, "nonveg", "Mini Pizza", "pizza8", "Personal crust pizza topped with spicy shredded chicken, tomato sauce, and cheese."],
-  ["Chicken Grill Pizza", 180, "nonveg", "Chicken Pizza", "pizza9", "Thin-crust pizza loaded with tender grilled barbecue chicken chunks and mozzarella."],
-  ["Chicken Peri Peri Pizza", 180, "nonveg", "Chicken Pizza", "pizza10", "Zesty pie topped with spicy peri-peri spiced chicken, red onion, and melted cheese."],
-  ["Chicken Kheema Pizza", 190, "nonveg", "Chicken Pizza", "pizza", "Artisan crust crowned with aromatic minced chicken kheema, fresh coriander, and cheese."],
-  ["Chicken Tandoori Pizza", 200, "nonveg", "Chicken Pizza", "pizza2", "Smoky roasted tandoori chicken tikka pieces, capsicum, and mozzarella cheese."],
-  
-  // Pasta - Non-Veg
-  ["Chicken Alfredo White Sauce", 150, "nonveg", "Chicken Pasta", "pasta", "Tender chicken pieces tossed with al dente penne in a rich garlic parmesan cream sauce."],
-  ["Chicken Arrabbiata Red Sauce", 150, "nonveg", "Chicken Pasta", "pastaRed", "Italian penne pasta with juicy chicken bites in a spicy tomato marinara with basil."],
-  ["Chicken Pink Sauce Pasta", 160, "nonveg", "Chicken Pasta", "pastaPink", "Juicy chicken tossed in a velvety blend of creamy white alfredo and tangy red marinara."],
-  
-  // Beverages
-  ["Coffee", 20, "drink", "Beverages", "coffee", "Traditional hot aromatic Indian filter coffee brewed with rich, frothy milk."],
-  ["Hot Chocolate", 60, "drink", "Beverages", "coffee", "Thick, luxurious warm European cocoa topped with velvety steamed milk froth."],
-  ["Cold Coffee", 80, "drink", "Beverages", "coldCoffee", "Chilled thick blended coffee with vanilla ice cream, topped with chocolate syrup."],
-  ["Blue Lagoon", 90, "drink", "Beverages", "blueLagoon", "Refreshing tropical blue curaçao cooler with fizzy lemon soda and fresh mint."],
-  ["Mojito", 90, "drink", "Beverages", "drink", "Crisp classic mocktail muddled with fresh garden mint leaves, tangy lime, and soda."]
-];
-
-const items = rawItems.map((x, i) => ({
-  id: i + 1,
-  name: x[0],
-  price: x[1],
-  diet: x[2],
-  category: x[3],
-  image: dishImageMap[x[0]] || 'assets/food/food-1-01.jpg',
-  desc: x[5]
-}));
-
-// Update Diet Counts
-document.getElementById('countAll').textContent = items.length;
-document.getElementById('countVeg').textContent = items.filter(x => x.diet === 'veg').length;
-document.getElementById('countNonVeg').textContent = items.filter(x => x.diet === 'nonveg').length;
-document.getElementById('countDrink').textContent = items.filter(x => x.diet === 'drink').length;
-
-// ═══════════════════ 5. STATE MANAGEMENT ═══════════════════
-let selectedDiet = 'all';
-let selectedCategory = 'All Categories';
-let cart = {}; // { itemId: quantity }
-let orderType = 'Dine-in';
-
-const menuGrid = document.getElementById('menuGrid');
-const searchInput = document.getElementById('searchInput');
-const clearSearchBtn = document.getElementById('clearSearchBtn');
-const categoryFilters = document.getElementById('categoryFilters');
-const dishCountBadge = document.getElementById('dishCountBadge');
-
-// ═══════════════════ 6. BUILD CATEGORY CHIPS ═══════════════════
-const categories = ['All Categories', ...new Set(items.map(x => x.category))];
-categoryFilters.innerHTML = categories.map(c => {
-  const count = c === 'All Categories' ? items.length : items.filter(x => x.category === c).length;
-  return `<button class="category-chip ${c === 'All Categories' ? 'active' : ''}" data-category="${c}">${c} (${count})</button>`;
-}).join('');
-
-// ═══════════════════ 7. RENDER MENU CARDS ═══════════════════
-function renderMenu() {
-  const q = searchInput.value.trim().toLowerCase();
-  clearSearchBtn.classList.toggle('visible', q.length > 0);
-
-  const filtered = items.filter(item => {
-    if (selectedDiet !== 'all' && item.diet !== selectedDiet) return false;
-    if (selectedCategory !== 'All Categories' && item.category !== selectedCategory) return false;
-    if (q) {
-      const matchName = item.name.toLowerCase().includes(q);
-      const matchCat = item.category.toLowerCase().includes(q);
-      const matchDesc = item.desc.toLowerCase().includes(q);
-      if (!matchName && !matchCat && !matchDesc) return false;
+    function resizeHeroSteam() {
+      if (!heroSteamCanvas) return;
+      heroSteamCanvas.width = heroSteamCanvas.parentElement.clientWidth;
+      heroSteamCanvas.height = heroSteamCanvas.parentElement.clientHeight;
     }
-    return true;
-  });
+    window.addEventListener('resize', resizeHeroSteam);
+    setTimeout(resizeHeroSteam, 300);
 
-  dishCountBadge.textContent = `Showing ${filtered.length} dish${filtered.length === 1 ? '' : 'es'}`;
+    class HeroSteamWisp {
+      constructor(w, h) {
+        this.w = w; this.h = h;
+        this.reset(true);
+      }
+      reset(randY = false) {
+        this.x = this.w * (0.15 + Math.random() * 0.7);
+        this.y = randY ? Math.random() * this.h : this.h * 0.75 + Math.random() * 30;
+        this.vx = (Math.random() - 0.5) * 0.6;
+        this.vy = -(0.4 + Math.random() * 0.7);
+        this.r = 30 + Math.random() * 50;
+        this.growth = 0.25;
+        this.alpha = 0;
+        this.maxAlpha = 0.12 + Math.random() * 0.1;
+        this.life = 0;
+        this.maxLife = 120 + Math.random() * 90;
+      }
+      update() {
+        this.life++;
+        this.x += this.vx + Math.sin(this.life * 0.04) * 0.5;
+        this.y += this.vy;
+        this.r += this.growth;
+        if (this.life < 30) this.alpha = (this.life / 30) * this.maxAlpha;
+        else if (this.life > this.maxLife - 40) this.alpha = ((this.maxLife - this.life) / 40) * this.maxAlpha;
+        if (this.life >= this.maxLife) this.reset();
+      }
+      draw() {
+        if (!hsCtx || this.alpha <= 0) return;
+        hsCtx.save();
+        hsCtx.globalAlpha = this.alpha;
+        const g = hsCtx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
+        g.addColorStop(0, 'rgba(255, 230, 180, 0.45)');
+        g.addColorStop(0.5, 'rgba(200, 210, 240, 0.2)');
+        g.addColorStop(1, 'rgba(20, 25, 45, 0)');
+        hsCtx.fillStyle = g;
+        hsCtx.beginPath();
+        hsCtx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        hsCtx.fill();
+        hsCtx.restore();
+      }
+    }
 
-  if (!filtered.length) {
-    menuGrid.innerHTML = `
+    function initHeroSteam() {
+      if (!heroSteamCanvas) return;
+      resizeHeroSteam();
+      hsWisps = [];
+      for (let i = 0; i < 20; i++) {
+        hsWisps.push(new HeroSteamWisp(heroSteamCanvas.width, heroSteamCanvas.height));
+      }
+      function animateHeroSteam() {
+        if (heroSteamCanvas && hsCtx) {
+          hsCtx.clearRect(0, 0, heroSteamCanvas.width, heroSteamCanvas.height);
+          hsWisps.forEach(w => { w.update(); w.draw(); });
+        }
+        requestAnimationFrame(animateHeroSteam);
+      }
+      animateHeroSteam();
+    }
+    setTimeout(initHeroSteam, 400);
+
+    // ═══════════════════ 3. DEDICATED UNIQUE IMAGE MAP (100% UNIQUE PER DISH) ═══════════════════
+    const dishImageMap = {
+      // Veg Soups
+      "Veg Manchow Soup": "assets/food/veg-manchow-soup.jpg",
+      "Cream of Mushroom": "assets/food/cream-of-mushroom.jpg",
+      "Cream of Tomato": "assets/food/cream-of-tomato.jpg",
+
+      // Fries
+      "Salted Fries": "assets/food/salted-fries.jpg",
+      "Peri Peri Fries": "assets/food/peri-peri-fries.jpg",
+      "Hub Fries": "assets/food/hub-fries.jpg",
+      "Cheesy Fries": "assets/food/cheesy-fries.jpg",
+
+      // Veg Starters
+      "Gobi Manchurian": "dish-gobi-manchurian.webp",
+      "Babycorn Manchurian": "dish-babycorn-manchurian.webp",
+      "Cheese Chilli Toast": "dish-cheese-chilli-toast.webp",
+      "Cheese Garlic Bread": "dish-cheese-garlic-bread.webp",
+      "Mushroom Manchurian": "dish-mushroom-manchurian.webp",
+      "Veg Cheese Ball": "dish-cheese-balls.webp",
+      "Paneer Popcorn": "assets/food/paneer-popcorn.jpg",
+      "Crispy Corn": "dish-crispy-corn.webp",
+      "Paneer Manchurian": "dish-paneer-manchurian.webp",
+      "Baby Corn Chilly": "assets/food/baby-corn-chilly.jpg",
+      "Corn Basket": "assets/food/corn-basket.jpg",
+      "Mushroom Chilly": "assets/food/mushroom-chilly.jpg",
+      "Honey Chilly Potato": "assets/food/honey-chilly-potato.jpg",
+      "Mix Veg Chilly": "assets/food/mix-veg-chilly.jpg",
+      "Paneer Chilly": "assets/food/paneer-chilly.jpg",
+      "Babycorn Crispy": "assets/food/babycorn-crispy.jpg",
+      "Butter Garlic Mushroom": "assets/food/butter-garlic-mushroom.jpg",
+
+      // Veg Momos
+      "Veg Steam Momos": "momos-steam.jpg",
+      "Veg Crispy Momos": "momos-crispy.jpg",
+      "Veg Schezwan Momos": "momos-schezwan.jpg",
+      "Veg Chilly Garlic Momos": "momos-chilli-garlic.jpg",
+
+      // Veg Pizza
+      "Veg Mini Pizza": "assets/food/veg-mini-pizza.jpg",
+      "Margarita Pizza": "assets/food/margarita-pizza.jpg",
+      "Mushroom Pizza": "assets/food/mushroom-pizza.jpg",
+      "Sweetcorn Pizza": "assets/food/sweetcorn-pizza.jpg",
+      "Babycorn Pizza": "assets/food/babycorn-pizza.jpg",
+      "Paneer & Corn Pizza": "assets/food/paneer-and-corn-pizza.jpg",
+      "Paneer Pizza": "assets/food/paneer-pizza.jpg",
+      "Veggie Delux Pizza": "assets/food/veggie-delux-pizza.jpg",
+
+      // Veg Pasta
+      "Veg Alfredo White Sauce": "assets/food/veg-alfredo-white-sauce.jpg",
+      "Veg Arrabbiata Red Sauce": "assets/food/veg-arrabbiata-red-sauce.jpg",
+      "Veg Pink Sauce Pasta": "assets/food/veg-pink-sauce-pasta.jpg",
+
+      // Veg Rice & Noodles
+      "Veg Hakka Noodles": "assets/food/veg-hakka-noodles.jpg",
+      "Veg Fried Rice": "assets/food/veg-fried-rice.jpg",
+      "Veg Schezwan Fried Rice": "assets/food/veg-schezwan-fried-rice.jpg",
+      "Veg Schezwan Hakka Noodle": "assets/food/veg-schezwan-hakka-noodle.jpg",
+
+      // Non-Veg Soups
+      "Chicken Manchow Soup": "assets/food/chicken-manchow-soup.jpg",
+      "Cream of Chicken": "assets/food/cream-of-chicken.jpg",
+
+      // Chinese Starters
+      "Chicken Popcorn": "assets/food/chicken-popcorn.jpg",
+      "Chicken Manchurian": "assets/food/chicken-manchurian.jpg",
+      "Chicken Chilly": "assets/food/chicken-chilly.jpg",
+      "Dragon Chicken": "assets/food/dragon-chicken.jpg",
+      "Chicken Dry Crispy": "assets/food/chicken-dry-crispy.jpg",
+      "Crispy Peri Peri Chicken": "assets/food/crispy-peri-peri-chicken.jpg",
+      "Grill Chicken": "assets/food/grill-chicken.jpg",
+      "Grill Jerk Chicken": "assets/food/grill-jerk-chicken.jpg",
+
+      // Rice & Noodles
+      "Chicken Fried Rice": "assets/food/chicken-fried-rice.jpg",
+      "Chicken Hakka Noodles": "assets/food/chicken-hakka-noodles.jpg",
+      "Chicken Schezwan Fried Rice": "assets/food/chicken-schezwan-fried-rice.jpg",
+      "Chicken Schezwan Hakka Ndl": "assets/food/chicken-schezwan-hakka-ndl.jpg",
+
+      // Chicken Momos
+      "Chicken Steam Momos": "assets/food/chicken-steam-momos.jpg",
+      "Chicken Crispy Momos": "assets/food/chicken-crispy-momos.jpg",
+      "Chicken Schezwan Momos": "assets/food/chicken-schezwan-momos.jpg",
+      "Chicken Chilly Garlic Momo": "assets/food/chicken-chilly-garlic-momo.jpg",
+
+      // Non-Veg Pizza
+      "Non-Veg Mini Pizza": "assets/food/non-veg-mini-pizza.jpg",
+      "Chicken Grill Pizza": "assets/food/chicken-grill-pizza.jpg",
+      "Chicken Peri Peri Pizza": "assets/food/chicken-peri-peri-pizza.jpg",
+      "Chicken Kheema Pizza": "assets/food/chicken-kheema-pizza.jpg",
+      "Chicken Tandoori Pizza": "assets/food/chicken-tandoori-pizza.jpg",
+
+      // Chicken Pasta
+      "Chicken Alfredo White Sauce": "assets/food/chicken-alfredo-white-sauce.jpg",
+      "Chicken Arrabbiata Red Sauce": "assets/food/chicken-arrabbiata-red-sauce.jpg",
+      "Chicken Pink Sauce Pasta": "assets/food/chicken-pink-sauce-pasta.jpg",
+
+      // Beverages
+      "Coffee": "assets/food/coffee.jpg",
+      "Hot Chocolate": "assets/food/hot-chocolate.jpg",
+      "Cold Coffee": "assets/food/cold-coffee.jpg",
+      "Blue Lagoon": "assets/food/blue-lagoon.jpg",
+      "Mojito": "assets/food/mojito.jpg"
+    };
+    const dishImages = dishImageMap;
+
+    // ═══════════════════ 4. ALL 72 MENU ITEMS WITH DESCRIPTIONS ═══════════════════
+    const rawItems = [
+      // Veg Soups
+      ["Veg Manchow Soup", 70, "veg", "Veg Soup", "soup", "Hot and spicy Indo-Chinese dark broth loaded with shredded veggies and crispy fried noodles."],
+      ["Cream of Mushroom", 80, "veg", "Veg Soup", "mushroomChilly", "Velvety smooth European soup made with fresh sautéed button mushrooms and herb cream."],
+      ["Cream of Tomato", 80, "veg", "Veg Soup", "soup", "Classic comforting soup crafted with ripe vine tomatoes, roasted croutons, and double cream."],
+
+      // Fries
+      ["Salted Fries", 100, "veg", "Fries", "fries", "Crispy golden shoestring potatoes tossed with Himalayan pink salt, served piping hot."],
+      ["Peri Peri Fries", 110, "veg", "Fries", "fries", "Crunchy french fries coated in our secret fiery African peri-peri herb blend."],
+      ["Hub Fries", 120, "veg", "Fries", "fries", "Our house special loaded fries seasoned with aromatic Mediterranean spices."],
+      ["Cheesy Fries", 130, "veg", "Fries", "fries", "Crisp golden fries lavishly smothered in velvety, melted warm cheddar cheese sauce."],
+
+      // Veg Starters
+      ["Gobi Manchurian", 70, "veg", "Veg Starters", "gobiManchurian", "Crispy cauliflower florets tossed in zesty garlic, ginger, spring onion and dark soy glaze."],
+      ["Babycorn Manchurian", 100, "veg", "Veg Starters", "babycornManchurian", "Crunchy tender babycorn bites glazed in sizzling tangy Indo-Chinese manchurian sauce."],
+      ["Cheese Chilli Toast", 100, "veg", "Veg Starters", "cheeseChilliToast", "Artisan toasted bread crowned with bubbling molten cheese and fiery green chillies."],
+      ["Cheese Garlic Bread", 100, "veg", "Veg Starters", "garlicBread", "Warm crispy baguettes brushed with roasted garlic butter and loaded with mozzarella."],
+      ["Mushroom Manchurian", 120, "veg", "Veg Starters", "mushroomManchurian", "Batter-crisped button mushrooms wok-tossed in fragrant oriental scallion sauce."],
+      ["Veg Cheese Ball", 120, "veg", "Veg Starters", "cheeseBall", "Golden fried breadcrumb crust packed with an irresistible molten spiced cheese center."],
+      ["Paneer Popcorn", 120, "veg", "Veg Starters", "paneerPopcorn", "Crunchy bite-sized cubes of fresh cottage cheese seasoned with house special herbs."],
+      ["Crispy Corn", 120, "veg", "Veg Starters", "crispyCorn", "Sweet corn kernels flash-fried till crunchy, spiced with chaat masala and fresh lime."],
+      ["Paneer Manchurian", 130, "veg", "Veg Starters", "paneerManchurian", "Succulent soft paneer cubes stir-fried in a rich, tangy dark soy manchurian gravy."],
+      ["Baby Corn Chilly", 130, "veg", "Veg Starters", "babycornChilly", "Crisp babycorn tossed with crunchy capsicum, green chillies, and savory dark soy."],
+      ["Corn Basket", 130, "veg", "Veg Starters", "cornBasket", "Crisp edible pastry shell filled with seasoned buttery sweetcorn and molten cheese."],
+      ["Mushroom Chilly", 140, "veg", "Veg Starters", "mushroomChilly", "Juicy tender button mushrooms wok-tossed in high flame with bell peppers and chilli garlic."],
+      ["Honey Chilly Potato", 140, "veg", "Veg Starters", "honeyChillyPotato", "Crispy potato fingers tossed in a luscious glaze of sweet organic honey and red chilli."],
+      ["Mix Veg Chilly", 140, "veg", "Veg Starters", "mixVegChilly", "Medley of farm-fresh crisp vegetables tossed in fiery chilli sauce with sesame seeds."],
+      ["Paneer Chilly", 150, "veg", "Veg Starters", "paneerChilly", "Tender marinated paneer cubes tossed with diced peppers, onions, and spicy Indo-Chinese sauce."],
+      ["Babycorn Crispy", 150, "veg", "Veg Starters", "babycornCrispy", "Extra crunchy spiced babycorn strips served with our chef's signature creamy dip."],
+      ["Butter Garlic Mushroom", 150, "veg", "Veg Starters", "butterGarlicMushroom", "Fresh mushrooms pan-sautéed in rich golden butter, garlic cloves, and cracked pepper."],
+
+      // Veg Momos
+      ["Veg Steam Momos", 120, "veg", "Veg Momos", "momos", "Soft Himalayan steamed dumplings packed with finely minced cabbage, carrots and herbs."],
+      ["Veg Crispy Momos", 130, "veg", "Veg Momos", "momosCrispy", "Golden crispy fried momos with crunchy shell, served with fiery schezwan dip."],
+      ["Veg Schezwan Momos", 150, "veg", "Veg Momos", "momosSchezwan", "Steamed dumplings tossed in an aromatic sizzling wok with authentic spicy schezwan sauce."],
+      ["Veg Chilly Garlic Momos", 160, "veg", "Veg Momos", "momosChilliGarlic", "Pan-fried vegetable momos glazed in fiery roasted garlic and crushed red chilli."],
+
+      // Pizzas - Veg
+      ["Veg Mini Pizza", 99, "veg", "Mini Pizza", "pizza", "Personal hand-tossed pizza topped with rich pizza sauce, sweetcorn, capsicum and cheese."],
+      ["Margarita Pizza", 120, "veg", "Veg Pizza", "pizza2", "Traditional Italian classic layered with extra mozzarella cheese and fragrant basil oil."],
+      ["Mushroom Pizza", 140, "veg", "Veg Pizza", "pizza3", "Stone-baked thin crust pizza topped with sautéed garlic mushrooms and gooey mozzarella."],
+      ["Sweetcorn Pizza", 140, "veg", "Veg Pizza", "pizza4", "Juicy golden sweetcorn kernels spread over herb marinara and melted cheese blend."],
+      ["Babycorn Pizza", 140, "veg", "Veg Pizza", "pizza5", "Crisp tender babycorn slices, bell peppers, and fresh mozzarella baked to perfection."],
+      ["Paneer & Corn Pizza", 150, "veg", "Veg Pizza", "pizza6", "Tandoori-spiced paneer cubes paired with sweetcorn and stringy melted cheese."],
+      ["Paneer Pizza", 160, "veg", "Veg Pizza", "pizza7", "Loaded with marinated cottage cheese, crunchy onions, green capsicum, and herbs."],
+      ["Veggie Delux Pizza", 160, "veg", "Veg Pizza", "pizza", "The ultimate supreme pie: sweetcorn, mushrooms, bell peppers, olives, and double cheese."],
+
+      // Pasta - Veg
+      ["Veg Alfredo White Sauce", 130, "veg", "Veg Pasta", "pasta", "Al dente penne pasta coated in a rich, velvety garlic parmesan cream sauce."],
+      ["Veg Arrabbiata Red Sauce", 130, "veg", "Veg Pasta", "pastaRed", "Italian penne pasta tossed in a spicy sun-ripened tomato sauce with fresh basil."],
+      ["Veg Pink Sauce Pasta", 140, "veg", "Veg Pasta", "pastaPink", "Harmonious blend of rich creamy alfredo and tangy tomato marinara sauces."],
+
+      // Veg Rice & Noodles
+      ["Veg Hakka Noodles", 100, "veg", "Veg Rice & Noodles", "noodles", "High-flame wok tossed noodles with shredded cabbage, carrots, peppers and savory seasoning."],
+      ["Veg Fried Rice", 100, "veg", "Veg Rice & Noodles", "rice", "Aromatic long-grain basmati rice stir-fried with diced garden vegetables and soy."],
+      ["Veg Schezwan Fried Rice", 120, "veg", "Veg Rice & Noodles", "rice", "Fiery wok-fried rice infused with spicy Sichuan peppers and crunchy vegetables."],
+      ["Veg Schezwan Hakka Noodle", 120, "veg", "Veg Rice & Noodles", "noodles", "Spicy noodles tossed with fiery red schezwan chili paste and spring greens."],
+
+      // Non-Veg Soups
+      ["Chicken Manchow Soup", 90, "nonveg", "Non-Veg Soup", "soup", "Robust spicy dark chicken soup loaded with shredded chicken and crispy noodles."],
+      ["Cream of Chicken", 100, "nonveg", "Non-Veg Soup", "soup", "Velvety smooth chicken soup enriched with herb cream, butter, and black pepper."],
+
+      // Chinese Starters - Chicken
+      ["Chicken Popcorn", 130, "nonveg", "Chinese Starters", "chickenPopcorn", "Crispy bite-sized battered chicken bites seasoned with our café secret spice rub."],
+      ["Chicken Manchurian", 150, "nonveg", "Chinese Starters", "chickenManchurian", "Tender succulent chicken chunks tossed in spicy ginger, garlic and scallion glaze."],
+      ["Chicken Chilly", 160, "nonveg", "Chinese Starters", "chicken", "Classic Indo-Chinese chicken tossed with crunchy green peppers, onions and dark soy."],
+      ["Dragon Chicken", 160, "nonveg", "Chinese Starters", "chicken", "Crispy chicken strips coated in a fiery sweet-and-spicy dragon sauce with roasted cashews."],
+      ["Chicken Dry Crispy", 170, "nonveg", "Chinese Starters", "chicken", "Crunchy deep-fried chicken marinated in bold coastal spices and ginger paste."],
+      ["Crispy Peri Peri Chicken", 180, "nonveg", "Chinese Starters", "chicken", "Crunchy chicken chunks generously dusted with spicy African peri-peri seasonings."],
+      ["Grill Chicken", 220, "nonveg", "Chinese Starters", "chicken", "Char-grilled boneless chicken breast marinated with lemon, herb butter, and cracked pepper."],
+      ["Grill Jerk Chicken", 230, "nonveg", "Chinese Starters", "chicken", "Caribbean-inspired flame-grilled chicken infused with spicy pimento and scotch bonnet rub."],
+
+      // Rice & Noodles - Non-Veg
+      ["Chicken Fried Rice", 130, "nonveg", "Rice & Noodles", "rice", "Wok-fried basmati rice tossed with shredded tender chicken, egg ribbons, and scallions."],
+      ["Chicken Hakka Noodles", 130, "nonveg", "Rice & Noodles", "noodles", "Classic noodles tossed with juicy spiced chicken, scrambled eggs, and fresh cabbage."],
+      ["Chicken Schezwan Fried Rice", 150, "nonveg", "Rice & Noodles", "rice", "Fiery Sichuan rice loaded with succulent chicken bits and fiery red chili paste."],
+      ["Chicken Schezwan Hakka Ndl", 150, "nonveg", "Rice & Noodles", "noodles", "Spicy noodles stir-fried with juicy shredded chicken in authentic schezwan sauce."],
+
+      // Chicken Momos
+      ["Chicken Steam Momos", 140, "nonveg", "Chicken Momos", "momos", "Delicate steamed dumplings stuffed with juicy seasoned chicken and aromatic herbs."],
+      ["Chicken Crispy Momos", 150, "nonveg", "Chicken Momos", "momosCrispy", "Golden crunchy fried chicken momos served with fiery homemade schezwan chutney."],
+      ["Chicken Schezwan Momos", 170, "nonveg", "Chicken Momos", "momosSchezwan", "Steamed chicken dumplings tossed in a blazing hot wok with schezwan pepper glaze."],
+      ["Chicken Chilly Garlic Momo", 180, "nonveg", "Chicken Momos", "momosChilliGarlic", "Pan-tossed chicken momos in aromatic roasted garlic and crushed red chili chutney."],
+
+      // Pizzas - Non-Veg
+      ["Non-Veg Mini Pizza", 99, "nonveg", "Mini Pizza", "pizza8", "Personal crust pizza topped with spicy shredded chicken, tomato sauce, and cheese."],
+      ["Chicken Grill Pizza", 180, "nonveg", "Chicken Pizza", "pizza9", "Thin-crust pizza loaded with tender grilled barbecue chicken chunks and mozzarella."],
+      ["Chicken Peri Peri Pizza", 180, "nonveg", "Chicken Pizza", "pizza10", "Zesty pie topped with spicy peri-peri spiced chicken, red onion, and melted cheese."],
+      ["Chicken Kheema Pizza", 190, "nonveg", "Chicken Pizza", "pizza", "Artisan crust crowned with aromatic minced chicken kheema, fresh coriander, and cheese."],
+      ["Chicken Tandoori Pizza", 200, "nonveg", "Chicken Pizza", "pizza2", "Smoky roasted tandoori chicken tikka pieces, capsicum, and mozzarella cheese."],
+
+      // Pasta - Non-Veg
+      ["Chicken Alfredo White Sauce", 150, "nonveg", "Chicken Pasta", "pasta", "Tender chicken pieces tossed with al dente penne in a rich garlic parmesan cream sauce."],
+      ["Chicken Arrabbiata Red Sauce", 150, "nonveg", "Chicken Pasta", "pastaRed", "Italian penne pasta with juicy chicken bites in a spicy tomato marinara with basil."],
+      ["Chicken Pink Sauce Pasta", 160, "nonveg", "Chicken Pasta", "pastaPink", "Juicy chicken tossed in a velvety blend of creamy white alfredo and tangy red marinara."],
+
+      // Beverages
+      ["Coffee", 20, "drink", "Beverages", "coffee", "Traditional hot aromatic Indian filter coffee brewed with rich, frothy milk."],
+      ["Hot Chocolate", 60, "drink", "Beverages", "coffee", "Thick, luxurious warm European cocoa topped with velvety steamed milk froth."],
+      ["Cold Coffee", 80, "drink", "Beverages", "coldCoffee", "Chilled thick blended coffee with vanilla ice cream, topped with chocolate syrup."],
+      ["Blue Lagoon", 90, "drink", "Beverages", "blueLagoon", "Refreshing tropical blue curaçao cooler with fizzy lemon soda and fresh mint."],
+      ["Mojito", 90, "drink", "Beverages", "drink", "Crisp classic mocktail muddled with fresh garden mint leaves, tangy lime, and soda."]
+    ];
+
+    const items = rawItems.map((x, i) => ({
+      id: i + 1,
+      name: x[0],
+      price: x[1],
+      diet: x[2],
+      category: x[3],
+      image: dishImageMap[x[0]] || 'assets/food/food-1-01.jpg',
+      desc: x[5]
+    }));
+
+    // Update Diet Counts
+    document.getElementById('countAll').textContent = items.length;
+    document.getElementById('countVeg').textContent = items.filter(x => x.diet === 'veg').length;
+    document.getElementById('countNonVeg').textContent = items.filter(x => x.diet === 'nonveg').length;
+    document.getElementById('countDrink').textContent = items.filter(x => x.diet === 'drink').length;
+
+    // ═══════════════════ 5. STATE MANAGEMENT ═══════════════════
+    let selectedDiet = 'all';
+    let selectedCategory = 'All Categories';
+    let cart = {}; // { itemId: quantity }
+    let orderType = 'Dine-in';
+
+    const menuGrid = document.getElementById('menuGrid');
+    const searchInput = document.getElementById('searchInput');
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
+    const categoryFilters = document.getElementById('categoryFilters');
+    const dishCountBadge = document.getElementById('dishCountBadge');
+
+    // ═══════════════════ 6. BUILD CATEGORY CHIPS ═══════════════════
+    const categories = ['All Categories', ...new Set(items.map(x => x.category))];
+    categoryFilters.innerHTML = categories.map(c => {
+      const count = c === 'All Categories' ? items.length : items.filter(x => x.category === c).length;
+      return `<button class="category-chip ${c === 'All Categories' ? 'active' : ''}" data-category="${c}">${c} (${count})</button>`;
+    }).join('');
+
+    // ═══════════════════ 7. RENDER MENU CARDS ═══════════════════
+    function renderMenu() {
+      const q = searchInput.value.trim().toLowerCase();
+      clearSearchBtn.classList.toggle('visible', q.length > 0);
+
+      const filtered = items.filter(item => {
+        if (selectedDiet !== 'all' && item.diet !== selectedDiet) return false;
+        if (selectedCategory !== 'All Categories' && item.category !== selectedCategory) return false;
+        if (q) {
+          const matchName = item.name.toLowerCase().includes(q);
+          const matchCat = item.category.toLowerCase().includes(q);
+          const matchDesc = item.desc.toLowerCase().includes(q);
+          if (!matchName && !matchCat && !matchDesc) return false;
+        }
+        return true;
+      });
+
+      dishCountBadge.textContent = `Showing ${filtered.length} dish${filtered.length === 1 ? '' : 'es'}`;
+
+      if (!filtered.length) {
+        menuGrid.innerHTML = `
       <div class="empty-state">
         <div style="font-size: 3rem;">🔍</div>
         <h3>No dishes found</h3>
         <p>We couldn't find anything matching "${searchInput.value}". Try searching for something else!</p>
         <button class="btn-reset" onclick="resetFilters()">Reset All Filters</button>
       </div>`;
-    return;
-  }
+        return;
+      }
 
-  menuGrid.innerHTML = filtered.map(dish => {
-    const imgSrc = dish.image || dishImageMap[dish.name] || 'assets/food/food-1-01.jpg';
-    const dietClass = dish.diet === 'nonveg' ? 'nonveg' : dish.diet === 'drink' ? 'drink' : 'veg';
-    const dietText = dish.diet === 'nonveg' ? 'Non-Veg' : dish.diet === 'drink' ? 'Beverage' : 'Pure Veg';
-    const qty = cart[dish.id] || 0;
+      menuGrid.innerHTML = filtered.map(dish => {
+        const imgSrc = dish.image || dishImageMap[dish.name] || 'assets/food/food-1-01.jpg';
+        const dietClass = dish.diet === 'nonveg' ? 'nonveg' : dish.diet === 'drink' ? 'drink' : 'veg';
+        const dietText = dish.diet === 'nonveg' ? 'Non-Veg' : dish.diet === 'drink' ? 'Beverage' : 'Pure Veg';
+        const qty = cart[dish.id] || 0;
 
-    const actionButton = qty > 0 ? `
+        const actionButton = qty > 0 ? `
       <div class="qty-stepper">
         <button class="qty-btn" onclick="updateCartItem(${dish.id}, -1)">−</button>
         <span class="qty-value">${qty}</span>
@@ -1911,7 +2840,7 @@ function renderMenu() {
       </button>
     `;
 
-    return `
+        return `
     <div class="menu-card" id="dish-card-${dish.id}">
       <div class="food-photo">
         <img src="${imgSrc}" alt="${dish.name}" loading="lazy" onerror="this.onerror=null; this.src='dish-gobi-manchurian.webp';">
@@ -1919,7 +2848,6 @@ function renderMenu() {
           <span class="diet-badge-dot"></span>
           <span>${dietText}</span>
         </div>
-        <div class="photo-price-badge">₹${dish.price}</div>
       </div>
       <div class="card-body">
         <div class="card-header">
@@ -1927,76 +2855,76 @@ function renderMenu() {
         </div>
         <p class="dish-desc">${dish.desc}</p>
         <div class="card-footer">
-          <span class="category-tag">${dish.category}</span>
+          <div class="dish-price-tag"><span class="curr">₹</span>${dish.price}</div>
           <div id="card-action-${dish.id}">
             ${actionButton}
           </div>
         </div>
       </div>
     </div>`;
-  }).join('');
-}
-
-// ═══════════════════ 8. FILTER INTERACTIONS ═══════════════════
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    selectedDiet = btn.dataset.diet;
-    renderMenu();
-  });
-});
-
-categoryFilters.addEventListener('click', e => {
-  const chip = e.target.closest('.category-chip');
-  if (!chip) return;
-  categoryFilters.querySelectorAll('.category-chip').forEach(c => c.classList.remove('active'));
-  chip.classList.add('active');
-  selectedCategory = chip.dataset.category;
-  renderMenu();
-});
-
-searchInput.addEventListener('input', renderMenu);
-
-function clearSearch() {
-  searchInput.value = '';
-  renderMenu();
-  searchInput.focus();
-}
-
-function resetFilters() {
-  searchInput.value = '';
-  selectedDiet = 'all';
-  selectedCategory = 'All Categories';
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.diet === 'all'));
-  categoryFilters.querySelectorAll('.category-chip').forEach(c => c.classList.toggle('active', c.dataset.category === 'All Categories'));
-  renderMenu();
-}
-
-// ═══════════════════ 9. CART SYSTEM ═══════════════════
-function updateCartItem(id, change) {
-  const item = items.find(x => x.id === id);
-  if (!item) return;
-
-  const current = cart[id] || 0;
-  const next = current + change;
-
-  if (next <= 0) {
-    delete cart[id];
-    showToast(`Removed ${item.name} from cart`, '🗑️');
-  } else {
-    cart[id] = next;
-    if (change > 0) {
-      showToast(`Added ${item.name} to cart! 🍽️`, '✨');
+      }).join('');
     }
-  }
 
-  updateCartUI();
-  // Update action button on card without re-rendering entire grid
-  const actionEl = document.getElementById(`card-action-${id}`);
-  if (actionEl) {
-    const qty = cart[id] || 0;
-    actionEl.innerHTML = qty > 0 ? `
+    // ═══════════════════ 8. FILTER INTERACTIONS ═══════════════════
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedDiet = btn.dataset.diet;
+        renderMenu();
+      });
+    });
+
+    categoryFilters.addEventListener('click', e => {
+      const chip = e.target.closest('.category-chip');
+      if (!chip) return;
+      categoryFilters.querySelectorAll('.category-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      selectedCategory = chip.dataset.category;
+      renderMenu();
+    });
+
+    searchInput.addEventListener('input', renderMenu);
+
+    function clearSearch() {
+      searchInput.value = '';
+      renderMenu();
+      searchInput.focus();
+    }
+
+    function resetFilters() {
+      searchInput.value = '';
+      selectedDiet = 'all';
+      selectedCategory = 'All Categories';
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.diet === 'all'));
+      categoryFilters.querySelectorAll('.category-chip').forEach(c => c.classList.toggle('active', c.dataset.category === 'All Categories'));
+      renderMenu();
+    }
+
+    // ═══════════════════ 9. CART SYSTEM ═══════════════════
+    function updateCartItem(id, change) {
+      const item = items.find(x => x.id === id);
+      if (!item) return;
+
+      const current = cart[id] || 0;
+      const next = current + change;
+
+      if (next <= 0) {
+        delete cart[id];
+        showToast(`Removed ${item.name} from cart`, '🗑️');
+      } else {
+        cart[id] = next;
+        if (change > 0) {
+          showToast(`Added ${item.name} to cart! 🍽️`, '✨');
+        }
+      }
+
+      updateCartUI();
+      // Update action button on card without re-rendering entire grid
+      const actionEl = document.getElementById(`card-action-${id}`);
+      if (actionEl) {
+        const qty = cart[id] || 0;
+        actionEl.innerHTML = qty > 0 ? `
       <div class="qty-stepper">
         <button class="qty-btn" onclick="updateCartItem(${id}, -1)">−</button>
         <span class="qty-value">${qty}</span>
@@ -2005,64 +2933,64 @@ function updateCartItem(id, change) {
       <button class="add-btn" onclick="updateCartItem(${id}, 1)">
         <span>+ Add</span>
       </button>`;
-  } else {
-    renderMenu();
-  }
-}
-
-function updateCartUI() {
-  let totalCount = 0;
-  let totalPrice = 0;
-
-  for (const id in cart) {
-    const qty = cart[id];
-    const item = items.find(x => x.id == id);
-    if (item && qty > 0) {
-      totalCount += qty;
-      totalPrice += item.price * qty;
+      } else {
+        renderMenu();
+      }
     }
-  }
 
-  const fab = document.getElementById('cartFab');
-  const countEl = document.getElementById('cartCount');
-  const totalEl = document.getElementById('cartFabTotal');
-  const bannerCount = document.getElementById('bannerCartCount');
+    function updateCartUI() {
+      let totalCount = 0;
+      let totalPrice = 0;
 
-  if (totalCount > 0) {
-    fab.classList.add('visible');
-    countEl.textContent = totalCount;
-    totalEl.textContent = `₹${totalPrice}`;
-    bannerCount.textContent = totalCount;
-  } else {
-    fab.classList.remove('visible');
-    bannerCount.textContent = '0';
-  }
+      for (const id in cart) {
+        const qty = cart[id];
+        const item = items.find(x => x.id == id);
+        if (item && qty > 0) {
+          totalCount += qty;
+          totalPrice += item.price * qty;
+        }
+      }
 
-  document.getElementById('cartSubtotal').textContent = `₹${totalPrice}`;
-  document.getElementById('cartTotal').textContent = `₹${totalPrice}`;
+      const fab = document.getElementById('cartFab');
+      const countEl = document.getElementById('cartCount');
+      const totalEl = document.getElementById('cartFabTotal');
+      const bannerCount = document.getElementById('bannerCartCount');
 
-  renderCartItemsList();
-}
+      if (totalCount > 0) {
+        fab.classList.add('visible');
+        countEl.textContent = totalCount;
+        totalEl.textContent = `₹${totalPrice}`;
+        bannerCount.textContent = totalCount;
+      } else {
+        fab.classList.remove('visible');
+        bannerCount.textContent = '0';
+      }
 
-function renderCartItemsList() {
-  const container = document.getElementById('cartItemsList');
-  const ids = Object.keys(cart);
+      document.getElementById('cartSubtotal').textContent = `₹${totalPrice}`;
+      document.getElementById('cartTotal').textContent = `₹${totalPrice}`;
 
-  if (!ids.length) {
-    container.innerHTML = `
+      renderCartItemsList();
+    }
+
+    function renderCartItemsList() {
+      const container = document.getElementById('cartItemsList');
+      const ids = Object.keys(cart);
+
+      if (!ids.length) {
+        container.innerHTML = `
       <div style="text-align: center; padding: 40px 10px; color: var(--muted);">
         <div style="font-size: 2.8rem; margin-bottom: 8px;">🛒</div>
         <p style="font-weight: 700;">Your cart is currently empty.</p>
         <p style="font-size: .84rem;">Add delicious dishes from our menu to start your order!</p>
       </div>`;
-    return;
-  }
+        return;
+      }
 
-  container.innerHTML = ids.map(id => {
-    const qty = cart[id];
-    const item = items.find(x => x.id == id);
-    if (!item) return '';
-    return `
+      container.innerHTML = ids.map(id => {
+        const qty = cart[id];
+        const item = items.find(x => x.id == id);
+        if (!item) return '';
+        return `
     <div class="cart-item-row">
       <div class="cart-item-info">
         <h4>${item.name}</h4>
@@ -2076,74 +3004,251 @@ function renderCartItemsList() {
         </div>
       </div>
     </div>`;
-  }).join('');
-}
-
-function openCart() {
-  document.getElementById('cartModalBackdrop').classList.add('open');
-  renderCartItemsList();
-}
-function closeCart() {
-  document.getElementById('cartModalBackdrop').classList.remove('open');
-}
-
-function setOrderType(type) {
-  orderType = type;
-  document.getElementById('tabDineIn').classList.toggle('active', type === 'Dine-in');
-  document.getElementById('tabTakeaway').classList.toggle('active', type === 'Takeaway');
-}
-
-function sendWhatsAppOrder() {
-  const ids = Object.keys(cart);
-  if (!ids.length) {
-    showToast('Your cart is empty! Add dishes first.', '⚠️');
-    return;
-  }
-
-  let total = 0;
-  let orderDetails = [];
-  ids.forEach(id => {
-    const item = items.find(x => x.id == id);
-    const qty = cart[id];
-    if (item && qty > 0) {
-      const lineTotal = item.price * qty;
-      total += lineTotal;
-      orderDetails.push(`• ${qty}x ${item.name} (₹${item.price}) = ₹${lineTotal}`);
+      }).join('');
     }
-  });
 
-  const note = document.getElementById('customerNote').value.trim() || 'Guest';
+    function openCart() {
+      document.getElementById('cartModalBackdrop').classList.add('open');
+      renderCartItemsList();
+    }
+    function closeCart() {
+      document.getElementById('cartModalBackdrop').classList.remove('open');
+    }
 
-  const text = `*HIDE N SEEK CAFÉ — NEW ORDER* ✦
+    function setOrderType(type) {
+      orderType = type;
+      document.getElementById('tabDineIn').classList.toggle('active', type === 'Dine-in');
+      document.getElementById('tabTakeaway').classList.toggle('active', type === 'Takeaway');
+    }
+
+    // ═══════════════════ 9. GRID LAYOUT CONTROLLER (3 TO 4 DISHES IN A LINE) ═══════════════════
+    function setGridColumns(cols) {
+      const grid = document.getElementById('menuGrid');
+      if (!grid) return;
+      grid.classList.remove('cols-3', 'cols-4');
+      grid.classList.add(`cols-${cols}`);
+
+      const b3 = document.getElementById('btnCols3');
+      const b4 = document.getElementById('btnCols4');
+      if (b3) b3.classList.toggle('active', cols === 3);
+      if (b4) b4.classList.toggle('active', cols === 4);
+    }
+
+    // ═══════════════════ 10. BILL & WHATSAPP REDIRECTION (+91 7619133108) ═══════════════════
+    const CAFE_PHONE = '917619133108';
+
+    function getBillData() {
+      const ids = Object.keys(cart);
+      if (!ids.length) return null;
+
+      let total = 0;
+      let itemsList = [];
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+      const timeStr = now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+      const billNumber = 'HNS-' + Math.floor(1000 + Math.random() * 9000);
+      const note = document.getElementById('customerNote').value.trim() || 'Guest';
+
+      ids.forEach(id => {
+        const item = items.find(x => x.id == id);
+        const qty = cart[id];
+        if (item && qty > 0) {
+          const lineTotal = item.price * qty;
+          total += lineTotal;
+          itemsList.push({
+            name: item.name,
+            price: item.price,
+            qty: qty,
+            lineTotal: lineTotal
+          });
+        }
+      });
+
+      return { total, itemsList, dateStr, timeStr, billNumber, note, orderType };
+    }
+
+    function sendWhatsAppOrder() {
+      const bill = getBillData();
+      if (!bill || !bill.itemsList.length) {
+        showToast('Your cart is empty! Add dishes first.', '⚠️');
+        return;
+      }
+
+      const foodLines = bill.itemsList.map(it =>
+        `🍽️ *${it.name}* × ${it.qty} = *₹${it.lineTotal}*`
+      ).join('\n');
+
+      const text = `*HIDE N SEEK CAFÉ — ORDER* ✦
 ━━━━━━━━━━━━━━━━━━━━
-Order Type: *${orderType}*
-Customer: *${note}*
+📍 *Table / Guest:* ${bill.note} (${bill.orderType})
 ━━━━━━━━━━━━━━━━━━━━
-${orderDetails.join('\n')}
+*FOOD ORDERED:*
+${foodLines}
 ━━━━━━━━━━━━━━━━━━━━
-*TOTAL AMOUNT: ₹${total}*
+💰 *TOTAL AMOUNT: ₹${bill.total}*
 ━━━━━━━━━━━━━━━━━━━━
-Please confirm my order. Thank you! 😊`;
+Please prepare our order! 🙏`;
 
-  const encoded = encodeURIComponent(text);
-  window.open(`https://wa.me/?text=${encoded}`, '_blank');
-}
+      const encoded = encodeURIComponent(text);
+      window.open(`https://wa.me/${CAFE_PHONE}?text=${encoded}`, '_blank');
+    }
 
-// ═══════════════════ 10. TOAST NOTIFICATIONS ═══════════════════
-let toastTimeout = null;
-function showToast(message, icon = '✨') {
-  const toast = document.getElementById('toastNotice');
-  document.getElementById('toastIcon').textContent = icon;
-  document.getElementById('toastMessage').textContent = message;
-  toast.classList.add('show');
-  clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(() => {
-    toast.classList.remove('show');
-  }, 2400);
-}
+    // ═══════════════════ 11. DYNAMIC BILL IMAGE RECEIPT GENERATOR (FOOD FOCUSED) ═══════════════════
+    function generateAndShowBillImage() {
+      const bill = getBillData();
+      if (!bill || !bill.itemsList.length) {
+        showToast('Your cart is empty! Add dishes first.', '⚠️');
+        return;
+      }
 
-// ═══════════════════ INITIALIZATION ═══════════════════
-renderMenu();
-</script>
+      const canvas = document.getElementById('billReceiptCanvas');
+      const ctx = canvas.getContext('2d');
+
+      const w = 520;
+      const rowHeight = 38;
+      const h = 260 + (bill.itemsList.length * rowHeight);
+      canvas.width = w;
+      canvas.height = h;
+
+      // Background
+      ctx.fillStyle = '#090e1c';
+      ctx.fillRect(0, 0, w, h);
+
+      // Gold border
+      ctx.strokeStyle = '#c9a84c';
+      ctx.lineWidth = 3;
+      ctx.strokeRect(10, 10, w - 20, h - 20);
+
+      ctx.strokeStyle = '#283550';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(16, 16, w - 32, h - 32);
+
+      // Header Title
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#f5c84c';
+      ctx.font = 'bold 24px Georgia, serif';
+      ctx.fillText('HIDE N SEEK CAFÉ', w / 2, 52);
+
+      ctx.fillStyle = '#cbd5e1';
+      ctx.font = 'bold 13px system-ui, sans-serif';
+      ctx.fillText(`📍 ${bill.note}  ·  ${bill.orderType}`, w / 2, 76);
+
+      // Divider
+      ctx.strokeStyle = '#283758';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(30, 92);
+      ctx.lineTo(w - 30, 92);
+      ctx.stroke();
+
+      // Food Table Header
+      ctx.fillStyle = '#141d33';
+      ctx.fillRect(26, 105, w - 52, 32);
+      ctx.fillStyle = '#f5c84c';
+      ctx.font = 'bold 12px system-ui, sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('FOOD ITEM', 38, 126);
+      ctx.textAlign = 'center';
+      ctx.fillText('QTY', w - 120, 126);
+      ctx.textAlign = 'right';
+      ctx.fillText('PRICE', w - 38, 126);
+
+      // Food Items List
+      let y = 162;
+      bill.itemsList.forEach((it, idx) => {
+        if (idx % 2 === 0) {
+          ctx.fillStyle = 'rgba(255,255,255,0.03)';
+          ctx.fillRect(26, y - 20, w - 52, rowHeight);
+        }
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '600 14px system-ui, sans-serif';
+        // Truncate long dish name if needed
+        let dishTitle = it.name;
+        if (dishTitle.length > 25) dishTitle = dishTitle.substring(0, 24) + '…';
+        ctx.fillText(`• ${dishTitle}`, 38, y);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = 'bold 13px system-ui, sans-serif';
+        ctx.fillText(`${it.qty}x`, w - 120, y);
+
+        ctx.textAlign = 'right';
+        ctx.fillStyle = '#f5c84c';
+        ctx.font = 'bold 14px system-ui, sans-serif';
+        ctx.fillText(`₹${it.lineTotal}`, w - 38, y);
+
+        y += rowHeight;
+      });
+
+      // Divider
+      y += 8;
+      ctx.strokeStyle = '#283758';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(30, y);
+      ctx.lineTo(w - 30, y);
+      ctx.stroke();
+
+      // Grand Total Box (Prominent & Simple)
+      y += 16;
+      ctx.fillStyle = '#18243f';
+      ctx.strokeStyle = '#c9a84c';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect ? ctx.roundRect(26, y, w - 52, 46, 8) : ctx.rect(26, y, w - 52, 46);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 15px system-ui, sans-serif';
+      ctx.fillText('TOTAL AMOUNT:', 42, y + 29);
+
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#f5c84c';
+      ctx.font = 'bold 20px system-ui, sans-serif';
+      ctx.fillText(`₹${bill.total}`, w - 42, y + 30);
+
+      // Short clean footer
+      y += 66;
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '12px system-ui, sans-serif';
+      ctx.fillText('✨ Thank You! Enjoy Your Meal ✨', w / 2, y);
+
+      document.getElementById('billModalBackdrop').style.display = 'grid';
+    }
+
+    function closeBillModal() {
+      document.getElementById('billModalBackdrop').style.display = 'none';
+    }
+
+    function downloadBillImage() {
+      const canvas = document.getElementById('billReceiptCanvas');
+      const link = document.createElement('a');
+      link.download = `Hide-N-Seek-Order-${Date.now()}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      showToast('Bill image saved to downloads! 🧾', '📥');
+    }
+
+    // ═══════════════════ 10. TOAST NOTIFICATIONS ═══════════════════
+    let toastTimeout = null;
+    function showToast(message, icon = '✨') {
+      const toast = document.getElementById('toastNotice');
+      document.getElementById('toastIcon').textContent = icon;
+      document.getElementById('toastMessage').textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2400);
+    }
+
+    // ═══════════════════ INITIALIZATION ═══════════════════
+    renderMenu();
+  </script>
 </body>
+
 </html>
