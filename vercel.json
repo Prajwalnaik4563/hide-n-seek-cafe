@@ -1,5 +1,5 @@
 {
-  "name": "hide-n-seek",
+  "name": "hide-n-eek",
   "cleanUrls": true,
   "rewrites": [
     { "source": "/birthday", "destination": "/birthday.html" }
