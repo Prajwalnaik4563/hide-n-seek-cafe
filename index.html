@@ -989,6 +989,7 @@
       align-items: baseline;
       white-space: nowrap;
     }
+
     .dish-price-tag .curr {
       font-size: .88rem;
       font-weight: 700;
@@ -1695,7 +1696,8 @@
       }
 
       .food-photo {
-        height: 150px; /* Made bigger & prominent as requested */
+        height: 150px;
+        /* Made bigger & prominent as requested */
         border-radius: 14px 14px 0 0;
       }
 
@@ -1869,7 +1871,8 @@
       }
 
       .food-photo {
-        height: 130px; /* Bigger dish photo size */
+        height: 130px;
+        /* Bigger dish photo size */
       }
 
       .card-body {
@@ -1979,7 +1982,7 @@
         <span class="eq-bar"></span>
         <span style="margin-left: 8px; font-size: .7rem;">CAFÉ AMBIANCE 60FPS</span>
       </div>
-      <div style="font-size: .72rem; letter-spacing: .08em; color: #c9b482;">AUTO-REVEAL IN 4S OR CLICK ENTER</div>
+      <div style="font-size: .72rem; letter-spacing: .08em; color: #c9b482;"></div>
     </div>
   </div>
 
@@ -2006,6 +2009,7 @@
       </a>
       <div class="nav-links">
         <a href="#menu">Menu</a>
+        <a href="birthday.html" style="color: var(--gold); font-weight: 700;">🎂 Birthdays</a>
         <a href="#about">Our Story</a>
         <a href="#contact">Contact</a>
       </div>
@@ -2022,6 +2026,9 @@
           <canvas id="heroSteamCanvas"></canvas>
         </div>
         <div class="hero-badges">
+          <a href="birthday.html" class="hero-badge-item" style="background: rgba(245, 200, 76, 0.2); border-color: var(--gold); text-decoration: none; color: inherit; font-weight: 700;">
+            <span class="icon">🎂</span> Birthday Celebration Setup (Min. ₹300 Bill) →
+          </a>
           <div class="hero-badge-item"><span class="icon">🥟</span> Sizzling Momos</div>
           <div class="hero-badge-item"><span class="icon">🍕</span> Stone-Baked Pizzas</div>
           <div class="hero-badge-item"><span class="icon">🍜</span> Wok-Tossed Hakka Noodles</div>
@@ -2124,6 +2131,7 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 Hide N Seek Café. All rights reserved.</span>
+      <span>@Made by-❤️Prajwal Naik</span>
       <span>Crafted with ❤️ in Khanapur, Karnataka</span>
     </div>
   </footer>
@@ -2168,6 +2176,12 @@
         <div class="cart-total-row">
           <span>Total Payable:</span>
           <span id="cartTotal" style="color: var(--gold-dark);">₹0</span>
+        </div>
+
+        <!-- Birthday Celebration Eligibility Notice -->
+        <div id="birthdayCartBadge" style="margin-top: 10px; padding: 10px 12px; border-radius: 10px; font-size: .82rem; font-weight: 700; display: flex; align-items: center; gap: 8px; line-height: 1.35; background: #fff1d6; border: 1px solid #e0be75; color: #694503;">
+          <span style="font-size: 1.15rem;">🎂</span>
+          <span id="birthdayCartText">Minimum ₹300 bill required for Birthday Celebration setup.</span>
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 9px; margin-top: 14px;">
@@ -2575,7 +2589,7 @@
       "Honey Chilly Potato": "assets/food/honey-chilly-potato.jpg",
       "Mix Veg Chilly": "assets/food/mix-veg-chilly.jpg",
       "Paneer Chilly": "assets/food/paneer-chilly.jpg",
-      "Babycorn Crispy": "assets/food/babycorn-crispy.jpg",
+      "Babycorn Crispy": "assets/food/babycorn-crispy.jpg", // Updated: 100% Pure Veg Golden Crispy Babycorn with creamy dip
       "Butter Garlic Mushroom": "assets/food/butter-garlic-mushroom.jpg",
 
       // Veg Momos
@@ -2603,7 +2617,7 @@
       "Veg Hakka Noodles": "assets/food/veg-hakka-noodles.jpg",
       "Veg Fried Rice": "assets/food/veg-fried-rice.jpg",
       "Veg Schezwan Fried Rice": "assets/food/veg-schezwan-fried-rice.jpg",
-      "Veg Schezwan Hakka Noodle": "assets/food/veg-schezwan-hakka-noodle.jpg",
+      "Veg Schezwan Hakka Noodle": "assets/food/veg-schezwan-hakka-noodle.jpg", // Updated: 100% Pure Veg (No egg/seafood)
 
       // Non-Veg Soups
       "Chicken Manchow Soup": "assets/food/chicken-manchow-soup.jpg",
@@ -2623,7 +2637,7 @@
       "Chicken Fried Rice": "assets/food/chicken-fried-rice.jpg",
       "Chicken Hakka Noodles": "assets/food/chicken-hakka-noodles.jpg",
       "Chicken Schezwan Fried Rice": "assets/food/chicken-schezwan-fried-rice.jpg",
-      "Chicken Schezwan Hakka Ndl": "assets/food/chicken-schezwan-hakka-ndl.jpg",
+      "Chicken Schezwan Hakka Ndl": "assets/food/chicken-schezwan-hakka-ndl.jpg", // Updated: Authentic Indo-Chinese Chicken Schezwan Noodles
 
       // Chicken Momos
       "Chicken Steam Momos": "assets/food/chicken-steam-momos.jpg",
@@ -2969,7 +2983,38 @@
       document.getElementById('cartSubtotal').textContent = `₹${totalPrice}`;
       document.getElementById('cartTotal').textContent = `₹${totalPrice}`;
 
+      // Update Birthday Celebration Eligibility Notice in Cart
+      const bdayBadge = document.getElementById('birthdayCartBadge');
+      const bdayText = document.getElementById('birthdayCartText');
+      if (bdayBadge && bdayText) {
+        if (totalPrice >= 300) {
+          bdayBadge.style.background = '#dcfce7';
+          bdayBadge.style.border = '1px solid #86efac';
+          bdayBadge.style.color = '#14532d';
+          bdayText.innerHTML = `🎉 <strong>₹${totalPrice} Met!</strong> Your order qualifies for Birthday Celebration Setup!`;
+        } else if (totalPrice > 0) {
+          bdayBadge.style.background = '#fff1d6';
+          bdayBadge.style.border = '1px solid #e0be75';
+          bdayBadge.style.color = '#694503';
+          bdayText.innerHTML = `🎂 Add <strong>₹${300 - totalPrice}</strong> more to meet the ₹300 minimum for Birthday Setup!`;
+        } else {
+          bdayBadge.style.background = '#fff1d6';
+          bdayBadge.style.border = '1px solid #e0be75';
+          bdayBadge.style.color = '#694503';
+          bdayText.innerHTML = `🎂 Minimum ₹300 food bill required for Birthday Celebration setup.`;
+        }
+      }
+
       renderCartItemsList();
+    }
+
+    // Birthday Combo 1-Click Adder
+    function addBirthdayCombo(comboName) {
+      const item = items.find(x => x.name.toLowerCase().includes(comboName.toLowerCase()) || comboName.toLowerCase().includes(x.name.toLowerCase()));
+      if (item) {
+        updateCartItem(item.id, 1);
+        openCart();
+      }
     }
 
     function renderCartItemsList() {

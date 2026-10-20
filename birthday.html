@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080c1a">
+  <meta name="description"
+    content="Birthday and Special Celebrations at Hide N Seek Café Khanapur. Enjoy our decorated celebration space with a minimum food bill of ₹300. Call +91 7619133108.">
+  <title>Birthday Celebrations | Hide N Seek Café Khanapur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --navy-bg: #060914;
+      --navy-card: #0d1326;
+      --navy-elevated: #131b34;
+      --gold: #f5c84c;
+      --gold-bright: #ffe27d;
+      --gold-dark: #b88a1b;
+      --gold-subtle: rgba(245, 200, 76, 0.15);
+      --gold-border: rgba(245, 200, 76, 0.3);
+      --cream: #fff9ed;
+      --text-muted: #94a3b8;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow-card: 0 12px 35px rgba(0, 0, 0, 0.45);
+      --shadow-hover: 0 18px 45px rgba(245, 200, 76, 0.22);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--navy-bg);
+      color: #e2e8f0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(245, 200, 76, 0.05) 0%, transparent 45%),
+        radial-gradient(circle at 85% 65%, rgba(65, 85, 145, 0.08) 0%, transparent 50%);
+    }
+
+    /* ═══════════════════ TOPBAR ═══════════════════ */
+    .topbar {
+      background: #04060e;
+      border-bottom: 1px solid rgba(245, 200, 76, 0.15);
+      padding: 10px 24px;
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .topbar-phone {
+      color: var(--gold);
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .topbar-badge {
+      background: rgba(245, 200, 76, 0.16);
+      color: var(--gold-bright);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+
+    /* ═══════════════════ HEADER NAV ═══════════════════ */
+    .nav {
+      background: rgba(13, 19, 38, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--gold-border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-emblem {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #1f2a4d 0%, #0d1428 100%);
+      border: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 1.35rem;
+      color: var(--gold);
+      box-shadow: 0 4px 12px rgba(245, 200, 76, 0.2);
+    }
+
+    .brand-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff9ed;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-subtitle {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-back-menu {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #fff9ed;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .btn-back-menu:hover {
+      background: var(--gold);
+      color: var(--navy-bg);
+      border-color: var(--gold);
+    }
+
+    .btn-call-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: var(--navy-bg);
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(245, 200, 76, 0.3);
+      transition: all 0.25s ease;
+    }
+
+    .btn-call-nav:hover {
+      filter: brightness(1.12);
+      transform: translateY(-1px);
+    }
+
+    /* ═══════════════════ MAIN CONTAINER ═══════════════════ */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px 70px;
+      width: 100%;
+    }
+
+    /* ═══════════════════ GRAND CELEBRATION BANNER HERO ═══════════════════ */
+    .celebration-banner-hero {
+      background: linear-gradient(135deg, rgba(16, 23, 44, 0.96) 0%, rgba(9, 13, 26, 0.98) 100%);
+      border: 2px solid var(--gold);
+      border-radius: 24px;
+      padding: 36px 36px;
+      margin-bottom: 50px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      display: grid;
+      grid-template-columns: 430px 1fr;
+      gap: 36px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .celebration-banner-hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(245, 200, 76, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Left: Complete vertical rectangle photo frame */
+    .banner-image-wrapper {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 2px solid var(--gold);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(245, 200, 76, 0.22);
+      background: #040711;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .banner-image-wrapper:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.7), 0 0 45px rgba(245, 200, 76, 0.35);
+    }
+
+    .banner-image-wrapper img {
+      width: 100%;
+      height: auto;
+      max-height: 570px;
+      aspect-ratio: 764 / 1024;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .banner-image-wrapper:hover img {
+      transform: scale(1.03);
+    }
+
+    .banner-image-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: linear-gradient(135deg, rgba(245, 200, 76, 0.95) 0%, rgba(184, 138, 27, 0.95) 100%);
+      color: #060914;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+      z-index: 2;
+    }
+
+    .banner-image-zoom-btn {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      background: rgba(6, 9, 20, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(245, 200, 76, 0.5);
+      color: var(--gold-bright);
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s ease;
+    }
+
+    .banner-image-wrapper:hover .banner-image-zoom-btn {
+      background: var(--gold);
+      color: #060914;
+    }
+
+    /* Right: Complete details matching the banner photograph */
+    .banner-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .banner-tag-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .banner-tag {
+      background: rgba(245, 200, 76, 0.18);
+      border: 1px solid var(--gold);
+      color: var(--gold-bright);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .banner-policy-pill {
+      background: rgba(34, 197, 94, 0.16);
+      border: 1px solid #4ade80;
+      color: #86efac;
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 5px 14px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .banner-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.25rem;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.22;
+      letter-spacing: -0.01em;
+    }
+
+    .banner-title span {
+      background: linear-gradient(135deg, #ffe27d 0%, #f5c84c 60%, #e29c29 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .banner-lead {
+      color: #cbd5e1;
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    /* Minimum Bill Policy Box */
+    .banner-policy-box {
+      background: rgba(8, 12, 26, 0.75);
+      border: 1.5px solid var(--gold);
+      border-radius: 14px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .banner-policy-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .banner-policy-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.85rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .banner-policy-text {
+      font-size: 0.86rem;
+      color: #cbd5e1;
+      line-height: 1.35;
+    }
+
+    .banner-policy-text strong {
+      color: #ffffff;
+    }
+
+    /* Features Grid Matching Banner Photo */
+    .banner-features-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 2px;
+    }
+
+    .banner-feature-item {
+      background: rgba(8, 12, 26, 0.6);
+      border: 1px solid rgba(245, 200, 76, 0.2);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .banner-feature-icon {
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+
+    .banner-feature-text h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff9ed;
+      margin-bottom: 2px;
+    }
+
+    .banner-feature-text p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    .banner-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .btn-banner-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold) 0%, #d49e24 100%);
+      color: #060914;
+      text-decoration: none;
+      padding: 13px 24px;
+      border-radius: 12px;
+      font-size: 0.96rem;
+      font-weight: 900;
+      box-shadow: 0 4px 16px rgba(245, 200, 76, 0.35);
+      transition: all 0.25s ease;
+    }
+
+    .btn-banner-phone:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(245, 200, 76, 0.45);
+      filter: brightness(1.08);
+    }
+
+    .btn-banner-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25d366;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 13px 24px;
+      border-radius: 12px;
+      font-size: 0.96rem;
+      font-weight: 900;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+      transition: all 0.25s ease;
+    }
+
+    .btn-banner-wa:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(37, 211, 102, 0.45);
+      filter: brightness(1.08);
+    }
+
+    .btn-banner-menu {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 700;
+      border-bottom: 1px dashed var(--gold);
+      padding: 4px 0;
+      transition: all 0.2s;
+    }
+
+    .btn-banner-menu:hover {
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+
+    /* ═══════════════════ SUPPORTING CELEBRATION VIEWS ═══════════════════ */
+    .gallery-section {
+      margin-bottom: 50px;
+    }
+
+    .gallery-head {
+      margin-bottom: 24px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .gallery-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .gallery-sub {
+      color: var(--gold);
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+    /* ═══════════════════ 3-IMAGE CURATED GALLERY GRID ═══════════════════ */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      margin-top: 10px;
+    }
+
+    .photo-card {
+      background: #0d1326;
+      border: 1.5px solid var(--gold-border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .photo-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+      box-shadow: 0 18px 45px rgba(245, 200, 76, 0.28);
+    }
+
+    /* Outer photo frame holding the high-res image */
+    .photo-frame {
+      width: 100%;
+      height: 380px;
+      position: relative;
+      overflow: hidden;
+      background: #060914;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .card-poster .photo-frame {
+      background: #040711;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-poster .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      background: #040711;
+    }
+
+    .photo-card:hover .photo-frame img {
+      transform: scale(1.05);
+    }
+
+    /* Zoom pill floating in top-right of image */
+    .photo-zoom-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(6, 9, 20, 0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(245, 200, 76, 0.45);
+      color: var(--gold-bright);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.25s ease;
+      z-index: 2;
+    }
+
+    .photo-card:hover .photo-zoom-badge {
+      background: var(--gold);
+      color: #060914;
+      border-color: var(--gold);
+      transform: scale(1.04);
+    }
+
+    /* Elegant photo info placed below the photo (not blocking the image) */
+    .photo-info {
+      padding: 20px 22px 22px;
+      background: linear-gradient(180deg, #0e152a 0%, #080d1a 100%);
+      border-top: 1px solid rgba(245, 200, 76, 0.18);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex-grow: 1;
+    }
+
+    .photo-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+    }
+
+    .photo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.35;
+    }
+
+    .photo-desc {
+      font-size: 0.86rem;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin-top: 2px;
+    }
+
+    .photo-action-hint {
+      margin-top: 8px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ═══════════════════ DIRECT CONTACT & INQUIRY SECTION ═══════════════════ */
+    .contact-section {
+      background: linear-gradient(180deg, #0d152d 0%, #080d1b 100%);
+      border: 1.5px solid var(--gold-border);
+      border-radius: 20px;
+      padding: 44px 32px;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-lead {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      margin-bottom: 8px;
+    }
+
+    .contact-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .contact-desc {
+      color: #cbd5e1;
+      font-size: 1rem;
+      max-width: 680px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+    }
+
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .btn-contact-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, var(--gold) 0%, #d49e24 100%);
+      color: #060914;
+      text-decoration: none;
+      padding: 16px 30px;
+      border-radius: 14px;
+      font-size: 1.05rem;
+      font-weight: 900;
+      box-shadow: 0 6px 20px rgba(245, 200, 76, 0.35);
+      transition: all 0.25s ease;
+    }
+
+    .btn-contact-phone:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(245, 200, 76, 0.5);
+      filter: brightness(1.08);
+    }
+
+    .btn-contact-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #25d366;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 16px 30px;
+      border-radius: 14px;
+      font-size: 1.05rem;
+      font-weight: 900;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+      transition: all 0.25s ease;
+    }
+
+    .btn-contact-wa:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(37, 211, 102, 0.45);
+      filter: brightness(1.08);
+    }
+
+    .contact-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .contact-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .back-menu-footer-btn {
+      margin-top: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 700;
+      border-bottom: 1px dashed var(--gold);
+      padding-bottom: 2px;
+      transition: all 0.2s;
+    }
+
+    .back-menu-footer-btn:hover {
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+
+    /* ═══════════════════ LIGHTBOX MODAL (FULL RESOLUTION VIEWER) ═══════════════════ */
+    .lightbox-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 6, 14, 0.96);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      cursor: zoom-out;
+    }
+
+    .lightbox-backdrop.open {
+      display: flex;
+      flex-direction: column;
+      animation: fadeIn 0.25s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .lightbox-close-btn {
+      position: fixed;
+      top: max(16px, env(safe-area-inset-top));
+      right: max(16px, env(safe-area-inset-right));
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #ffffff;
+      border: 1.5px solid var(--gold);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 1.35rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      z-index: 10010;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .lightbox-close-btn:hover {
+      background: var(--gold);
+      color: #060914;
+      transform: scale(1.08);
+    }
+
+    /* Prev / Next photo navigation buttons */
+    .lightbox-nav-btn {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: var(--gold);
+      border: 1.5px solid rgba(245, 200, 76, 0.5);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      font-size: 2.2rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      z-index: 10010;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+      user-select: none;
+    }
+
+    .lightbox-nav-btn:hover {
+      background: var(--gold);
+      color: #060914;
+      border-color: var(--gold);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .lightbox-prev {
+      left: max(18px, env(safe-area-inset-left));
+    }
+
+    .lightbox-next {
+      right: max(18px, env(safe-area-inset-right));
+    }
+
+    .lightbox-content {
+      max-width: 96vw;
+      max-height: 90vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: default;
+    }
+
+    .lightbox-content img {
+      max-width: 92vw;
+      max-height: 80vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 14px;
+      border: 2px solid var(--gold);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(245, 200, 76, 0.25);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .lightbox-caption-box {
+      margin-top: 14px;
+      background: rgba(13, 19, 38, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(245, 200, 76, 0.3);
+      padding: 10px 22px;
+      border-radius: 999px;
+      color: #fff9ed;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      text-align: center;
+      max-width: 90vw;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-counter {
+      color: var(--gold);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+
+    .lightbox-divider {
+      color: rgba(245, 200, 76, 0.4);
+    }
+
+    .lightbox-hint {
+      margin-top: 6px;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ═══════════════════ FOOTER ═══════════════════ */
+    footer {
+      background: #03050c;
+      border-top: 1px solid rgba(245, 200, 76, 0.2);
+      margin-top: auto;
+      padding: 30px 24px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-brand-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      color: #ffffff;
+      font-size: 1rem;
+    }
+
+    .footer-credits {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* ═══════════════════ MOBILE STICKY QUICK-ACTION BAR ═══════════════════ */
+    .mobile-sticky-action-bar {
+      display: none;
+    }
+
+    /* ═══════════════════ LIGHTBOX MOBILE THUMB CONTROLS ═══════════════════ */
+    .lightbox-mobile-controls {
+      display: none;
+    }
+
+    /* ═══════════════════ FULLY OPTIMIZED RESPONSIVE DESIGN ═══════════════════ */
+    @media (max-width: 960px) {
+      .celebration-banner-hero {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 28px 22px;
+        justify-items: center;
+      }
+
+      .banner-image-wrapper {
+        width: 100%;
+        max-width: 440px;
+        margin: 0 auto;
+      }
+
+      .banner-image-wrapper img {
+        max-height: none;
+        object-fit: contain;
+      }
+
+      .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .photo-frame {
+        height: 340px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding-bottom: calc(78px + env(safe-area-inset-bottom, 0px));
+      }
+
+      .mobile-sticky-action-bar {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(5, 8, 18, 0.96);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-top: 1.5px solid rgba(245, 200, 76, 0.4);
+        padding: 10px 14px max(12px, env(safe-area-inset-bottom));
+        gap: 10px;
+        z-index: 9999;
+        box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.75);
+      }
+
+      .sticky-btn-call {
+        flex: 1;
+        min-height: 48px;
+        background: linear-gradient(135deg, var(--gold) 0%, #d49e24 100%);
+        color: #060914;
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 0.92rem;
+        padding: 12px 10px;
+        border-radius: 12px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        box-shadow: 0 4px 14px rgba(245, 200, 76, 0.35);
+        transition: transform 0.15s ease, filter 0.15s ease;
+      }
+
+      .sticky-btn-wa {
+        flex: 1.25;
+        min-height: 48px;
+        background: #25d366;
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 0.92rem;
+        padding: 12px 10px;
+        border-radius: 12px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+        transition: transform 0.15s ease, filter 0.15s ease;
+      }
+
+      .sticky-btn-call:active,
+      .sticky-btn-wa:active {
+        transform: scale(0.96);
+        filter: brightness(0.92);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 14px 12px 60px;
+        max-width: 100%;
+      }
+
+      .topbar {
+        padding: 8px 12px;
+        font-size: 0.74rem;
+        justify-content: center;
+        text-align: center;
+        gap: 6px 12px;
+      }
+
+      .topbar-left {
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .nav {
+        padding: 11px 14px;
+        gap: 12px;
+      }
+
+      .logo-emblem {
+        width: 38px;
+        height: 38px;
+        font-size: 1.15rem;
+        border-radius: 10px;
+      }
+
+      .brand-title {
+        font-size: 1.15rem;
+      }
+
+      .brand-subtitle {
+        font-size: 0.62rem;
+      }
+
+      .btn-call-nav {
+        display: none; /* Featured in sticky bottom bar for clean mobile header */
+      }
+
+      .btn-back-menu {
+        font-size: 0.78rem;
+        padding: 7px 13px;
+      }
+
+      /* ── Grand Banner Hero on Mobile (100% Uncropped, Perfect Aspect Ratio) ── */
+      .celebration-banner-hero {
+        padding: 16px 14px 22px;
+        border-radius: 20px;
+        margin-bottom: 28px;
+        gap: 18px;
+        border-width: 1.5px;
+      }
+
+      .banner-image-wrapper {
+        border-radius: 16px;
+        border: 2px solid var(--gold);
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.75), 0 0 25px rgba(245, 200, 76, 0.22);
+        background: #040711;
+      }
+
+      /* Displays the entire vertical photograph with zero cropping of faces or cake table */
+      .banner-image-wrapper img {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        aspect-ratio: 764 / 1024;
+        object-fit: contain;
+        display: block;
+        border-radius: 14px;
+      }
+
+      .banner-image-badge {
+        top: 10px;
+        left: 10px;
+        font-size: 0.68rem;
+        padding: 5px 12px;
+        letter-spacing: 0.06em;
+      }
+
+      .banner-image-zoom-btn {
+        bottom: 10px;
+        right: 10px;
+        font-size: 0.72rem;
+        padding: 6px 12px;
+        background: rgba(4, 7, 17, 0.9);
+        border: 1px solid var(--gold);
+      }
+
+      .banner-tag-row {
+        gap: 8px;
+      }
+
+      .banner-tag,
+      .banner-policy-pill {
+        font-size: 0.72rem;
+        padding: 4px 10px;
+      }
+
+      .banner-title {
+        font-size: clamp(1.55rem, 5.5vw, 1.95rem);
+        line-height: 1.22;
+      }
+
+      .banner-lead {
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+
+      /* Compact, eye-catching Minimum Bill Policy Box */
+      .banner-policy-box {
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(6, 10, 22, 0.88);
+        border: 1.5px solid var(--gold);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .banner-policy-price {
+        font-size: 1.7rem;
+      }
+
+      .banner-policy-text {
+        font-size: 0.8rem;
+        line-height: 1.35;
+      }
+
+      /* Features Grid on Mobile */
+      .banner-features-list {
+        grid-template-columns: 1fr;
+        gap: 9px;
+      }
+
+      .banner-feature-item {
+        padding: 10px 12px;
+        border-radius: 12px;
+        gap: 10px;
+      }
+
+      .banner-feature-icon {
+        font-size: 1.25rem;
+      }
+
+      .banner-feature-text h4 {
+        font-size: 0.88rem;
+      }
+
+      .banner-feature-text p {
+        font-size: 0.78rem;
+        line-height: 1.35;
+      }
+
+      .banner-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-top: 4px;
+      }
+
+      .btn-banner-phone,
+      .btn-banner-wa {
+        width: 100%;
+        min-height: 50px;
+        justify-content: center;
+        padding: 13px 18px;
+        font-size: 0.95rem;
+        border-radius: 12px;
+      }
+
+      .btn-banner-menu {
+        justify-content: center;
+        padding: 6px 0;
+        font-size: 0.88rem;
+      }
+
+      /* ── Mobile Curated Photo Grid (Natural, Uncropped Visuals) ── */
+      .photo-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .photo-card {
+        border-radius: 16px;
+        border-width: 1.5px;
+      }
+
+      /* Portrait celebration photos (Cards 1 & 2) */
+      .card-portrait .photo-frame {
+        height: auto;
+        aspect-ratio: 4 / 5;
+        background: #040711;
+      }
+
+      .card-portrait .photo-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+
+      /* 16:9 Official Packages Poster (Card 3) - Zero text cropping */
+      .card-poster .photo-frame {
+        height: auto;
+        aspect-ratio: 16 / 9;
+        background: #040711;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .card-poster .photo-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center center;
+        background: #040711;
+      }
+
+      .photo-info {
+        padding: 14px 16px 16px;
+      }
+
+      .photo-tag {
+        font-size: 0.7rem;
+      }
+
+      .photo-title {
+        font-size: 1.08rem;
+      }
+
+      .photo-desc {
+        font-size: 0.82rem;
+        line-height: 1.45;
+      }
+
+      .photo-action-hint {
+        font-size: 0.74rem;
+        margin-top: 6px;
+      }
+
+      /* ── Mobile Lightbox Controls & Viewing Experience ── */
+      .lightbox-close-btn {
+        top: max(14px, env(safe-area-inset-top));
+        right: max(14px, env(safe-area-inset-right));
+        width: 44px;
+        height: 44px;
+        font-size: 1.25rem;
+      }
+
+      .lightbox-nav-btn {
+        display: none; /* Replaced by bottom thumb-controls bar for mobile */
+      }
+
+      .lightbox-content img {
+        max-width: 95vw;
+        max-height: 68vh;
+        border-radius: 12px;
+      }
+
+      .lightbox-caption-box {
+        font-size: 0.82rem;
+        padding: 8px 14px;
+        max-width: 95vw;
+        margin-top: 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .lightbox-hint {
+        font-size: 0.7rem;
+        margin-top: 4px;
+      }
+
+      .lightbox-mobile-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 10px;
+        z-index: 10015;
+      }
+
+      .lightbox-btn-thumb {
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid var(--gold);
+        color: var(--gold-bright);
+        font-size: 0.82rem;
+        font-weight: 700;
+        padding: 8px 18px;
+        border-radius: 999px;
+        cursor: pointer;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        transition: all 0.2s ease;
+      }
+
+      .lightbox-btn-thumb:active {
+        background: var(--gold);
+        color: #060914;
+        transform: scale(0.95);
+      }
+
+      .lightbox-counter-thumb {
+        color: var(--gold);
+        font-size: 0.82rem;
+        font-weight: 800;
+        padding: 5px 12px;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 999px;
+        border: 1px solid rgba(245, 200, 76, 0.35);
+      }
+
+      /* ── Contact Section on Mobile ── */
+      .contact-section {
+        padding: 28px 16px;
+        border-radius: 18px;
+      }
+
+      .contact-title {
+        font-size: 1.55rem;
+      }
+
+      .contact-desc {
+        font-size: 0.88rem;
+        margin-bottom: 20px;
+      }
+
+      .contact-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .btn-contact-phone,
+      .btn-contact-wa {
+        width: 100%;
+        min-height: 50px;
+        justify-content: center;
+        padding: 13px 18px;
+        font-size: 0.95rem;
+        border-radius: 12px;
+      }
+
+      .contact-meta {
+        font-size: 0.8rem;
+        gap: 8px;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        font-size: 0.82rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .banner-title {
+        font-size: 1.45rem;
+      }
+      .banner-policy-price {
+        font-size: 1.5rem;
+      }
+      .brand-title {
+        font-size: 1.05rem;
+      }
+      .btn-back-menu {
+        font-size: 0.72rem;
+        padding: 6px 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════ TOPBAR ═══════════════════ -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <span>📍 Khanapur Main Road, Belagavi Dist., Karnataka — 591302</span>
+      <span>•</span>
+      <span>Open Daily: 11:00 AM – 11:00 PM</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <a href="tel:+917619133108" class="topbar-phone">📞 +91 7619133108</a>
+      <span class="topbar-badge">MIN. ₹300 BILL FOR CELEBRATION</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ HEADER NAV ═══════════════════ -->
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <div class="logo-emblem">H</div>
+      <div>
+        <div class="brand-title">Hide N Seek</div>
+        <div class="brand-subtitle">C A F É · KHANAPUR</div>
+      </div>
+    </a>
+
+    <div class="nav-actions">
+      <a href="index.html#menu" class="btn-back-menu">
+        <span>← View Food Menu</span>
+      </a>
+      <a href="tel:+917619133108" class="btn-call-nav">
+        <span>📞 Call +91 7619133108</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ MAIN CONTENT ═══════════════════ -->
+  <main class="container">
+
+    <!-- ═══════════════════ GRAND CELEBRATION BANNER HERO ═══════════════════ -->
+    <section class="celebration-banner-hero">
+      <!-- Left: Vertical Rectangle Photo as Banner Showcase -->
+      <div class="banner-image-wrapper" onclick="openLightbox(0)" role="button" tabindex="0" title="Click to view full resolution image">
+        <span class="banner-image-badge">✦ REAL CELEBRATION SETUP</span>
+        <img src="assets/birthday-group-celebration.jpg" alt="Real Birthday Celebration with Friends at Hide N Seek Cafe Khanapur" loading="eager" fetchpriority="high" width="764" height="1024">
+        <div class="banner-image-zoom-btn">
+          <span>🔍 Tap for Full Resolution</span>
+        </div>
+      </div>
+
+      <!-- Right: Complete Details Matching The Banner Photograph -->
+      <div class="banner-content">
+        <div class="banner-tag-row">
+          <span class="banner-tag">★ KHANAPUR'S FAVORITE CELEBRATION CAFÉ</span>
+          <span class="banner-policy-pill">🎂 MIN. ₹300 FOOD BILL</span>
+        </div>
+
+        <h1 class="banner-title">Make Every Celebration <span>Truly Special</span></h1>
+        
+        <p class="banner-lead">
+          Gather with your friends and family at <strong>Hide N Seek Café</strong> for birthdays, anniversaries, and joyful get-togethers! Enjoy our signature illuminated floral ring backdrop, party balloons, cake table, and delicious food without any separate decor fees.
+        </p>
+
+        <!-- Minimum Bill Policy Callout -->
+        <div class="banner-policy-box">
+          <div class="banner-policy-left">
+            <span class="banner-policy-price">₹300</span>
+            <div class="banner-policy-text">
+              <strong>Minimum Food Order Required</strong><br>
+              Zero venue hire • Zero decor fees • No advance booking deposit
+            </div>
+          </div>
+          <span style="font-size: 1.4rem;">🎉</span>
+        </div>
+
+        <!-- Detailed Features Illustrated in the Banner Photo -->
+        <div class="banner-features-list">
+          <div class="banner-feature-item">
+            <span class="banner-feature-icon">🌿</span>
+            <div class="banner-feature-text">
+              <h4>Illuminated Floral Ring</h4>
+              <p>Glowing "Happy Birthday" LED sign wrapped in fairy lights and florals.</p>
+            </div>
+          </div>
+
+          <div class="banner-feature-item">
+            <span class="banner-feature-icon">🎂</span>
+            <div class="banner-feature-text">
+              <h4>Cake Cutting Space</h4>
+              <p>Dedicated table with clean presentation, plates, cutlery & party confetti.</p>
+            </div>
+          </div>
+
+          <div class="banner-feature-item">
+            <span class="banner-feature-icon">🎈</span>
+            <div class="banner-feature-text">
+              <h4>Festive Balloon Setup</h4>
+              <p>Pre-decorated booth with colorful balloons ready for your group photos.</p>
+            </div>
+          </div>
+
+          <div class="banner-feature-item">
+            <span class="banner-feature-icon">🍕</span>
+            <div class="banner-feature-text">
+              <h4>74+ Delicious Dishes</h4>
+              <p>Sizzling Momos, hand-tossed Pizzas, Hakka Noodles, Pastas & Mocktails.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="banner-actions">
+          <a href="tel:+917619133108" class="btn-banner-phone">
+            <span>📞 Call +91 7619133108</span>
+          </a>
+          <a href="https://wa.me/917619133108?text=Hello%20Hide%20N%20Seek%20Cafe,%20I%20would%20like%20to%20plan%20a%20Birthday%20Celebration.%20(Min.%20%E2%82%B9300%20bill%20policy)"
+            target="_blank" class="btn-banner-wa">
+            <span>💬 WhatsApp +91 7619133108</span>
+          </a>
+          <a href="index.html#menu" class="btn-banner-menu">
+            Explore 74+ Menu Items →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ CURATED CELEBRATION VIEWS (NO DUPLICATES) ═══════════════════ -->
+    <section class="gallery-section">
+      <div class="gallery-head">
+        <h2 class="gallery-title">More Celebration Views</h2>
+        <span class="gallery-sub">Tap any photo to view in high resolution 🔍</span>
+      </div>
+
+      <div class="photo-grid">
+        <!-- 1. Wall Decor & Booth Ready for Arrival -->
+        <div class="photo-card card-portrait" onclick="openLightbox(1)" role="button" tabindex="0">
+          <div class="photo-frame">
+            <img src="assets/birthday-wall-decor.jpg" alt="Celebration Booth & Wall Decor at Hide N Seek Cafe Khanapur" style="object-position: center center;" loading="lazy" width="819" height="1024">
+            <div class="photo-zoom-badge">🔍 View Full Photo</div>
+          </div>
+          <div class="photo-info">
+            <span class="photo-tag">✦ The Celebration Space</span>
+            <h3 class="photo-title">Decorated Booth Ready For You</h3>
+            <p class="photo-desc">Cozy leather booth seating with our signature glowing green grass wall, warm fairy lights, and illuminated 3D café emblem.</p>
+            <div class="photo-action-hint">📸 Full Resolution (819×1024) • Tap to Enlarge</div>
+          </div>
+        </div>
+
+        <!-- 2. Wreath Closeup & Lighting Details -->
+        <div class="photo-card card-portrait" onclick="openLightbox(2)" role="button" tabindex="0">
+          <div class="photo-frame">
+            <img src="assets/birthday-wreath-closeup.jpg" alt="Floral Ring & Fairy Lights Closeup at Hide N Seek" style="object-position: center center;" loading="lazy" width="764" height="1024">
+            <div class="photo-zoom-badge">🔍 View Full Photo</div>
+          </div>
+          <div class="photo-info">
+            <span class="photo-tag">✦ Handcrafted Details</span>
+            <h3 class="photo-title">Floral Ring & Warm Fairy Lights</h3>
+            <p class="photo-desc">Handcrafted flower ring with glowing golden fairy lights and cursive "Happy Birthday" lettering for the perfect photo backdrop.</p>
+            <div class="photo-action-hint">📸 Full Resolution (764×1024) • Tap to Enlarge</div>
+          </div>
+        </div>
+
+        <!-- 3. Celebration Poster & Event Packages -->
+        <div class="photo-card card-poster" onclick="openLightbox(3)" role="button" tabindex="0">
+          <div class="photo-frame">
+            <img src="assets/birthday-celebration-group.jpg" alt="Special Event Packages at Hide N Seek Cafe" style="object-position: center center;" loading="lazy" width="1024" height="571">
+            <div class="photo-zoom-badge">🔍 View Full Poster</div>
+          </div>
+          <div class="photo-info">
+            <span class="photo-tag">✦ Packages & Info</span>
+            <h3 class="photo-title">Celebration Packages & Special Events</h3>
+            <p class="photo-desc">Customized decor, party food combos, and group celebration arrangements for birthdays, anniversaries & friend meetups.</p>
+            <div class="photo-action-hint">📸 Full Resolution (1024×571) • Tap to Enlarge</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ DIRECT INQUIRIES & PHONE NUMBER ═══════════════════ -->
+    <section class="contact-section">
+      <span class="contact-lead">✦ No Advance Booking Fees ✦</span>
+      <h2 class="contact-title">Inquire & Plan Your Celebration</h2>
+      <p class="contact-desc">
+        To ensure table availability and have our celebration setup ready for you, please call or WhatsApp our café team directly. A minimum food order of ₹300 is required upon dining.
+      </p>
+
+      <div class="contact-buttons">
+        <a href="tel:+917619133108" class="btn-contact-phone">
+          <span style="font-size: 1.35rem;">📞</span>
+          <span>Call +91 7619133108</span>
+        </a>
+        <a href="https://wa.me/917619133108?text=Hello%20Hide%20N%20Seek%20Cafe,%20I%20would%20like%20to%20inquire%20about%20a%20Birthday%20Celebration.%20(Min.%20%E2%82%B9300%20bill%20policy)"
+          target="_blank" class="btn-contact-wa">
+          <span style="font-size: 1.35rem;">💬</span>
+          <span>WhatsApp +91 7619133108</span>
+        </a>
+      </div>
+
+      <div class="contact-meta">
+        <div class="contact-meta-item">
+          <span>📍</span>
+          <span>Khanapur Main Road, Belagavi Dist., Karnataka — 591302</span>
+        </div>
+        <div class="contact-meta-item">
+          <span>⏰</span>
+          <span>Open Every Day: 11:00 AM – 11:00 PM</span>
+        </div>
+        <div class="contact-meta-item">
+          <span>🍽️</span>
+          <span>Dine-in • Takeaway</span>
+        </div>
+      </div>
+
+      <div>
+        <a href="index.html#menu" class="back-menu-footer-btn">
+          ← Explore Our Full Food Menu (72+ Items)
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════ LIGHTBOX MODAL (FULL RESOLUTION VIEWER) ═══════════════════ -->
+  <div class="lightbox-backdrop" id="lightboxBackdrop" onclick="if(event.target===this) closeLightbox()">
+    <button class="lightbox-close-btn" onclick="closeLightbox()" title="Close (Esc)">✕</button>
+    <button class="lightbox-nav-btn lightbox-prev" onclick="changeLightboxPhoto(-1)" title="Previous Photo (Left Arrow)">‹</button>
+    <button class="lightbox-nav-btn lightbox-next" onclick="changeLightboxPhoto(1)" title="Next Photo (Right Arrow)">›</button>
+
+    <div class="lightbox-content">
+      <img id="lightboxImg" src="" alt="Full resolution celebration photograph">
+      <div class="lightbox-caption-box">
+        <span id="lightboxCounter" class="lightbox-counter">Photo 1 of 4</span>
+        <span class="lightbox-divider">•</span>
+        <span id="lightboxCaption">Celebration Moments</span>
+      </div>
+      <div class="lightbox-hint">Swipe left/right or tap arrows to browse • Tap outside or ✕ to close</div>
+      <div class="lightbox-mobile-controls">
+        <button class="lightbox-btn-thumb" onclick="changeLightboxPhoto(-1)" aria-label="Previous Photo">‹ Previous</button>
+        <span id="lightboxCounterMobile" class="lightbox-counter-thumb">1 / 4</span>
+        <button class="lightbox-btn-thumb" onclick="changeLightboxPhoto(1)" aria-label="Next Photo">Next ›</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand-title">Hide N Seek Café • Khanapur</div>
+      <div>Good Food, Great Company, Warm Memories.</div>
+      <div class="footer-credits">@Made by-❤️Prajwal Naik</div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════ MOBILE STICKY QUICK-ACTION BAR ═══════════════════ -->
+  <div class="mobile-sticky-action-bar">
+    <a href="tel:+917619133108" class="sticky-btn-call">
+      <span>📞 Call Café</span>
+    </a>
+    <a href="https://wa.me/917619133108?text=Hello%20Hide%20N%20Seek%20Cafe,%20I%20would%20like%20to%20plan%20a%20Birthday%20Celebration.%20(Min.%20%E2%82%B9300%20bill%20policy)"
+      target="_blank" class="sticky-btn-wa">
+      <span>💬 WhatsApp Inquiry</span>
+    </a>
+  </div>
+
+  <script>
+    // Curated Celebration Photographs (100% Unique, Zero Duplicates)
+    const celebrationPhotos = [
+      {
+        src: 'assets/birthday-group-celebration.jpg',
+        title: 'Real Celebration Setup with Friends & Cake Cutting',
+        tag: 'Grand Celebration Setup'
+      },
+      {
+        src: 'assets/birthday-wall-decor.jpg',
+        title: 'Celebration Booth & Wall Decor Ready for Guests',
+        tag: 'The Celebration Space'
+      },
+      {
+        src: 'assets/birthday-wreath-closeup.jpg',
+        title: 'Handcrafted Floral Ring & Warm Fairy Lights Closeup',
+        tag: 'Warm Lighting Details'
+      },
+      {
+        src: 'assets/birthday-celebration-group.jpg',
+        title: 'Special Event & Birthday Packages Official Poster',
+        tag: 'Event Info & Packages'
+      }
+    ];
+
+    let currentPhotoIdx = 0;
+    const lightbox = document.getElementById('lightboxBackdrop');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+
+    function openLightbox(index) {
+      if (index < 0 || index >= celebrationPhotos.length) index = 0;
+      currentPhotoIdx = index;
+      updateLightboxDisplay();
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightboxDisplay() {
+      const photo = celebrationPhotos[currentPhotoIdx];
+      lightboxImg.src = photo.src;
+      lightboxCaption.textContent = photo.title;
+      lightboxCounter.textContent = `Photo ${currentPhotoIdx + 1} of ${celebrationPhotos.length}`;
+      const mobileCounter = document.getElementById('lightboxCounterMobile');
+      if (mobileCounter) {
+        mobileCounter.textContent = `${currentPhotoIdx + 1} / ${celebrationPhotos.length}`;
+      }
+    }
+
+    function changeLightboxPhoto(direction) {
+      currentPhotoIdx = (currentPhotoIdx + direction + celebrationPhotos.length) % celebrationPhotos.length;
+      updateLightboxDisplay();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Keyboard controls (Arrow keys + Escape)
+    document.addEventListener('keydown', function (e) {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') changeLightboxPhoto(-1);
+      if (e.key === 'ArrowRight') changeLightboxPhoto(1);
+    });
+
+    // Touch Swipe navigation on mobile devices
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+    lightbox.addEventListener('touchstart', function (e) {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', function (e) {
+      touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const diffX = touchEndX - touchStartX;
+      const diffY = touchEndY - touchStartY;
+      if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX > 0) {
+          changeLightboxPhoto(-1); // Swiped right -> previous
+        } else {
+          changeLightboxPhoto(1);  // Swiped left -> next
+        }
+      }
+    }
+
+    // Keyboard activation (Enter / Space) on interactive photo cards
+    document.querySelectorAll('.banner-image-wrapper, .photo-card').forEach((el) => {
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
