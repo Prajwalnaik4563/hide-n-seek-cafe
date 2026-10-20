@@ -1,0 +1,7 @@
+{
+  "name": "hide-n-seek",
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/birthday", "destination": "/birthday.html" }
+  ]
+}
